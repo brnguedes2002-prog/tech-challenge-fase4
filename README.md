@@ -40,7 +40,7 @@ Pipeline completo de preparação da base de conhecimento para o RAG:
 ## Fonte dos dados
 
 [Kaggle — Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce/data)
-
+# > - 
 ## Próximas fases
 
 - Geração de embeddings + índice Vector Search sobre `workspace.raw.f4_reviews_rag`

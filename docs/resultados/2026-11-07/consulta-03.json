@@ -1,0 +1,358 @@
+{
+  "response": {
+    "pergunta": "O que os clientes mais elogiam em suas experiências de compra?",
+    "resposta": "Os clientes mais elogiam a entrega rápida ou no prazo em suas experiências de compra, com 33,0% das avaliações no recorte abordando esse tema. Além disso, também são frequentemente elogiados os produtos bons ou conforme anunciados, com 20,2% das avaliações.\n\n* Entrega rápida ou no prazo: [R1], [R2], [R3]\n* Produto bom ou conforme anunciado: [R4], [R5], [R6]\n* Recomendação ou compra satisfatória: [R7], [R8], [R9]\n* Loja ou vendedor confiável e bom atendimento: [R10], [R11], [R12]\n\nLimitações: As evidências apresentadas são baseadas em um recorte específico de avaliações e podem não representar a opinião de todos os clientes. Além disso, a análise é baseada em uma contagem por léxico determinístico, o que pode não capturar nuances ou temas mais complexos presentes nas avaliações.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "agregada",
+    "filtros": {
+      "review_score": [
+        4,
+        5
+      ]
+    },
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "27f37811c893d1829a0bbd0c1611703c",
+        "texto": "recomendo muito bom o processo de compra, sem imprevistos, com destaque para entrega que ocorreu antes do prazo e o brinde que incluíram.",
+        "score": 0.7850785,
+        "nota": 5,
+        "categoria": "fashion_bags_accessories",
+        "data_compra": "2018-06-02",
+        "atrasado": false,
+        "dias_atraso": -29.0,
+        "temas": [
+          "elogio_entrega",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "27f37811c893d1829a0bbd0c1611703c"
+        ],
+        "tema_ancora": "elogio_entrega"
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "9c4814b68807d29d78e051b3793b35a5",
+        "texto": "recomendo processo rápido entre compra e recebimento, inclusive antes do prazo apresentado.",
+        "score": 0.74537355,
+        "nota": 5,
+        "categoria": "construction_tools_construction",
+        "data_compra": "2018-06-18",
+        "atrasado": false,
+        "dias_atraso": -10.0,
+        "temas": [
+          "elogio_entrega",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "9c4814b68807d29d78e051b3793b35a5"
+        ],
+        "tema_ancora": "elogio_entrega"
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "5a6cb00d4ca458c71ec9063cb7bb10f2",
+        "texto": "como sempre as lojas lannister surpreende tanto no atendimento quanto no prazo de entrega, entregou meu produto antes da data prevista. super recomendo!",
+        "score": 0.73930854,
+        "nota": 5,
+        "categoria": "health_beauty",
+        "data_compra": "2018-02-12",
+        "atrasado": false,
+        "dias_atraso": -9.0,
+        "temas": [
+          "atendimento",
+          "elogio_entrega",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "5a6cb00d4ca458c71ec9063cb7bb10f2"
+        ],
+        "tema_ancora": "elogio_entrega"
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "76df0bd8c9d614662a1e893152b4741f",
+        "texto": "produto de qualidade! compromisso com o cliente e qualidade no produto resumem essa compra.",
+        "score": 0.7212313,
+        "nota": 5,
+        "categoria": "computers_accessories",
+        "data_compra": "2018-04-29",
+        "atrasado": false,
+        "dias_atraso": -20.0,
+        "temas": [
+          "elogio_produto"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "76df0bd8c9d614662a1e893152b4741f"
+        ],
+        "tema_ancora": "elogio_produto"
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "e2b4d5970fefa486994421aba7976be9",
+        "texto": "ótimo vendedor! produto de qualidade, excelência no processo de compra.",
+        "score": 0.7015616,
+        "nota": 5,
+        "categoria": "electronics",
+        "data_compra": "2018-06-11",
+        "atrasado": false,
+        "dias_atraso": -2.0,
+        "temas": [
+          "elogio_produto"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e2b4d5970fefa486994421aba7976be9"
+        ],
+        "tema_ancora": "elogio_produto"
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "9d8a63a5560016e9f620595cb865263c",
+        "texto": "excelente produto atendeu as expectativas. recomendo",
+        "score": 0.69865805,
+        "nota": 5,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-05-21",
+        "atrasado": false,
+        "dias_atraso": -2.0,
+        "temas": [
+          "elogio_produto",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "9d8a63a5560016e9f620595cb865263c"
+        ],
+        "tema_ancora": "elogio_produto"
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "a38b5db6a6e216e30990c5b9a5bfc308",
+        "texto": "super recomendo grande satisfação pela compra.",
+        "score": 0.7463409,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-06-07",
+        "atrasado": false,
+        "dias_atraso": -27.0,
+        "temas": [
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "a38b5db6a6e216e30990c5b9a5bfc308"
+        ],
+        "tema_ancora": "recomendacao"
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "19b25891b68e636f73e03d474ca1b984",
+        "texto": "recomendo compra satisfatória.",
+        "score": 0.73666847,
+        "nota": 4,
+        "categoria": "computers_accessories",
+        "data_compra": "2018-05-07",
+        "atrasado": false,
+        "dias_atraso": -15.0,
+        "temas": [
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "19b25891b68e636f73e03d474ca1b984"
+        ],
+        "tema_ancora": "recomendacao"
+      },
+      {
+        "tag": "[R9]",
+        "review_id": "daa029fd2a148240b4c6a5fb6be71e88",
+        "texto": "recomendo gostei de adquirir produtos desta loja. estou satisfeita.",
+        "score": 0.72911257,
+        "nota": 4,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-06-19",
+        "atrasado": false,
+        "dias_atraso": -16.0,
+        "temas": [
+          "elogio_produto",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "daa029fd2a148240b4c6a5fb6be71e88"
+        ],
+        "tema_ancora": "recomendacao"
+      },
+      {
+        "tag": "[R10]",
+        "review_id": "cdb1dfb8b9d381511f840dcf9f393f04",
+        "texto": "ótima compra.entrega antes do previsto.parabéns lojas lannister pelo compromisso e sensatez com seus clientes.grata",
+        "score": 0.7384444,
+        "nota": 5,
+        "categoria": "sports_leisure",
+        "data_compra": "2017-09-02",
+        "atrasado": false,
+        "dias_atraso": -15.0,
+        "temas": [
+          "elogio_vendedor"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "cdb1dfb8b9d381511f840dcf9f393f04"
+        ],
+        "tema_ancora": "elogio_vendedor"
+      },
+      {
+        "tag": "[R11]",
+        "review_id": "38a982cbe0fc0d4815c0ec8f582ad35c",
+        "texto": "super recomendo loja atenciosa com os clientes super recomendo; alem de toda atençao com os clientes produto chegou antes do prazo",
+        "score": 0.72990304,
+        "nota": 5,
+        "categoria": "auto",
+        "data_compra": "2018-05-07",
+        "atrasado": false,
+        "dias_atraso": -11.0,
+        "temas": [
+          "elogio_entrega",
+          "elogio_vendedor",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "38a982cbe0fc0d4815c0ec8f582ad35c"
+        ],
+        "tema_ancora": "elogio_vendedor"
+      },
+      {
+        "tag": "[R12]",
+        "review_id": "e59197343965cdc4eb95fd85135d830f",
+        "texto": "parabéns loja transparente e sinceridade com o cliente recomendo",
+        "score": 0.7246067,
+        "nota": 5,
+        "categoria": "home_appliances",
+        "data_compra": "2017-08-07",
+        "atrasado": false,
+        "dias_atraso": -12.0,
+        "temas": [
+          "elogio_vendedor",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e59197343965cdc4eb95fd85135d830f"
+        ],
+        "tema_ancora": "elogio_vendedor"
+      }
+    ],
+    "estatisticas": {
+      "recorte": {
+        "review_score": [
+          4,
+          5
+        ]
+      },
+      "total_avaliacoes_no_recorte": 26353,
+      "avaliacoes_sem_tema_identificado": 10218,
+      "temas": [
+        {
+          "tema": "Entrega rapida ou no prazo",
+          "avaliacoes": 8706,
+          "percentual_do_recorte": 33.0
+        },
+        {
+          "tema": "Produto bom / conforme anunciado",
+          "avaliacoes": 5326,
+          "percentual_do_recorte": 20.2
+        },
+        {
+          "tema": "Recomenda / compraria de novo",
+          "avaliacoes": 4875,
+          "percentual_do_recorte": 18.5
+        },
+        {
+          "tema": "Loja / vendedor confiavel e bom atendimento",
+          "avaliacoes": 1445,
+          "percentual_do_recorte": 5.5
+        }
+      ],
+      "metodo": "contagem por lexico deterministico sobre todas as avaliacoes do recorte; uma avaliacao pode ter mais de um tema"
+    },
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "agregada",
+        "polaridade": "positivo",
+        "filtros_indice": {
+          "review_score": [
+            4,
+            5
+          ]
+        },
+        "filtros_pos": {},
+        "foco": [],
+        "pergunta_busca": "clientes mais elogiam em suas experiências de compra",
+        "temas_alvo": []
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "corpus_filtrado": 26353,
+      "ranking_temas": [
+        [
+          "elogio_entrega",
+          8706
+        ],
+        [
+          "elogio_produto",
+          5326
+        ],
+        [
+          "recomendacao",
+          4875
+        ],
+        [
+          "elogio_vendedor",
+          1445
+        ]
+      ],
+      "evidencias_por_tema": {
+        "elogio_entrega": 3,
+        "elogio_produto": 3,
+        "recomendacao": 3,
+        "elogio_vendedor": 3
+      },
+      "contexto_chars": 3443,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 8676
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:50:45.477608+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

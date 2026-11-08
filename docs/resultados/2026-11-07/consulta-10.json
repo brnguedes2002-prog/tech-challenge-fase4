@@ -1,0 +1,276 @@
+{
+  "response": {
+    "pergunta": "Quais temas aparecem nas avaliações de pedidos entregues com atraso?",
+    "resposta": "Os temas que aparecem nas avaliações de pedidos entregues com atraso incluem \"Produto não recebido\", \"Atraso na entrega\" e \"Entrega incompleta (itens faltando)\". \nOs achados em tópicos são:\n- \"Produto não recebido\" é mencionado em [R1], [R2] e [R3], com um total de 1569 avaliações, representando 41,9% do recorte.\n- \"Atraso na entrega\" é mencionado em [R4], [R5] e [R6], com um total de 884 avaliações, representando 23,6% do recorte.\n- \"Entrega incompleta (itens faltando)\" é mencionado em [R7] e [R8], com um total de 61 avaliações, representando 1,6% do recorte.\nLimitações: As evidências fornecidas são limitadas a apenas 8 exemplos de avaliações, o que pode não ser representativo de todas as 3747 avaliações no recorte.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "agregada",
+    "filtros": {
+      "atrasado": true
+    },
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "f08d703410a3becb503822e5091307fc",
+        "texto": "demora para avisar que deu problema na entrega, não recebi o produto avisaram quase no dia de receber,foi descontado primeira parcela referente a compra.",
+        "score": 0.6231517,
+        "nota": 2,
+        "categoria": "stationery",
+        "data_compra": "2018-01-09",
+        "atrasado": true,
+        "dias_atraso": 6.0,
+        "temas": [
+          "atraso_entrega",
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "f08d703410a3becb503822e5091307fc"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "66b7b7c200a3fa372cbd01606bba551f",
+        "texto": "entrega atrasada até o momento não foi entregue o produto",
+        "score": 0.6203154,
+        "nota": 2,
+        "categoria": "furniture_decor",
+        "data_compra": "2018-05-15",
+        "atrasado": true,
+        "dias_atraso": 13.0,
+        "temas": [
+          "atraso_entrega",
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "66b7b7c200a3fa372cbd01606bba551f"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "e210f1810855cde7ca2709915d766d08",
+        "texto": "produto não foi entregue no prazo, mas isso aconteceu por causa do atraso do correios.",
+        "score": 0.6187088,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-02-18",
+        "atrasado": true,
+        "dias_atraso": 7.0,
+        "temas": [
+          "atraso_entrega",
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e210f1810855cde7ca2709915d766d08"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "0b8a229441c9f988b05c02777ec47684",
+        "texto": "demora dimais na entrega pedido avaliação e o produto ainda nem chegou",
+        "score": 0.6934163,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-01-12",
+        "atrasado": true,
+        "dias_atraso": 5.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0b8a229441c9f988b05c02777ec47684"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "dd6e0f7168d75cd78769333f7630a036",
+        "texto": "o atraso na entrega prejudicou a obra",
+        "score": 0.6597483,
+        "nota": 3,
+        "categoria": "furniture_decor",
+        "data_compra": "2018-03-08",
+        "atrasado": true,
+        "dias_atraso": 1.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "dd6e0f7168d75cd78769333f7630a036"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "06de6ba90c81c318f9f08196c369ded5",
+        "texto": "entrega em atraso",
+        "score": 0.6509717,
+        "nota": 2,
+        "categoria": null,
+        "data_compra": "2018-03-04",
+        "atrasado": true,
+        "dias_atraso": 10.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "06de6ba90c81c318f9f08196c369ded5"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "70d5fe5af7e8d9de730af7bfee57a6b5",
+        "texto": "pedido veio incompleto estou aguardando a resposta da minha reclamação e até agora nada!",
+        "score": 0.5702088,
+        "nota": 1,
+        "categoria": "baby",
+        "data_compra": "2017-11-17",
+        "atrasado": true,
+        "dias_atraso": 1.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "70d5fe5af7e8d9de730af7bfee57a6b5"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "e6ad4763e83667ce38442f2e07308c7c",
+        "texto": "o pedido chegou porém veio faltando um item.",
+        "score": 0.5693492,
+        "nota": 1,
+        "categoria": "furniture_decor",
+        "data_compra": "2017-11-25",
+        "atrasado": true,
+        "dias_atraso": 1.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e6ad4763e83667ce38442f2e07308c7c"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      }
+    ],
+    "estatisticas": {
+      "recorte": {
+        "atrasado": true
+      },
+      "total_avaliacoes_no_recorte": 3747,
+      "avaliacoes_sem_tema_identificado": 1139,
+      "temas": [
+        {
+          "tema": "Produto nao recebido",
+          "avaliacoes": 1569,
+          "percentual_do_recorte": 41.9
+        },
+        {
+          "tema": "Atraso na entrega",
+          "avaliacoes": 884,
+          "percentual_do_recorte": 23.6
+        },
+        {
+          "tema": "Entrega incompleta (itens faltando)",
+          "avaliacoes": 61,
+          "percentual_do_recorte": 1.6
+        },
+        {
+          "tema": "Embalagem",
+          "avaliacoes": 5,
+          "percentual_do_recorte": 0.1
+        }
+      ],
+      "metodo": "contagem por lexico deterministico sobre todas as avaliacoes do recorte; uma avaliacao pode ter mais de um tema",
+      "atraso_confirmado_pelos_dados": {
+        "reclamacoes_de_atraso_com_data_de_entrega": 884,
+        "pedidos_entregues_apos_a_data_estimada": 884,
+        "percentual": 100.0
+      }
+    },
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "agregada",
+        "polaridade": "negativo",
+        "filtros_indice": {},
+        "filtros_pos": {
+          "atrasado": true
+        },
+        "foco": [
+          "entrega"
+        ],
+        "pergunta_busca": "temas aparecem nas avaliações de pedidos entregues com atraso",
+        "temas_alvo": [
+          "atraso_entrega"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "corpus_filtrado": 3747,
+      "ranking_temas": [
+        [
+          "nao_recebido",
+          1569
+        ],
+        [
+          "atraso_entrega",
+          884
+        ],
+        [
+          "entrega_incompleta",
+          61
+        ],
+        [
+          "embalagem",
+          5
+        ]
+      ],
+      "evidencias_por_tema": {
+        "nao_recebido": 3,
+        "atraso_entrega": 3,
+        "entrega_incompleta": 2,
+        "embalagem": 0
+      },
+      "contexto_chars": 2414,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 10386
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:52:38.651919+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

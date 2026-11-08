@@ -1,0 +1,210 @@
+{
+  "response": {
+    "pergunta": "O que os clientes relatam sobre problemas relacionados à entrega?",
+    "resposta": "Os clientes relatam problemas relacionados à entrega, incluindo atrasos, erros e falta de comunicação. \nAchados em tópicos:\n- Entrega atrasada: [R3], [R7] \n- Erros na entrega: [R1], [R2], [R4], [R8] \n- Falta de comunicação: [R8] \n- Problemas com os correios: [R5] \nLimitações: Não há estatísticas disponíveis para análise.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "c3084e1f8472a19337c2b8e32998df6c",
+        "texto": "nao entrega",
+        "score": 0.7459176,
+        "nota": 1,
+        "categoria": "auto",
+        "data_compra": "2017-12-15",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "c3084e1f8472a19337c2b8e32998df6c"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "249f0e6fef00a6e6dd15aeaad6c0afcc",
+        "texto": "erro na entrega a entrega nao chegou correta completa",
+        "score": 0.7258386,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-06-14",
+        "atrasado": false,
+        "dias_atraso": -5.0,
+        "temas": [
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "249f0e6fef00a6e6dd15aeaad6c0afcc"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "452cfaa876b9d0d505ae6ba3f0a217b1",
+        "texto": "terrivel este problema da entrega",
+        "score": 0.72280693,
+        "nota": 1,
+        "categoria": "computers_accessories",
+        "data_compra": "2018-03-22",
+        "atrasado": true,
+        "dias_atraso": 12.0,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "452cfaa876b9d0d505ae6ba3f0a217b1"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "4adfad59289a2e8a92288351b9f73137",
+        "texto": "entrega não efetuada",
+        "score": 0.70805526,
+        "nota": 3,
+        "categoria": "bed_bath_table",
+        "data_compra": "2017-07-23",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "4adfad59289a2e8a92288351b9f73137"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "76b6638337d73bf92e5936c1a69769c9",
+        "texto": "problemas com os correios",
+        "score": 0.60727805,
+        "nota": 5,
+        "categoria": "telephony",
+        "data_compra": "2017-03-22",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "76b6638337d73bf92e5936c1a69769c9"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "e9e9832f0e67bc7e1637c3d76df819f0",
+        "texto": "pedido com entrega parcelada",
+        "score": 0.64967823,
+        "nota": 1,
+        "categoria": "fashion_bags_accessories",
+        "data_compra": "2017-10-08",
+        "atrasado": false,
+        "dias_atraso": -31.0,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e9e9832f0e67bc7e1637c3d76df819f0"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "5193565d8ef972341e963399fedec040",
+        "texto": "entrega atrasada",
+        "score": 0.63677084,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-01-31",
+        "atrasado": true,
+        "dias_atraso": 6.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 4,
+        "review_ids": [
+          "5193565d8ef972341e963399fedec040",
+          "4ca57be78a2cfd23b8b341521800054f"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "311cfa581bf477276175ea9bd4a162a4",
+        "texto": "difícil de resolver um problema na entrega. comprei 3 itens e foi entregue somente 1 e não tenho com quem falar. só posso passar email e aguardar resposta.",
+        "score": 0.6141034,
+        "nota": 1,
+        "categoria": "toys",
+        "data_compra": "2018-02-13",
+        "atrasado": false,
+        "dias_atraso": -13.0,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "311cfa581bf477276175ea9bd4a162a4"
+        ],
+        "tema_ancora": null
+      }
+    ],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números.",
+      "Evidencias recuperadas e nao citadas: [6]"
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "entrega"
+        ],
+        "pergunta_busca": "problemas entrega",
+        "temas_alvo": []
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "problemas entrega",
+      "temas_da_pergunta": [],
+      "candidatos_apos_dedup_e_filtro": 37,
+      "top_scores": [
+        0.7459,
+        0.7258,
+        0.7228,
+        0.7081,
+        0.6604
+      ],
+      "acima_do_min_score": 37,
+      "contexto_chars": 1089,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 15354
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:51:32.729265+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

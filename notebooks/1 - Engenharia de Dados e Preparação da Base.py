@@ -6,11 +6,11 @@
 # MAGIC
 # MAGIC Pipeline de preparação da base de conhecimento para o **Tech Challenge Fase 4 — Voice of Customer com RAG**. Este notebook executa as etapas abaixo, na ordem:
 # MAGIC
-# MAGIC 1. **Carga** — CSVs do dataset Olist (Kaggle) → Delta Tables na camada bronze (`workspace.raw.f4_*`)
+# MAGIC 1. **Carga** — CSVs do dataset Olist (Kaggle) → Delta Tables na camada bronze (`workspace.raw.f4_*`), com validação da leitura dos reviews antes de gravar
 # MAGIC 2. **EDA** — qualidade dos dados: nulos, distribuição das notas e cobertura de comentários
 # MAGIC 3. **Limpeza textual** — normalização dos comentários (título e mensagem) e tratamento de nulos
 # MAGIC 4. **Enriquecimento** — joins com metadados dos pedidos (datas, status), itens e produtos (categoria)
-# MAGIC 5. **Dataset final (gold)** — tabela consolidada e deduplicada, pronta para geração de embeddings no pipeline RAG
+# MAGIC 5. **Dataset final (gold)** — tabela consolidada e deduplicada, validada e pronta para geração de embeddings no pipeline RAG
 # MAGIC
 # MAGIC **Fonte:** [Kaggle — Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce/data) (~100 mil pedidos, 2016–2018)
 
@@ -128,17 +128,58 @@ table_names = {
     "product_category_name_translation.csv": "f4_product_category_translation",
 }
 
+from pyspark.sql.functions import col as _col
+
+# Valores do CSV oficial do Kaggle (olist_order_reviews_dataset.csv).
+# Se o arquivo de origem mudar de propósito, atualize as constantes.
+EXPECTED_REVIEWS = 99_224          # registros (o arquivo tem mais linhas físicas por causa das quebras de linha)
+EXPECTED_MULTILINE_MESSAGES = 3_852   # referência medida no CSV oficial
+
+
+def validar_reviews_bronze(df):
+    """Confere a leitura do CSV de reviews ANTES de sobrescrever a tabela.
+
+    Sem multiLine, o Spark corta a mensagem na primeira quebra de linha e
+    transforma o resto do comentário em linhas-fantasma (review_id com texto).
+    """
+    total = df.count()
+    ids_invalidos = df.filter(~_col("review_id").rlike("^[0-9a-f]{32}$")).count()
+    notas_invalidas = df.filter(_col("review_score").isNull()
+                                | ~_col("review_score").between(1, 5)).count()
+    multilinha = df.filter(_col("review_comment_message").contains("\n")).count()
+
+    print(f"  validação: {total:,} registros | ids inválidos: {ids_invalidos} | "
+          f"notas inválidas: {notas_invalidas} | mensagens com quebra de linha: {multilinha:,}")
+
+    assert total == EXPECTED_REVIEWS, (
+        f"Esperados {EXPECTED_REVIEWS:,} reviews e vieram {total:,}: confira multiLine/escape na leitura.")
+    assert ids_invalidos == 0, f"{ids_invalidos} review_id fora do formato hexadecimal de 32 caracteres."
+    assert notas_invalidas == 0, f"{notas_invalidas} notas nulas ou fora de 1 a 5."
+    # Zero aqui significa que a quebra de linha foi perdida na leitura.
+    assert multilinha > 0, (
+        f"Nenhuma mensagem com quebra de linha (referência: {EXPECTED_MULTILINE_MESSAGES:,}). "
+        "Confira multiLine/escape na leitura.")
+
+
 for csv_file, schema in csv_schemas.items():
     table_name = table_names[csv_file]
     full_path = f"{BASE_PATH}/{csv_file}"
     full_table = f"{TARGET_CATALOG}.{TARGET_SCHEMA}.{table_name}"
-    
+
     print(f"Carregando {csv_file} -> {full_table} ...")
-    
+
+    # multiLine + escape: comentários de clientes podem ter quebra de linha e
+    # aspas duplicadas dentro do campo (padrão RFC 4180 do CSV do Kaggle).
     df = (spark.read
+          .option("multiLine", True)
+          .option("escape", '"')
           .csv(full_path, header=True, schema=schema, timestampFormat="yyyy-MM-dd HH:mm:ss")
           .na.fill("", subset=[c.name for c in schema.fields if c.dataType == StringType()]))
-    
+
+    # Interrompe antes de sobrescrever a tabela se a leitura dos reviews estiver errada
+    if csv_file == "olist_order_reviews_dataset.csv":
+        validar_reviews_bronze(df)
+
     # Sobrescreve a tabela Delta (modo batch)
     df.write.format("delta").mode("overwrite").option("overwriteSchema", "true").saveAsTable(full_table)
     
@@ -204,11 +245,12 @@ reviews = spark.table(f"{TARGET_CATALOG}.{TARGET_SCHEMA}.f4_order_reviews")
 
 # Aplica limpeza nas colunas textuais
 clean_reviews = (reviews
-    # Remove espaços extras (tabs, quebras de linha, espaços duplos)
+    # Remove espaços extras (tabs, quebras de linha, espaços duplos).
+    # O colapso vem antes do trim: uma mensagem só com "\n" vira vazia (sem comentário).
     .withColumn("review_comment_title",
-        regexp_replace(trim(col("review_comment_title")), r"\s+", " "))
+        trim(regexp_replace(col("review_comment_title"), r"\s+", " ")))
     .withColumn("review_comment_message",
-        regexp_replace(trim(col("review_comment_message")), r"\s+", " "))
+        trim(regexp_replace(col("review_comment_message"), r"\s+", " ")))
     # Remove caracteres de controle e entidades HTML comuns
     .withColumn("review_comment_title",
         regexp_replace(col("review_comment_title"), r"[\x00-\x1f\x7f]|&amp;|&lt;|&gt;|&quot;|&#39;", ""))
@@ -344,17 +386,27 @@ display(enriched_reviews.filter(col("has_comment") == True).limit(10))
 # ============================================================
 # Critérios:
 # - apenas reviews com comentário textual (base do RAG)
-# - deduplicação por review_id
+# - deduplicação determinística por review_id
 # - consolidação título + mensagem em um único texto (review_full_text)
 # - metadados preservados para filtragem contextual (categoria, datas, status)
 
-from pyspark.sql.functions import col, trim, concat_ws, length as length_col
+from pyspark.sql.functions import col, trim, concat_ws, length as length_col, row_number
+from pyspark.sql.window import Window
 
 enriched = spark.table(f"{TARGET_CATALOG}.{TARGET_SCHEMA}.f4_reviews_enriched")
 
+# No CSV original, 789 review_id aparecem ligados a mais de um pedido (mesmo
+# texto e mesma nota). dropDuplicates escolheria uma linha arbitrária, e os
+# metadados (categoria, datas) poderiam mudar entre execuções. Aqui fica
+# sempre o pedido mais antigo, com desempate por order_id.
+janela_review = Window.partitionBy("review_id").orderBy(
+    col("order_purchase_timestamp").asc_nulls_last(), col("order_id").asc())
+
 reviews_rag = (enriched
     .filter(col("has_comment") == True)
-    .dropDuplicates(["review_id"])
+    .withColumn("_ordem_review", row_number().over(janela_review))
+    .filter(col("_ordem_review") == 1)
+    .drop("_ordem_review")
     .withColumn("review_full_text",
         trim(concat_ws(" ", col("review_comment_title"), col("review_comment_message"))))
     .filter(length_col(col("review_full_text")) > 0)
@@ -392,6 +444,43 @@ display(reviews_rag.select(
 
 # COMMAND ----------
 
+# DBTITLE 1,Validação do dataset final (Gold)
+# ============================================================
+# Validação do dataset final: confere a gold antes de gerar embeddings
+# ============================================================
+# Rode esta célula depois da anterior. Se algum teste falhar, NÃO rode o
+# notebook 2.2: o índice vetorial seria gerado sobre uma base errada.
+
+from pyspark.sql.functions import col
+
+EXPECTED_GOLD = 40_641   # reviews com mensagem escrita, sem duplicatas (CSV oficial)
+
+gold = spark.table(rag_table)
+total_gold = gold.count()
+ids_unicos = gold.select("review_id").distinct().count()
+ids_invalidos = gold.filter(~col("review_id").rlike("^[0-9a-f]{32}$")).count()
+notas_invalidas = gold.filter(col("review_score").isNull() | ~col("review_score").between(1, 5)).count()
+textos_vazios = gold.filter(col("review_full_text").isNull() | (col("review_full_text") == "")).count()
+
+# Caso conhecido de comentário com quebra de linha: a 2ª linha precisa estar no texto
+exemplo = gold.filter(col("review_id") == "00112b1cb3cd58339c91aad88df2b835").select("review_full_text").collect()
+
+print(f"Registros na gold: {total_gold:,} (esperado {EXPECTED_GOLD:,})")
+print(f"review_id únicos: {ids_unicos:,} | ids inválidos: {ids_invalidos} | "
+      f"notas inválidas: {notas_invalidas} | textos vazios: {textos_vazios}")
+
+assert total_gold == EXPECTED_GOLD, f"Gold com {total_gold:,} registros; esperado {EXPECTED_GOLD:,}."
+assert ids_unicos == total_gold, "Há review_id duplicado na gold."
+assert ids_invalidos == 0, f"{ids_invalidos} review_id inválidos na gold (linhas-fantasma do CSV)."
+assert notas_invalidas == 0, f"{notas_invalidas} notas nulas ou fora de 1 a 5 na gold."
+assert textos_vazios == 0, f"{textos_vazios} textos vazios na gold."
+assert exemplo and "não tem a cor exatamente preta" in exemplo[0]["review_full_text"], (
+    "O comentário multilinha de referência foi truncado: confira a leitura do CSV.")
+
+print("Gold validada: pode seguir para o notebook 2.2 (embeddings e índice vetorial).")
+
+# COMMAND ----------
+
 # DBTITLE 1,Resumo das tabelas criadas
 # MAGIC %sql
 # MAGIC     
@@ -420,11 +509,13 @@ display(reviews_rag.select(
 # MAGIC ### Decisões de preparação
 # MAGIC
 # MAGIC * **Schemas explícitos** na carga dos CSVs (datas no formato `yyyy-MM-dd HH:mm:ss`), evitando inferência frágil.
+# MAGIC * **Leitura de campos com quebra de linha**: `multiLine=True` e `escape='"'`. O CSV de reviews tem 99.224 registros, mas mais linhas físicas, porque 3.852 mensagens ocupam mais de uma linha. Sem essas opções, o Spark cortava o comentário na primeira quebra e criava linhas-fantasma com texto no lugar do `review_id`.
+# MAGIC * **Validações que interrompem a execução**: antes de gravar a bronze de reviews (total de registros, formato do `review_id`, notas de 1 a 5, mensagens multilinha) e depois de gravar a gold (total esperado, ids únicos, textos não vazios e um comentário multilinha de referência completo).
 # MAGIC * **Tratamento de nulos**: strings vazias normalizadas para `NULL` na limpeza; reviews sem mensagem permanecem nas camadas silver com a flag `has_comment = false` e são excluídos apenas do dataset final do RAG (que exige conteúdo textual para embedding).
 # MAGIC * **Limpeza textual**: trim, colapso de espaços/quebras de linha, remoção de caracteres de controle e entidades HTML (`&amp;`, `&quot;` etc.), redução de pontuação repetida e lowercase preservando acentuação do português.
 # MAGIC * **Consolidação dos comentários**: `review_full_text` = título + mensagem concatenados — granularidade de 1 documento por `review_id`.
 # MAGIC * **Enriquecimento (left joins)**: `reviews -> orders` (status e datas do ciclo do pedido), `-> order_items` agregado por pedido (produto/vendedor representativos, preço mín/máx), `-> products` (categoria em PT) e `-> product_category_name_translation` (categoria em EN). Left joins preservam todos os reviews mesmo sem correspondência.
-# MAGIC * **Deduplicação**: `dropDuplicates(["review_id"])` no dataset final.
+# MAGIC * **Deduplicação determinística**: 789 `review_id` aparecem ligados a mais de um pedido (com o mesmo texto e a mesma nota). Fica sempre o pedido mais antigo, com desempate por `order_id`, para que categoria e datas não mudem entre execuções. Resultado esperado: 40.641 documentos na gold.
 # MAGIC
 # MAGIC ### Uso no pipeline RAG
 # MAGIC

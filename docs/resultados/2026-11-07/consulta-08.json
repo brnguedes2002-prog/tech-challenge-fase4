@@ -1,0 +1,431 @@
+{
+  "response": {
+    "pergunta": "Quais são os principais problemas relatados nas avaliações com nota baixa?",
+    "resposta": "Os principais problemas relatados nas avaliações com nota baixa são relacionados a problemas com a entrega e a qualidade dos produtos. \nAchados em tópicos:\n- **Produto não recebido**: [R1], [R2], [R3] relatam que não receberam o produto, o que impossibilitou a avaliação.\n- **Troca, devolução, reembolso ou cancelamento**: [R4], [R5], [R6] expressam insatisfação com o processo de troca, devolução ou cancelamento de pedidos.\n- **Atraso na entrega**: [R7], [R8], [R9] mencionam atrasos na entrega como motivo de insatisfação.\n- **Entrega incompleta**: [R10], [R11], [R12] relatam que os pedidos chegaram incompletos, faltando itens.\n- **Insatisfação geral**: [R13], [R14], [R15] expressam descontentamento com a qualidade dos produtos.\nLimitações: As evidências fornecidas são limitadas a um conjunto específico de avaliações e podem não representar a experiência de todos os clientes.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "agregada",
+    "filtros": {
+      "review_score": [
+        1,
+        2
+      ]
+    },
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "52c58b112be6091c59eaea5e5342c6ac",
+        "texto": "não recebi o produto e por isso sem condições de avaliação.",
+        "score": 0.6684663,
+        "nota": 1,
+        "categoria": "computers_accessories",
+        "data_compra": "2017-11-24",
+        "atrasado": false,
+        "dias_atraso": -14.0,
+        "temas": [
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "52c58b112be6091c59eaea5e5342c6ac"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "4d05593294cb87f9412ec522d3c6333e",
+        "texto": "\"ainda não recebi o produto, mas sem receber o produto, a avaliação fica \"\"furada\"\".\"",
+        "score": 0.6446737,
+        "nota": 2,
+        "categoria": "electronics",
+        "data_compra": "2017-09-22",
+        "atrasado": false,
+        "dias_atraso": -9.0,
+        "temas": [
+          "atraso_entrega",
+          "nao_recebido",
+          "produto_defeito"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "4d05593294cb87f9412ec522d3c6333e"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "c888e9da2845d8f0ec5d682e050205aa",
+        "texto": "o produto nao poder ser avaliado ainda nao recebi",
+        "score": 0.6436769,
+        "nota": 1,
+        "categoria": "garden_tools",
+        "data_compra": "2017-12-07",
+        "atrasado": true,
+        "dias_atraso": 6.0,
+        "temas": [
+          "atraso_entrega",
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "c888e9da2845d8f0ec5d682e050205aa"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "0d592da0b11f266efd97a16956ff6417",
+        "texto": "compra efetuada,debito autorizado ,pedido cancelado sem explicações.extrema falta de respeito e consideração com os clientes.",
+        "score": 0.5842571,
+        "nota": 1,
+        "categoria": null,
+        "data_compra": "2017-02-26",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "atendimento",
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0d592da0b11f266efd97a16956ff6417"
+        ],
+        "tema_ancora": "troca_devolucao"
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "70affa2200677dcd494847ffc23bc0df",
+        "texto": "decepção não me deram ao menos satisfação prazo longo de entrega e assim mesmo não cumpriram a lannister tem responsabilidade também e se omitiu quero meu dinheiro reembolso",
+        "score": 0.5412022,
+        "nota": 1,
+        "categoria": null,
+        "data_compra": "2018-08-11",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "troca_devolucao",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "70affa2200677dcd494847ffc23bc0df"
+        ],
+        "tema_ancora": "troca_devolucao"
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "7ee0b28d45ccec1de14578bece79af0d",
+        "texto": "falta de compromisso solicito o estorno do pagamento no cartão de crédito,pela falta de entrega do produto.",
+        "score": 0.53193426,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-07-14",
+        "atrasado": true,
+        "dias_atraso": 6.0,
+        "temas": [
+          "atendimento",
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "7ee0b28d45ccec1de14578bece79af0d"
+        ],
+        "tema_ancora": "troca_devolucao"
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "045d330f147f09c3bd2426266ec5d414",
+        "texto": "nao tem boa avaliação por atraso na entrega",
+        "score": 0.6937676,
+        "nota": 1,
+        "categoria": "office_furniture",
+        "data_compra": "2018-02-28",
+        "atrasado": false,
+        "dias_atraso": -16.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "045d330f147f09c3bd2426266ec5d414"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "0b8a229441c9f988b05c02777ec47684",
+        "texto": "demora dimais na entrega pedido avaliação e o produto ainda nem chegou",
+        "score": 0.61026496,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-01-12",
+        "atrasado": true,
+        "dias_atraso": 5.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0b8a229441c9f988b05c02777ec47684"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R9]",
+        "review_id": "80e867a9c488688eb78b4f76d5e3c9f0",
+        "texto": "o produto atrasou demais na entrega e além disso a entrega não foi completa, pois faltou um cartucho de tinta colorido.insatisfação é o que define de forma educada minha avaliação.",
+        "score": 0.6058029,
+        "nota": 1,
+        "categoria": "computers_accessories",
+        "data_compra": "2018-02-06",
+        "atrasado": false,
+        "dias_atraso": -7.0,
+        "temas": [
+          "atraso_entrega",
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "80e867a9c488688eb78b4f76d5e3c9f0"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R10]",
+        "review_id": "d100adcddcef25bfa83bb819d562211c",
+        "texto": "pedido incompleto meu pedido chegou faltando um item.",
+        "score": 0.56255233,
+        "nota": 2,
+        "categoria": "housewares",
+        "data_compra": "2018-07-01",
+        "atrasado": false,
+        "dias_atraso": -7.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "d100adcddcef25bfa83bb819d562211c"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      },
+      {
+        "tag": "[R11]",
+        "review_id": "e2151cbbe41614f383562310b6438748",
+        "texto": "meu pedido veio incompleto. ficou faltando um item.",
+        "score": 0.54486823,
+        "nota": 1,
+        "categoria": "watches_gifts",
+        "data_compra": "2017-11-12",
+        "atrasado": false,
+        "dias_atraso": -14.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e2151cbbe41614f383562310b6438748"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      },
+      {
+        "tag": "[R12]",
+        "review_id": "42090eea831a1873d7fb9d583a56978f",
+        "texto": "pedido entregue incompleto.",
+        "score": 0.5395139,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2017-11-01",
+        "atrasado": false,
+        "dias_atraso": -7.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 2,
+        "review_ids": [
+          "42090eea831a1873d7fb9d583a56978f",
+          "ee36eb06005e20daece65976bd9990e4"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      },
+      {
+        "tag": "[R13]",
+        "review_id": "6698b8cb16ed759ce466fefa70c941b7",
+        "texto": "avaliação loja recomendada. produto de péssima qualidade.",
+        "score": 0.58158565,
+        "nota": 1,
+        "categoria": "auto",
+        "data_compra": "2018-07-15",
+        "atrasado": false,
+        "dias_atraso": -18.0,
+        "temas": [
+          "qualidade_ruim",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "6698b8cb16ed759ce466fefa70c941b7"
+        ],
+        "tema_ancora": "insatisfacao_geral"
+      },
+      {
+        "tag": "[R14]",
+        "review_id": "802ce6588b4e35e73e7e47fb0a5b538e",
+        "texto": "péssima qualidade produto de péssima qualidade",
+        "score": 0.56278515,
+        "nota": 1,
+        "categoria": "auto",
+        "data_compra": "2018-05-07",
+        "atrasado": false,
+        "dias_atraso": -8.0,
+        "temas": [
+          "qualidade_ruim",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "802ce6588b4e35e73e7e47fb0a5b538e"
+        ],
+        "tema_ancora": "insatisfacao_geral"
+      },
+      {
+        "tag": "[R15]",
+        "review_id": "629a83b85a131bc017dd8c31a2b54043",
+        "texto": "qualidade muito ruim. não encaixa.pessimo",
+        "score": 0.55672616,
+        "nota": 2,
+        "categoria": "auto",
+        "data_compra": "2018-03-06",
+        "atrasado": false,
+        "dias_atraso": -14.0,
+        "temas": [
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "629a83b85a131bc017dd8c31a2b54043"
+        ],
+        "tema_ancora": "insatisfacao_geral"
+      }
+    ],
+    "estatisticas": {
+      "recorte": {
+        "review_score": [
+          1,
+          2
+        ]
+      },
+      "total_avaliacoes_no_recorte": 10755,
+      "avaliacoes_sem_tema_identificado": 3419,
+      "temas": [
+        {
+          "tema": "Produto nao recebido",
+          "avaliacoes": 2922,
+          "percentual_do_recorte": 27.2
+        },
+        {
+          "tema": "Troca, devolucao, reembolso ou cancelamento",
+          "avaliacoes": 1357,
+          "percentual_do_recorte": 12.6
+        },
+        {
+          "tema": "Atraso na entrega",
+          "avaliacoes": 1311,
+          "percentual_do_recorte": 12.2
+        },
+        {
+          "tema": "Entrega incompleta (itens faltando)",
+          "avaliacoes": 1128,
+          "percentual_do_recorte": 10.5
+        },
+        {
+          "tema": "Insatisfacao geral / nao recomenda",
+          "avaliacoes": 1029,
+          "percentual_do_recorte": 9.6
+        }
+      ],
+      "metodo": "contagem por lexico deterministico sobre todas as avaliacoes do recorte; uma avaliacao pode ter mais de um tema",
+      "atraso_confirmado_pelos_dados": {
+        "reclamacoes_de_atraso_com_data_de_entrega": 1075,
+        "pedidos_entregues_apos_a_data_estimada": 677,
+        "percentual": 63.0
+      }
+    },
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "agregada",
+        "polaridade": "negativo",
+        "filtros_indice": {
+          "review_score": [
+            1,
+            2
+          ]
+        },
+        "filtros_pos": {},
+        "foco": [],
+        "pergunta_busca": "são os principais problemas relatados nas avaliações com nota baixa",
+        "temas_alvo": []
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "corpus_filtrado": 10755,
+      "ranking_temas": [
+        [
+          "nao_recebido",
+          2922
+        ],
+        [
+          "troca_devolucao",
+          1357
+        ],
+        [
+          "atraso_entrega",
+          1311
+        ],
+        [
+          "entrega_incompleta",
+          1128
+        ],
+        [
+          "insatisfacao_geral",
+          1029
+        ]
+      ],
+      "evidencias_por_tema": {
+        "nao_recebido": 3,
+        "troca_devolucao": 3,
+        "atraso_entrega": 3,
+        "entrega_incompleta": 3,
+        "insatisfacao_geral": 3
+      },
+      "contexto_chars": 4081,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 38809
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:52:18.142524+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

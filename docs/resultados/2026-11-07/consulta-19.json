@@ -1,0 +1,65 @@
+{
+  "response": {
+    "pergunta": "O que os clientes acham da entrega por drone?",
+    "resposta": "Nao encontrei evidencias suficientes na base de avaliacoes para responder com seguranca. Motivo: apenas 1 avaliacao(oes) relevante(s); o minimo configurado e 3.",
+    "abstencao": true,
+    "motivo": "apenas 1 avaliacao(oes) relevante(s); o minimo configurado e 3.",
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "entrega"
+        ],
+        "pergunta_busca": "da entrega por drone",
+        "temas_alvo": []
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "da entrega por drone",
+      "temas_da_pergunta": [],
+      "candidatos_apos_dedup_e_filtro": 20,
+      "top_scores": [
+        0.6568,
+        0.5738,
+        0.5359,
+        0.5317,
+        0.5198
+      ],
+      "acima_do_min_score": 1
+    },
+    "latencia_ms": 1143
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:53:15.663896+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

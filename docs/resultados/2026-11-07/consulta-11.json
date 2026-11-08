@@ -1,0 +1,228 @@
+{
+  "response": {
+    "pergunta": "Quais clientes receberam produtos com defeito?",
+    "resposta": "Os clientes que receberam produtos com defeito incluem aqueles que compraram em diversas categorias, como auto, bed_bath_table, housewares, furniture_decor, musical_instruments e watches_gifts. \nAchados em tópicos:\n- Produtos quebrados: [R1], [R2], [R3], [R5], [R6], [R8]\n- Produtos mal feitos: [R4]\n- Produtos mal embalados: [R7]\nLimitações: Não há informações sobre a porcentagem de clientes que receberam produtos com defeito em relação ao total de clientes.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "13dcde46c1a250aaed407dd6d5a53b77",
+        "texto": "produto com defeito produto veio quebrado",
+        "score": 0.76910686,
+        "nota": 3,
+        "categoria": "auto",
+        "data_compra": "2018-07-23",
+        "atrasado": false,
+        "dias_atraso": -8.0,
+        "temas": [
+          "produto_defeito"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "13dcde46c1a250aaed407dd6d5a53b77"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "fb9d26ae601018d2c1253e9af35b14e7",
+        "texto": "produto entregue não condiz com o produto comprado, péssima qualidade, assessório veio quebrado.",
+        "score": 0.7585007,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2017-08-31",
+        "atrasado": false,
+        "dias_atraso": -9.0,
+        "temas": [
+          "produto_defeito",
+          "qualidade_ruim",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "fb9d26ae601018d2c1253e9af35b14e7"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "c40a6b6e0181e5ec0d12cbc2e12c49d3",
+        "texto": "falta de produto e quebra faltou 1 produto e os que recebi 1 veio quebrado",
+        "score": 0.70236033,
+        "nota": 1,
+        "categoria": "housewares",
+        "data_compra": "2018-05-15",
+        "atrasado": false,
+        "dias_atraso": -20.0,
+        "temas": [
+          "entrega_incompleta",
+          "produto_defeito"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "c40a6b6e0181e5ec0d12cbc2e12c49d3"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "4ce356e500322a6632aeb92e8225fb27",
+        "texto": "produto mal feito produto mal feito, torto, com as soldas mal feitas.",
+        "score": 0.7016564,
+        "nota": 1,
+        "categoria": "furniture_decor",
+        "data_compra": "2018-08-08",
+        "atrasado": false,
+        "dias_atraso": -5.0,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "4ce356e500322a6632aeb92e8225fb27"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "801fb7f38a93205e682ef363234bd7dd",
+        "texto": "a entrega demorou e o produto chegou com defeito",
+        "score": 0.705673,
+        "nota": 1,
+        "categoria": "musical_instruments",
+        "data_compra": "2017-07-29",
+        "atrasado": true,
+        "dias_atraso": 2.0,
+        "temas": [
+          "atraso_entrega",
+          "produto_defeito"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "801fb7f38a93205e682ef363234bd7dd"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "ea13f408f9f91e78274f1caa2c9663d2",
+        "texto": "produto chegou quebrado, ficaram de trocar",
+        "score": 0.7223408,
+        "nota": 1,
+        "categoria": "furniture_decor",
+        "data_compra": "2017-07-29",
+        "atrasado": false,
+        "dias_atraso": -7.0,
+        "temas": [
+          "produto_defeito",
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "ea13f408f9f91e78274f1caa2c9663d2"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "b190c1c98294a0aa6beca27daff6886c",
+        "texto": "produto mal embalado produto chegou com risco e manchado.",
+        "score": 0.6927778,
+        "nota": 1,
+        "categoria": "watches_gifts",
+        "data_compra": "2018-06-04",
+        "atrasado": false,
+        "dias_atraso": -20.0,
+        "temas": [
+          "embalagem"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "b190c1c98294a0aa6beca27daff6886c"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "95cfb15ad3477fec574b561d1daea972",
+        "texto": "produto veio com defeito",
+        "score": 0.73093265,
+        "nota": 1,
+        "categoria": "furniture_decor",
+        "data_compra": "2017-07-29",
+        "atrasado": false,
+        "dias_atraso": -15.0,
+        "temas": [
+          "produto_defeito"
+        ],
+        "ocorrencias": 2,
+        "review_ids": [
+          "95cfb15ad3477fec574b561d1daea972",
+          "ea0036b547cb7e145507d50c4d64ce2a"
+        ],
+        "tema_ancora": null
+      }
+    ],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "produto"
+        ],
+        "pergunta_busca": "clientes receberam produtos com defeito. produto com defeito, chegou quebrado, danificado, nao funciona",
+        "temas_alvo": [
+          "produto_defeito"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "clientes receberam produtos com defeito. produto com defeito, chegou quebrado, danificado, nao funciona",
+      "temas_da_pergunta": [
+        "produto_defeito"
+      ],
+      "candidatos_apos_dedup_e_filtro": 40,
+      "top_scores": [
+        0.7691,
+        0.7585,
+        0.7408,
+        0.7309,
+        0.7223
+      ],
+      "acima_do_min_score": 40,
+      "contexto_chars": 1248,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 18285
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:52:56.940855+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

@@ -1,0 +1,227 @@
+{
+  "response": {
+    "pergunta": "Quais avaliações sustentam a conclusão de que existem problemas recorrentes relacionados ao prazo de entrega?",
+    "resposta": "Existem várias avaliações que sustentam a conclusão de que existem problemas recorrentes relacionados ao prazo de entrega. Os clientes relatam demoras excessivas e atrasos na entrega de seus pedidos.\n\nAchados:\n- Demora na entrega: [R1], [R2], [R3], [R4], [R5], [R6], [R7] e [R8] mencionam que a entrega demorou muito ou foi atrasada.\n- Atraso na entrega: [R3] e [R6] especificam que a entrega foi atrasada, enquanto [R4] e [R5] mencionam que a entrega foi demorada, mas dentro do prazo.\n- Prazo de entrega longo: [R2], [R3] e [R8] criticam o prazo de entrega por ser muito longo.\n\nLimitações: Não há estatísticas disponíveis para quantificar a frequência ou a porcentagem de pedidos com problemas de entrega.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "f02d4978f58368f3346d8450d52f0ba2",
+        "texto": "pessimo muita demora na entrega",
+        "score": 0.7547032,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-01-26",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "atraso_entrega",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "f02d4978f58368f3346d8450d52f0ba2"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "ba5c756c2d4d0d636ac63de5cedb771d",
+        "texto": "muita demora o prazo de entrega foi longo demais",
+        "score": 0.75439143,
+        "nota": 3,
+        "categoria": "watches_gifts",
+        "data_compra": "2018-05-13",
+        "atrasado": false,
+        "dias_atraso": -17.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "ba5c756c2d4d0d636ac63de5cedb771d"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "e5db1be774e0342f0998a113baf22db5",
+        "texto": "pedido já tinha um longo prazo para entrega e ainda atrasa. produto não recebido ainda.",
+        "score": 0.7225839,
+        "nota": 1,
+        "categoria": "watches_gifts",
+        "data_compra": "2017-07-21",
+        "atrasado": true,
+        "dias_atraso": 10.0,
+        "temas": [
+          "atraso_entrega",
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e5db1be774e0342f0998a113baf22db5"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "59800f125055137c475661cd350c9def",
+        "texto": "a entrega foi demorada mas dentro do prazo.",
+        "score": 0.75061893,
+        "nota": 1,
+        "categoria": "luggage_accessories",
+        "data_compra": "2018-01-25",
+        "atrasado": false,
+        "dias_atraso": -2.0,
+        "temas": [
+          "atraso_entrega",
+          "elogio_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "59800f125055137c475661cd350c9def"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "50a5704d98711a26be1c488da683b880",
+        "texto": "primeiro porque demorou muito para enviar o produto , utilizando da estratégia de alongar o prazo de entrega",
+        "score": 0.72814447,
+        "nota": 2,
+        "categoria": "pet_shop",
+        "data_compra": "2018-04-04",
+        "atrasado": false,
+        "dias_atraso": -1.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "50a5704d98711a26be1c488da683b880"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "d89514564e2fdf256486b50b8c52e127",
+        "texto": "além de demorar muito na entrega ainda veio errado.",
+        "score": 0.70422375,
+        "nota": 1,
+        "categoria": "computers_accessories",
+        "data_compra": "2018-03-02",
+        "atrasado": true,
+        "dias_atraso": 5.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "d89514564e2fdf256486b50b8c52e127"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "6998f2ba8f2ac6ee4e9a3c495c50af66",
+        "texto": "processo de entrega muito demorado.",
+        "score": 0.73952395,
+        "nota": 4,
+        "categoria": "health_beauty",
+        "data_compra": "2017-11-09",
+        "atrasado": false,
+        "dias_atraso": -13.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "6998f2ba8f2ac6ee4e9a3c495c50af66"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "08a86da22498172adb6cefaa99fdfaf7",
+        "texto": "prazo de entrega gigante e mesmo assim conseguiram atrasar a entrega.",
+        "score": 0.71542645,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-03-03",
+        "atrasado": false,
+        "dias_atraso": -4.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "08a86da22498172adb6cefaa99fdfaf7"
+        ],
+        "tema_ancora": null
+      }
+    ],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "entrega"
+        ],
+        "pergunta_busca": "problemas recorrentes prazo de entrega. entrega atrasada, demorou muito para chegar, fora do prazo",
+        "temas_alvo": [
+          "atraso_entrega"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "problemas recorrentes prazo de entrega. entrega atrasada, demorou muito para chegar, fora do prazo",
+      "temas_da_pergunta": [
+        "atraso_entrega"
+      ],
+      "candidatos_apos_dedup_e_filtro": 41,
+      "top_scores": [
+        0.7547,
+        0.7544,
+        0.7506,
+        0.7482,
+        0.7455
+      ],
+      "acima_do_min_score": 41,
+      "contexto_chars": 1291,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 6596
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:51:39.328570+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

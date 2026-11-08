@@ -1,0 +1,350 @@
+{
+  "response": {
+    "pergunta": "Quais reclamações relacionadas à entrega aparecem com maior frequência?",
+    "resposta": "As reclamações relacionadas à entrega que aparecem com maior frequência são sobre produtos não recebidos e atrasos na entrega. \n\n*   Problemas com entrega: [R1], [R2], [R3] \n*   Atrasos na entrega: [R4], [R5], [R6] \n*   Entregas incompletas: [R7], [R8], [R9] \n*   Problemas com embalagem: [R10], [R11], [R12] \n\nLimitações: As evidências fornecidas são limitadas a 12 avaliações de clientes e podem não representar a experiência de todos os clientes do e-commerce. Além disso, as reclamações podem estar relacionadas a outros fatores, como problemas com o produto em si ou com a comunicação do vendedor.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "agregada",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "2f59a88f994c5d6f802f0ddab0dd785b",
+        "texto": "produto não entregue o produto ainda não foi entregue. recebi a mensagem de que houve dificuldade na entrega",
+        "score": 0.70722026,
+        "nota": 1,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-06-14",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "2f59a88f994c5d6f802f0ddab0dd785b"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "f08d703410a3becb503822e5091307fc",
+        "texto": "demora para avisar que deu problema na entrega, não recebi o produto avisaram quase no dia de receber,foi descontado primeira parcela referente a compra.",
+        "score": 0.67695063,
+        "nota": 2,
+        "categoria": "stationery",
+        "data_compra": "2018-01-09",
+        "atrasado": true,
+        "dias_atraso": 6.0,
+        "temas": [
+          "atraso_entrega",
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "f08d703410a3becb503822e5091307fc"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "ceef71ec8c12263b2435a71d581b4716",
+        "texto": "problema com a entrega o produto não foi entregue.",
+        "score": 0.6682084,
+        "nota": 1,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-03-29",
+        "atrasado": true,
+        "dias_atraso": 9.0,
+        "temas": [
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "ceef71ec8c12263b2435a71d581b4716"
+        ],
+        "tema_ancora": "nao_recebido"
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "f02d4978f58368f3346d8450d52f0ba2",
+        "texto": "pessimo muita demora na entrega",
+        "score": 0.71301246,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-01-26",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "atraso_entrega",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "f02d4978f58368f3346d8450d52f0ba2"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "dd6e0f7168d75cd78769333f7630a036",
+        "texto": "o atraso na entrega prejudicou a obra",
+        "score": 0.69943655,
+        "nota": 3,
+        "categoria": "furniture_decor",
+        "data_compra": "2018-03-08",
+        "atrasado": true,
+        "dias_atraso": 1.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "dd6e0f7168d75cd78769333f7630a036"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "91c3523eb116609c5e674ea0fca34bf4",
+        "texto": "muita demora na entrega, não dão satisfação",
+        "score": 0.6963308,
+        "nota": 1,
+        "categoria": "telephony",
+        "data_compra": "2018-02-27",
+        "atrasado": true,
+        "dias_atraso": 17.0,
+        "temas": [
+          "atraso_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "91c3523eb116609c5e674ea0fca34bf4"
+        ],
+        "tema_ancora": "atraso_entrega"
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "5148ad2bdca65375e9504355d79c6ad4",
+        "texto": "entrega incompleta realizei um pedido com dois itens e apenas 1 deles foi entregue. fiz algumas reclamações e até agora ninguém entrou em contato comigo pra entregar o outro produto ou para devolver o dinheiro.",
+        "score": 0.70214146,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-07-15",
+        "atrasado": false,
+        "dias_atraso": -12.0,
+        "temas": [
+          "entrega_incompleta",
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "5148ad2bdca65375e9504355d79c6ad4"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "96b9f6a6bda6908a59c0a0c9a6141d2c",
+        "texto": "pedido incompleto meu produto foi entregue parcialmente, falta 01 produto e consta no status que foi entregue.",
+        "score": 0.6694422,
+        "nota": 3,
+        "categoria": "garden_tools",
+        "data_compra": "2018-08-08",
+        "atrasado": false,
+        "dias_atraso": -15.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "96b9f6a6bda6908a59c0a0c9a6141d2c"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      },
+      {
+        "tag": "[R9]",
+        "review_id": "85cd8ee1e2af04d36f83d101969d335c",
+        "texto": "entrega incompleta fui buscar o pedido nos correios mas só constavam 2 itens , faltou um a ser entregue",
+        "score": 0.6509622,
+        "nota": 1,
+        "categoria": "watches_gifts",
+        "data_compra": "2018-05-08",
+        "atrasado": false,
+        "dias_atraso": -25.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "85cd8ee1e2af04d36f83d101969d335c"
+        ],
+        "tema_ancora": "entrega_incompleta"
+      },
+      {
+        "tag": "[R10]",
+        "review_id": "6d096d02c248a56919a9a5a2b1c54e50",
+        "texto": "falta de respeito com consumidor; produto mal embalado, vidros sem lacre vazando; náo recebi autorização de devolução, mesmo tendo reclamado no dia da entrega; o pior, terei que levar ao correio",
+        "score": 0.66811544,
+        "nota": 1,
+        "categoria": "food",
+        "data_compra": "2017-03-18",
+        "atrasado": false,
+        "dias_atraso": -8.0,
+        "temas": [
+          "nao_recebido",
+          "produto_defeito",
+          "atendimento",
+          "troca_devolucao",
+          "embalagem"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "6d096d02c248a56919a9a5a2b1c54e50"
+        ],
+        "tema_ancora": "embalagem"
+      },
+      {
+        "tag": "[R11]",
+        "review_id": "c330f4e722e633eeb0321c2171f51eae",
+        "texto": "o produto chegou como o esperado mais no decorrer da entrega meu produto veio amassado e caixa rasgada. sei que a culpa fio dos correios.",
+        "score": 0.6174452,
+        "nota": 3,
+        "categoria": "kitchen_dining_laundry_garden_furniture",
+        "data_compra": "2018-01-29",
+        "atrasado": true,
+        "dias_atraso": 2.0,
+        "temas": [
+          "produto_defeito",
+          "embalagem"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "c330f4e722e633eeb0321c2171f51eae"
+        ],
+        "tema_ancora": "embalagem"
+      },
+      {
+        "tag": "[R12]",
+        "review_id": "f5591674643f81d9983ebac5292f3a49",
+        "texto": "recomendo a unica reclamação enquanto a entrega, é a embalagem do produto que veio violada e mal embalada",
+        "score": 0.61394644,
+        "nota": 4,
+        "categoria": "auto",
+        "data_compra": "2018-05-15",
+        "atrasado": false,
+        "dias_atraso": -13.0,
+        "temas": [
+          "embalagem",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "f5591674643f81d9983ebac5292f3a49"
+        ],
+        "tema_ancora": "embalagem"
+      }
+    ],
+    "estatisticas": {
+      "recorte": "toda a base com comentario",
+      "total_avaliacoes_no_recorte": 40739,
+      "avaliacoes_sem_tema_identificado": 15397,
+      "temas": [
+        {
+          "tema": "Produto nao recebido",
+          "avaliacoes": 3390,
+          "percentual_do_recorte": 8.3
+        },
+        {
+          "tema": "Atraso na entrega",
+          "avaliacoes": 2106,
+          "percentual_do_recorte": 5.2
+        },
+        {
+          "tema": "Entrega incompleta (itens faltando)",
+          "avaliacoes": 1573,
+          "percentual_do_recorte": 3.9
+        },
+        {
+          "tema": "Embalagem",
+          "avaliacoes": 91,
+          "percentual_do_recorte": 0.2
+        }
+      ],
+      "metodo": "contagem por lexico deterministico sobre todas as avaliacoes do recorte; uma avaliacao pode ter mais de um tema",
+      "atraso_confirmado_pelos_dados": {
+        "reclamacoes_de_atraso_com_data_de_entrega": 1841,
+        "pedidos_entregues_apos_a_data_estimada": 884,
+        "percentual": 48.0
+      }
+    },
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "agregada",
+        "polaridade": "negativo",
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "entrega"
+        ],
+        "pergunta_busca": "reclamações entrega",
+        "temas_alvo": []
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "corpus_filtrado": 40739,
+      "ranking_temas": [
+        [
+          "nao_recebido",
+          3390
+        ],
+        [
+          "atraso_entrega",
+          2106
+        ],
+        [
+          "entrega_incompleta",
+          1573
+        ],
+        [
+          "embalagem",
+          91
+        ]
+      ],
+      "evidencias_por_tema": {
+        "nao_recebido": 3,
+        "atraso_entrega": 3,
+        "entrega_incompleta": 3,
+        "embalagem": 3
+      },
+      "contexto_chars": 3559,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 8146
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:50:36.796908+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

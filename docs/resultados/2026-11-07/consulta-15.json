@@ -1,0 +1,230 @@
+{
+  "response": {
+    "pergunta": "Quais clientes pediram reembolso ou cancelamento?",
+    "resposta": "Os clientes que pediram reembolso ou cancelamento são aqueles que expressaram insatisfação com suas compras e solicitaram o cancelamento ou reembolso do valor pago. \nAchados em tópicos:\n- Cancelamento antes da entrega: [R1], [R8]\n- Solicitação de reembolso após cancelamento: [R2], [R4], [R6], [R7]\n- Devolução de produto: [R5], [R7]\nLimitações: As evidências fornecidas são limitadas a apenas 8 avaliações de clientes, o que pode não ser representativo de todos os clientes que pediram reembolso ou cancelamento.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "dc9f9fe5aa92c67a8b1457ed0b2111d1",
+        "texto": "arrependimento solicitei o cancelamento antes da entrega, quero exercer meu direito de arrependimento, devolver o produto e receber meu dinheiro de volta. o site da stark dificulta o processo e não sac",
+        "score": 0.6766647,
+        "nota": 1,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-06-07",
+        "atrasado": false,
+        "dias_atraso": -21.0,
+        "temas": [
+          "atendimento",
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "dc9f9fe5aa92c67a8b1457ed0b2111d1"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "671026223a554a2e17f2bdd7f6df9fb1",
+        "texto": "solicito informações sobre a compra e o estorno da compra? se o valor for devolvido, recomendaria a loja sim",
+        "score": 0.6254956,
+        "nota": 2,
+        "categoria": "bed_bath_table",
+        "data_compra": "2017-11-24",
+        "atrasado": true,
+        "dias_atraso": 16.0,
+        "temas": [
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "671026223a554a2e17f2bdd7f6df9fb1"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "7ec9f5da80457bd8981e0638573a49fe",
+        "texto": "foi cancelado. como faço para fazer outro pedido co o valor pago ?",
+        "score": 0.65239996,
+        "nota": 3,
+        "categoria": "auto",
+        "data_compra": "2017-07-03",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "7ec9f5da80457bd8981e0638573a49fe"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "fd42d8c4319a7ba48242a3844c6f77e7",
+        "texto": "não recomendo. cancelei a compra e a loja não dá retorno. já extrapolou o tempo. quero devolver e receber o extorno do valor pago.",
+        "score": 0.65870357,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-01-18",
+        "atrasado": false,
+        "dias_atraso": -15.0,
+        "temas": [
+          "atendimento",
+          "troca_devolucao",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "fd42d8c4319a7ba48242a3844c6f77e7"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "90b2ad5d1a442aa5578dc94edbf95296",
+        "texto": "bom preciso devolver 1 dos pedidos, pedir a mais por engano.",
+        "score": 0.6000608,
+        "nota": 4,
+        "categoria": "garden_tools",
+        "data_compra": "2018-05-24",
+        "atrasado": false,
+        "dias_atraso": -11.0,
+        "temas": [
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "90b2ad5d1a442aa5578dc94edbf95296"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "65dfeb60c40e3cbb0a1838285d86f885",
+        "texto": "pedi reembolso e sem resposta até momento",
+        "score": 0.64932305,
+        "nota": 1,
+        "categoria": "housewares",
+        "data_compra": "2018-02-14",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "atendimento",
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "65dfeb60c40e3cbb0a1838285d86f885"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "0d6dc845ab82696b01d7b5cb10dda0e0",
+        "texto": "boa tarde! acabei recebendo um produto cuja a compra já havia sido cancelada. agora solicito instruções para devolve-lo. já enviei três e-mails para o atendimento ao cliente e até agora sem retorno.",
+        "score": 0.6258832,
+        "nota": 1,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-01-21",
+        "atrasado": false,
+        "dias_atraso": -22.0,
+        "temas": [
+          "atendimento",
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0d6dc845ab82696b01d7b5cb10dda0e0"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "0ce7d6b5abde2f5802a1793b37690ce6",
+        "texto": "solicitei o cancelamento em função da voltagem não ser a da minha região solicitei o cancelamento da compra. estou aguardando o estorno do valor pago no cartão.",
+        "score": 0.6366893,
+        "nota": 5,
+        "categoria": "small_appliances",
+        "data_compra": "2018-06-28",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "troca_devolucao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0ce7d6b5abde2f5802a1793b37690ce6"
+        ],
+        "tema_ancora": null
+      }
+    ],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números.",
+      "Evidencias recuperadas e nao citadas: [3]"
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "atendimento"
+        ],
+        "pergunta_busca": "clientes pediram reembolso ou cancelamento. quero trocar ou devolver, pedi reembolso, estorno, cancelamento do pedido",
+        "temas_alvo": [
+          "troca_devolucao"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "clientes pediram reembolso ou cancelamento. quero trocar ou devolver, pedi reembolso, estorno, cancelamento do pedido",
+      "temas_da_pergunta": [
+        "troca_devolucao"
+      ],
+      "candidatos_apos_dedup_e_filtro": 49,
+      "top_scores": [
+        0.6767,
+        0.6587,
+        0.6524,
+        0.6515,
+        0.6493
+      ],
+      "acima_do_min_score": 41,
+      "contexto_chars": 1661,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 4779
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:53:14.463283+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

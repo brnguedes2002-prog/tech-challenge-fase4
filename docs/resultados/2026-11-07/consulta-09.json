@@ -1,0 +1,361 @@
+{
+  "response": {
+    "pergunta": "O que os clientes mais elogiam na categoria cama mesa e banho?",
+    "resposta": "Os clientes mais elogiam a qualidade e a conformidade dos produtos na categoria cama, mesa e banho, com 695 avaliações positivas sobre o tema \"Produto bom / conforme anunciado\", o que representa 26,5% do total de avaliações no recorte. Além disso, a entrega rápida ou no prazo também é um ponto forte, com 689 avaliações positivas, correspondendo a 26,2% do total.\n\n* Qualidade e conformidade dos produtos: [R1], [R2], [R3]\n* Entrega rápida ou no prazo: [R4], [R5], [R6]\n* Recomendação e satisfação: [R7], [R8], [R9]\n* Loja/vendedor confiável e bom atendimento: [R10], [R11], [R12]\n\nLimitações: As evidências apresentadas são baseadas em uma contagem por léxico determinístico sobre todas as avaliações do recorte, o que pode não capturar nuances ou temas mais complexos. Além disso, a análise se limita às avaliações com nota 4 ou 5, o que pode não representar a opinião de todos os clientes.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "agregada",
+    "filtros": {
+      "review_score": [
+        4,
+        5
+      ],
+      "product_category_name_english": "bed_bath_table"
+    },
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "ee20837670407a721cd5a44bae853efc",
+        "texto": "produto dentro das expectativas, boa qualidade e bonito. recomendo!",
+        "score": 0.60487854,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-02-03",
+        "atrasado": false,
+        "dias_atraso": -14.0,
+        "temas": [
+          "elogio_produto",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "ee20837670407a721cd5a44bae853efc"
+        ],
+        "tema_ancora": "elogio_produto"
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "f91704d5af52985d31da99c85944d454",
+        "texto": "recomendo, produto de qualidade.",
+        "score": 0.5779367,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-02-10",
+        "atrasado": false,
+        "dias_atraso": -14.0,
+        "temas": [
+          "elogio_produto",
+          "recomendacao"
+        ],
+        "ocorrencias": 2,
+        "review_ids": [
+          "f91704d5af52985d31da99c85944d454"
+        ],
+        "tema_ancora": "elogio_produto"
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "5adc3f51c4b9e5179c204d9e4e63ac95",
+        "texto": "muito satisfeito produto de qualidade, muito bonito, superou minhas expectativas",
+        "score": 0.575073,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-08-25",
+        "atrasado": false,
+        "dias_atraso": -6.0,
+        "temas": [
+          "elogio_produto"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "5adc3f51c4b9e5179c204d9e4e63ac95"
+        ],
+        "tema_ancora": "elogio_produto"
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "54bc32cfeb199be3b8cbbfeeda7a9be4",
+        "texto": "ótimo entrega antes do prazo",
+        "score": 0.6467081,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-07-29",
+        "atrasado": false,
+        "dias_atraso": -4.0,
+        "temas": [
+          "elogio_entrega"
+        ],
+        "ocorrencias": 3,
+        "review_ids": [
+          "54bc32cfeb199be3b8cbbfeeda7a9be4"
+        ],
+        "tema_ancora": "elogio_entrega"
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "40eaf464f2d053edf72a1eb2f769c658",
+        "texto": "entrega rápida produto entregue antes da data marcada. parabéns",
+        "score": 0.6344006,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-05-22",
+        "atrasado": false,
+        "dias_atraso": -6.0,
+        "temas": [
+          "elogio_entrega",
+          "elogio_vendedor"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "40eaf464f2d053edf72a1eb2f769c658"
+        ],
+        "tema_ancora": "elogio_entrega"
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "f6315f6c7317d32cc5207abe736b9dde",
+        "texto": "entrega no prazo ótimo produto",
+        "score": 0.628886,
+        "nota": 4,
+        "categoria": "bed_bath_table",
+        "data_compra": "2017-11-03",
+        "atrasado": false,
+        "dias_atraso": -13.0,
+        "temas": [
+          "elogio_entrega"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "f6315f6c7317d32cc5207abe736b9dde"
+        ],
+        "tema_ancora": "elogio_entrega"
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "c3c05b62ef66ab8719eb48686c29cedc",
+        "texto": "amei, produto maravilhoso, deu um charme lindo na cama! recomendo a loja e o produto para quem tem bom gosto!",
+        "score": 0.62176925,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-01-10",
+        "atrasado": false,
+        "dias_atraso": -23.0,
+        "temas": [
+          "elogio_produto",
+          "elogio_vendedor",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "c3c05b62ef66ab8719eb48686c29cedc"
+        ],
+        "tema_ancora": "recomendacao"
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "a38b5db6a6e216e30990c5b9a5bfc308",
+        "texto": "super recomendo grande satisfação pela compra.",
+        "score": 0.60667646,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-06-07",
+        "atrasado": false,
+        "dias_atraso": -27.0,
+        "temas": [
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "a38b5db6a6e216e30990c5b9a5bfc308"
+        ],
+        "tema_ancora": "recomendacao"
+      },
+      {
+        "tag": "[R9]",
+        "review_id": "9a469381c6e9b52cdf2cb99b96bab878",
+        "texto": "ótimo produto, deixou minha cama mais linda, deu um acabamento perfeito por baixo do edredon. adorei, recomendo para aqueles que gostam de um quarto com uma cama bem arrumada.adoro comprar no baratheon",
+        "score": 0.6003846,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-02-25",
+        "atrasado": false,
+        "dias_atraso": -13.0,
+        "temas": [
+          "elogio_produto",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "9a469381c6e9b52cdf2cb99b96bab878"
+        ],
+        "tema_ancora": "recomendacao"
+      },
+      {
+        "tag": "[R10]",
+        "review_id": "7994a347d0e9f242b59fed402399182a",
+        "texto": "parabéns, lojas lannister, produtos de qualidade, entrega no prazo e respeito com os clientes.",
+        "score": 0.6192934,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2017-06-13",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "elogio_entrega",
+          "elogio_vendedor"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "7994a347d0e9f242b59fed402399182a"
+        ],
+        "tema_ancora": "elogio_vendedor"
+      },
+      {
+        "tag": "[R11]",
+        "review_id": "1937557c43952cfaafa9474b8a0a0f2d",
+        "texto": "super recomendo parabéns pela respeito ao consumidor !",
+        "score": 0.5877136,
+        "nota": 5,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-05-22",
+        "atrasado": false,
+        "dias_atraso": -4.0,
+        "temas": [
+          "elogio_vendedor",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "1937557c43952cfaafa9474b8a0a0f2d"
+        ],
+        "tema_ancora": "elogio_vendedor"
+      },
+      {
+        "tag": "[R12]",
+        "review_id": "0a362941945d23775357a58e636272b7",
+        "texto": "recomendo a loja e o produto entregue",
+        "score": 0.5815942,
+        "nota": 4,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-03-18",
+        "atrasado": false,
+        "dias_atraso": -8.0,
+        "temas": [
+          "elogio_vendedor",
+          "recomendacao"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0a362941945d23775357a58e636272b7"
+        ],
+        "tema_ancora": "elogio_vendedor"
+      }
+    ],
+    "estatisticas": {
+      "recorte": {
+        "review_score": [
+          4,
+          5
+        ],
+        "product_category_name_english": "bed_bath_table"
+      },
+      "total_avaliacoes_no_recorte": 2626,
+      "avaliacoes_sem_tema_identificado": 1059,
+      "temas": [
+        {
+          "tema": "Produto bom / conforme anunciado",
+          "avaliacoes": 695,
+          "percentual_do_recorte": 26.5
+        },
+        {
+          "tema": "Entrega rapida ou no prazo",
+          "avaliacoes": 689,
+          "percentual_do_recorte": 26.2
+        },
+        {
+          "tema": "Recomenda / compraria de novo",
+          "avaliacoes": 487,
+          "percentual_do_recorte": 18.5
+        },
+        {
+          "tema": "Loja / vendedor confiavel e bom atendimento",
+          "avaliacoes": 120,
+          "percentual_do_recorte": 4.6
+        }
+      ],
+      "metodo": "contagem por lexico deterministico sobre todas as avaliacoes do recorte; uma avaliacao pode ter mais de um tema"
+    },
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "agregada",
+        "polaridade": "positivo",
+        "filtros_indice": {
+          "review_score": [
+            4,
+            5
+          ],
+          "product_category_name_english": "bed_bath_table"
+        },
+        "filtros_pos": {},
+        "foco": [],
+        "pergunta_busca": "clientes mais elogiam na categoria cama mesa e banho",
+        "temas_alvo": []
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "corpus_filtrado": 2626,
+      "ranking_temas": [
+        [
+          "elogio_produto",
+          695
+        ],
+        [
+          "elogio_entrega",
+          689
+        ],
+        [
+          "recomendacao",
+          487
+        ],
+        [
+          "elogio_vendedor",
+          120
+        ]
+      ],
+      "evidencias_por_tema": {
+        "elogio_produto": 3,
+        "elogio_entrega": 3,
+        "recomendacao": 3,
+        "elogio_vendedor": 3
+      },
+      "contexto_chars": 3293,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 10110
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:52:28.260942+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

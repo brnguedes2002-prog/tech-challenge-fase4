@@ -1,0 +1,223 @@
+{
+  "response": {
+    "pergunta": "Quais clientes receberam produtos diferentes do solicitado?",
+    "resposta": "Os clientes que receberam produtos diferentes do solicitado são aqueles que relataram ter recebido itens divergentes do que foi pedido em suas compras. \nAchados em tópicos:\n- Os clientes [R1], [R2], [R3], [R4], [R5], [R6], [R7] e [R8] relataram ter recebido produtos diferentes do solicitado, com descrições como \"produto errado\", \"produto diferente do anunciado\" e \"produto entregue não foi o mesmo do pedido\".\nLimitações: Não há informações adicionais sobre as categorias específicas ou a frequência desses incidentes, apenas as descrições dos clientes.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "08528f70f579f0c830189efc523d2182",
+        "texto": "produto errado entrega do produto diferente do solicitado",
+        "score": 0.75624144,
+        "nota": 1,
+        "categoria": "cool_stuff",
+        "data_compra": "2018-07-24",
+        "atrasado": false,
+        "dias_atraso": -19.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "08528f70f579f0c830189efc523d2182"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "4e7db7d9bdafdd99952285cc366d108a",
+        "texto": "produto diferente o produto que recebi é diferente do produto anunciado.",
+        "score": 0.74102813,
+        "nota": 1,
+        "categoria": "telephony",
+        "data_compra": "2018-07-03",
+        "atrasado": false,
+        "dias_atraso": -23.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "4e7db7d9bdafdd99952285cc366d108a"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "aec108da92408720d89df64102995f27",
+        "texto": "veio o produto errado recebi um produto totalmente diferente do pedido e a nf veio com destinatário para outra pessoa.",
+        "score": 0.73134714,
+        "nota": 1,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-08-16",
+        "atrasado": false,
+        "dias_atraso": -9.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "aec108da92408720d89df64102995f27"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "8c46cb6609ec2ffd67012f5167c960a5",
+        "texto": "entregaram o produto errado (diferente do anunciado) e com defeito.",
+        "score": 0.69455874,
+        "nota": 1,
+        "categoria": "signaling_and_security",
+        "data_compra": "2017-11-10",
+        "atrasado": false,
+        "dias_atraso": -6.0,
+        "temas": [
+          "produto_errado",
+          "produto_defeito"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "8c46cb6609ec2ffd67012f5167c960a5"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "6b48d00c41470b7046e7ded50326d1c9",
+        "texto": "produto enviado diferente do solicitado",
+        "score": 0.71568227,
+        "nota": 1,
+        "categoria": "home_appliances",
+        "data_compra": "2017-11-30",
+        "atrasado": false,
+        "dias_atraso": 0.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "6b48d00c41470b7046e7ded50326d1c9"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "aee1f5bdfc0f44fd54ec0567f0dcf73d",
+        "texto": "produto errado pedi um produto e veio outro",
+        "score": 0.71228766,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-07-26",
+        "atrasado": false,
+        "dias_atraso": -6.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "aee1f5bdfc0f44fd54ec0567f0dcf73d"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "da8e936bc2f1b52ec626f8aa41f3df44",
+        "texto": "produto incorreto produto diferente do anunciado",
+        "score": 0.7235632,
+        "nota": 1,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-07-26",
+        "atrasado": false,
+        "dias_atraso": -6.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "da8e936bc2f1b52ec626f8aa41f3df44"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "4eb848c0624f12e5a88f77ef43a4411c",
+        "texto": "produto entregue incorret produto entregue não foi o mesmo do pedido.",
+        "score": 0.74657196,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-08-20",
+        "atrasado": false,
+        "dias_atraso": -2.0,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "4eb848c0624f12e5a88f77ef43a4411c"
+        ],
+        "tema_ancora": null
+      }
+    ],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "produto"
+        ],
+        "pergunta_busca": "clientes receberam produtos diferentes do solicitado. produto errado, veio diferente do anunciado, enviaram outro modelo",
+        "temas_alvo": [
+          "produto_errado"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "clientes receberam produtos diferentes do solicitado. produto errado, veio diferente do anunciado, enviaram outro modelo",
+      "temas_da_pergunta": [
+        "produto_errado"
+      ],
+      "candidatos_apos_dedup_e_filtro": 50,
+      "top_scores": [
+        0.7562,
+        0.741,
+        0.7313,
+        0.7236,
+        0.7157
+      ],
+      "acima_do_min_score": 50,
+      "contexto_chars": 1299,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 4433
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:53:01.376598+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

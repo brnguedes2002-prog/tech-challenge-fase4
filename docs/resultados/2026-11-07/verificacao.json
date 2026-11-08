@@ -1,0 +1,10 @@
+{
+  "consultas": 20,
+  "decisoes_corretas": 20,
+  "falhas_tecnicas": 0,
+  "citacoes_invalidas": 0,
+  "textos_divergentes": 0,
+  "denominadores_divergentes": 0,
+  "evidencias": 154,
+  "latencia_media_ms": 8823
+}

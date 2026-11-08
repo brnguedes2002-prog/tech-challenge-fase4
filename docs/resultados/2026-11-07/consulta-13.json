@@ -1,0 +1,218 @@
+{
+  "response": {
+    "pergunta": "O que os clientes dizem sobre o atendimento da loja?",
+    "resposta": "Os clientes expressam insatisfação com o atendimento da loja, citando problemas como falta de consideração, descaso e dificuldade em obter respostas. \nAchados:\n- Falta de consideração e descaso: [R3], [R5], [R7]\n- Dificuldade em obter respostas: [R1], [R2], [R4], [R6]\n- Loja não é confiável: [R8]\nLimitações: As evidências são baseadas em avaliações de clientes insatisfeitos, o que pode não representar a experiência de todos os clientes.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "8e7d6637cd82be535e19988b741418e0",
+        "texto": "falta entre lojas e clientes",
+        "score": 0.73564434,
+        "nota": 1,
+        "categoria": "fashion_shoes",
+        "data_compra": "2018-03-05",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "8e7d6637cd82be535e19988b741418e0"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "0989809c7f3c376ee14c635684920d52",
+        "texto": "decepção pessima loja. vendem recebem e não entregam.",
+        "score": 0.72157454,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-07-10",
+        "atrasado": true,
+        "dias_atraso": 8.0,
+        "temas": [
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0989809c7f3c376ee14c635684920d52"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "3399c230c47b20e122f6b143546b61a7",
+        "texto": "descaso com o cliente muito ruim, atendimento somente eletronico, vc é obrigado a esperar pele boa vontade da loja para entrar em contato.",
+        "score": 0.6691073,
+        "nota": 2,
+        "categoria": "electronics",
+        "data_compra": "2018-07-22",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "atendimento"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "3399c230c47b20e122f6b143546b61a7"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "55407eb6d0b880a2bd33b3abd59eaf0e",
+        "texto": "produto não foi entregue. sem resposta das lojas lannister e sem respostas da empresa responsável, apesar de ter entrado em contato.",
+        "score": 0.6280559,
+        "nota": 1,
+        "categoria": "perfumery",
+        "data_compra": "2018-01-04",
+        "atrasado": null,
+        "dias_atraso": null,
+        "temas": [
+          "nao_recebido",
+          "atendimento"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "55407eb6d0b880a2bd33b3abd59eaf0e"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "c84b5bf0da038c4776c152096916ce6b",
+        "texto": "falta de consideração com o cliente .",
+        "score": 0.6581767,
+        "nota": 1,
+        "categoria": "office_furniture",
+        "data_compra": "2017-05-30",
+        "atrasado": true,
+        "dias_atraso": 6.0,
+        "temas": [],
+        "ocorrencias": 2,
+        "review_ids": [
+          "c84b5bf0da038c4776c152096916ce6b",
+          "2e2302a45980152064ce595716ec7dec"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "4ba5b0ecd10c4a46a58493b5ab2547f6",
+        "texto": "uma loja que só pensa em pegar o dinheiro do cliente, mas não entrega mercadoria.",
+        "score": 0.67844754,
+        "nota": 2,
+        "categoria": "fashion_shoes",
+        "data_compra": "2018-02-28",
+        "atrasado": true,
+        "dias_atraso": 7.0,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "4ba5b0ecd10c4a46a58493b5ab2547f6"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "d88b669e42b716d5f7313dc358a14e0a",
+        "texto": "a loja fisica onde fiz o pedido temnum dos puores atendimentos que ja recebi na minha vida como consumidor, os funcionarios mal olham na cara dos clientes e não tem interese em prestar um bom atendime",
+        "score": 0.654861,
+        "nota": 4,
+        "categoria": "cool_stuff",
+        "data_compra": "2017-08-22",
+        "atrasado": false,
+        "dias_atraso": -12.0,
+        "temas": [
+          "atendimento"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "d88b669e42b716d5f7313dc358a14e0a"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "0b76fa15c54d3beff2260f73c2779b14",
+        "texto": "loja não é confiável",
+        "score": 0.6712015,
+        "nota": 1,
+        "categoria": "pet_shop",
+        "data_compra": "2018-01-12",
+        "atrasado": false,
+        "dias_atraso": -11.0,
+        "temas": [],
+        "ocorrencias": 1,
+        "review_ids": [
+          "0b76fa15c54d3beff2260f73c2779b14"
+        ],
+        "tema_ancora": null
+      }
+    ],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "atendimento"
+        ],
+        "pergunta_busca": "o atendimento da loja. atendimento ruim, loja nao responde, sem retorno do vendedor",
+        "temas_alvo": [
+          "atendimento"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "o atendimento da loja. atendimento ruim, loja nao responde, sem retorno do vendedor",
+      "temas_da_pergunta": [
+        "atendimento"
+      ],
+      "candidatos_apos_dedup_e_filtro": 49,
+      "top_scores": [
+        0.67,
+        0.6691,
+        0.6549,
+        0.6451,
+        0.6402
+      ],
+      "acima_do_min_score": 49,
+      "contexto_chars": 1414,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 4594
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:53:05.993801+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

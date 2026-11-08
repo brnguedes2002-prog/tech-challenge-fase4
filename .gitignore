@@ -3,3 +3,11 @@
 *.log
 __pycache__/
 .ipynb_checkpoints/
+.venv/
+.local-data/
+.local-cache/
+.env
+.env.*
+!.env.example
+output/
+auditoria/databricks/*.json

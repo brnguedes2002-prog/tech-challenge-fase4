@@ -1,0 +1,4 @@
+# Core local application. Remote extras: databricks-sdk==0.122.0 sentence-transformers
+numpy>=1.26,<3
+pandas>=2.2,<3
+scikit-learn>=1.5,<2

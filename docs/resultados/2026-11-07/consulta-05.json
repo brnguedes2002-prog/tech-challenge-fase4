@@ -1,0 +1,279 @@
+{
+  "response": {
+    "pergunta": "Existem padrões recorrentes nas avaliações relacionadas à qualidade dos produtos?",
+    "resposta": "Existem padrões recorrentes nas avaliações relacionadas à qualidade dos produtos, com temas como \"Produto com defeito ou danificado\", \"Produto errado ou diferente do anunciado\" e \"Qualidade abaixo do esperado\" sendo frequentemente mencionados. \n\n* Padrões de produtos com defeito ou danificado: [R1], [R2] e [R3] mencionam produtos que chegaram danificados ou com defeito, indicando uma preocupação com a qualidade e a verificação dos produtos antes da entrega.\n* Padrões de produtos errados ou diferentes do anunciado: [R4], [R5] e [R6] relatam a entrega de produtos diferentes do que foi anunciado, o que sugere problemas com a descrição ou a gestão de estoque dos produtos.\n* Padrões de qualidade abaixo do esperado: [R7], [R8] e [R9] expressam insatisfação com a qualidade dos produtos, utilizando termos como \"má qualidade\" e \"péssima qualidade\".\n\nLimitações: As evidências apresentadas são baseadas em uma amostra de avaliações e podem não representar a experiência de todos os clientes. Além disso, a análise se limita aos temas identificados pelo método de contagem por lexico deterministico, o que pode não capturar todos os padrões e preocupações dos clientes.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "agregada",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "fb9d26ae601018d2c1253e9af35b14e7",
+        "texto": "produto entregue não condiz com o produto comprado, péssima qualidade, assessório veio quebrado.",
+        "score": 0.6638725,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2017-08-31",
+        "atrasado": false,
+        "dias_atraso": -9.0,
+        "temas": [
+          "produto_defeito",
+          "qualidade_ruim",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "fb9d26ae601018d2c1253e9af35b14e7"
+        ],
+        "tema_ancora": "produto_defeito"
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "4d2c24b096663970f1e4e3b6c5d1f1cf",
+        "texto": "produto com defeito a empresa deveria testar produto antes",
+        "score": 0.6248973,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2018-04-26",
+        "atrasado": false,
+        "dias_atraso": -10.0,
+        "temas": [
+          "produto_defeito"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "4d2c24b096663970f1e4e3b6c5d1f1cf"
+        ],
+        "tema_ancora": "produto_defeito"
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "971d9cf50e974b929190f434f248d6af",
+        "texto": "produto errado e quebrado",
+        "score": 0.6231094,
+        "nota": 1,
+        "categoria": "musical_instruments",
+        "data_compra": "2017-06-20",
+        "atrasado": false,
+        "dias_atraso": 0.0,
+        "temas": [
+          "produto_errado",
+          "produto_defeito"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "971d9cf50e974b929190f434f248d6af"
+        ],
+        "tema_ancora": "produto_defeito"
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "da8e936bc2f1b52ec626f8aa41f3df44",
+        "texto": "produto incorreto produto diferente do anunciado",
+        "score": 0.62429655,
+        "nota": 1,
+        "categoria": "sports_leisure",
+        "data_compra": "2018-07-26",
+        "atrasado": false,
+        "dias_atraso": -6.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "da8e936bc2f1b52ec626f8aa41f3df44"
+        ],
+        "tema_ancora": "produto_errado"
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "d783b9df1cbb8273c3fd93dabebc7028",
+        "texto": "produto de qualidade ruim produto diferente do que foi anunciado.",
+        "score": 0.62033165,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-08-01",
+        "atrasado": false,
+        "dias_atraso": -15.0,
+        "temas": [
+          "produto_errado",
+          "qualidade_ruim",
+          "elogio_produto"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "d783b9df1cbb8273c3fd93dabebc7028"
+        ],
+        "tema_ancora": "produto_errado"
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "c099aafb6db35704451859b711b53425",
+        "texto": "o produto anunciado é um e o produto entregue é outro e de baixissima qualidade. inadimissivel esse tipo de atitude que fere o codigo de defesa do consumidor, entregar produto diferente do anunciado",
+        "score": 0.61748266,
+        "nota": 1,
+        "categoria": "computers_accessories",
+        "data_compra": "2018-04-17",
+        "atrasado": false,
+        "dias_atraso": -14.0,
+        "temas": [
+          "produto_errado"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "c099aafb6db35704451859b711b53425"
+        ],
+        "tema_ancora": "produto_errado"
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "69c6002c32816bf3303198f82a69791d",
+        "texto": "má qualidade do produto",
+        "score": 0.6922916,
+        "nota": 3,
+        "categoria": "perfumery",
+        "data_compra": "2017-08-15",
+        "atrasado": false,
+        "dias_atraso": -21.0,
+        "temas": [
+          "qualidade_ruim"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "69c6002c32816bf3303198f82a69791d"
+        ],
+        "tema_ancora": "qualidade_ruim"
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "802ce6588b4e35e73e7e47fb0a5b538e",
+        "texto": "péssima qualidade produto de péssima qualidade",
+        "score": 0.6865815,
+        "nota": 1,
+        "categoria": "auto",
+        "data_compra": "2018-05-07",
+        "atrasado": false,
+        "dias_atraso": -8.0,
+        "temas": [
+          "qualidade_ruim",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "802ce6588b4e35e73e7e47fb0a5b538e"
+        ],
+        "tema_ancora": "qualidade_ruim"
+      },
+      {
+        "tag": "[R9]",
+        "review_id": "c535fb13da25357afc4ce89ae58b8573",
+        "texto": "péssima qualidade do produto",
+        "score": 0.67999303,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-08-03",
+        "atrasado": false,
+        "dias_atraso": -7.0,
+        "temas": [
+          "qualidade_ruim",
+          "insatisfacao_geral"
+        ],
+        "ocorrencias": 2,
+        "review_ids": [
+          "c535fb13da25357afc4ce89ae58b8573",
+          "c6ffd9b83641c3b6a69f754cca26c3bb"
+        ],
+        "tema_ancora": "qualidade_ruim"
+      }
+    ],
+    "estatisticas": {
+      "recorte": "toda a base com comentario",
+      "total_avaliacoes_no_recorte": 40739,
+      "avaliacoes_sem_tema_identificado": 15397,
+      "temas": [
+        {
+          "tema": "Produto com defeito ou danificado",
+          "avaliacoes": 1201,
+          "percentual_do_recorte": 2.9
+        },
+        {
+          "tema": "Produto errado ou diferente do anunciado",
+          "avaliacoes": 662,
+          "percentual_do_recorte": 1.6
+        },
+        {
+          "tema": "Qualidade abaixo do esperado",
+          "avaliacoes": 459,
+          "percentual_do_recorte": 1.1
+        }
+      ],
+      "metodo": "contagem por lexico deterministico sobre todas as avaliacoes do recorte; uma avaliacao pode ter mais de um tema"
+    },
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "agregada",
+        "polaridade": "negativo",
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [
+          "produto"
+        ],
+        "pergunta_busca": "padrões recorrentes nas avaliações qualidade dos produtos",
+        "temas_alvo": [
+          "qualidade_ruim"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "corpus_filtrado": 40739,
+      "ranking_temas": [
+        [
+          "produto_defeito",
+          1201
+        ],
+        [
+          "produto_errado",
+          662
+        ],
+        [
+          "qualidade_ruim",
+          459
+        ]
+      ],
+      "evidencias_por_tema": {
+        "produto_defeito": 3,
+        "produto_errado": 3,
+        "qualidade_ruim": 3
+      },
+      "contexto_chars": 2510,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 8502
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:51:17.369775+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

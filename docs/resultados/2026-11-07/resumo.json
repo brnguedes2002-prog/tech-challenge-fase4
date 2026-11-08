@@ -1,0 +1,284 @@
+[
+  {
+    "pergunta": "Quais são os principais problemas relatados pelos clientes?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 1,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 9631,
+    "n_evidencias": 15,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais reclamações relacionadas à entrega aparecem com maior frequência?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 2,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 8146,
+    "n_evidencias": 12,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "O que os clientes mais elogiam em suas experiências de compra?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 3,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 8676,
+    "n_evidencias": 12,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais problemas são relatados por clientes insatisfeitos?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 4,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 23365,
+    "n_evidencias": 15,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Existem padrões recorrentes nas avaliações relacionadas à qualidade dos produtos?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 5,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 8502,
+    "n_evidencias": 9,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "O que os clientes relatam sobre problemas relacionados à entrega?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 6,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 15354,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números.",
+      "Evidencias recuperadas e nao citadas: [6]"
+    ]
+  },
+  {
+    "pergunta": "Quais avaliações sustentam a conclusão de que existem problemas recorrentes relacionados ao prazo de entrega?",
+    "deve_responder": true,
+    "tema": "atraso_entrega",
+    "id": 7,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 6596,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais são os principais problemas relatados nas avaliações com nota baixa?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 8,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 38809,
+    "n_evidencias": 15,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "O que os clientes mais elogiam na categoria cama mesa e banho?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 9,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 10110,
+    "n_evidencias": 12,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais temas aparecem nas avaliações de pedidos entregues com atraso?",
+    "deve_responder": true,
+    "tema": null,
+    "id": 10,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 10386,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais clientes receberam produtos com defeito?",
+    "deve_responder": true,
+    "tema": "produto_defeito",
+    "id": 11,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 18285,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais clientes receberam produtos diferentes do solicitado?",
+    "deve_responder": true,
+    "tema": "produto_errado",
+    "id": 12,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 4433,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "O que os clientes dizem sobre o atendimento da loja?",
+    "deve_responder": true,
+    "tema": "atendimento",
+    "id": 13,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 4594,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais clientes relatam que o pedido veio faltando itens?",
+    "deve_responder": true,
+    "tema": "entrega_incompleta",
+    "id": 14,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 3660,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quais clientes pediram reembolso ou cancelamento?",
+    "deve_responder": true,
+    "tema": "troca_devolucao",
+    "id": 15,
+    "respondeu": true,
+    "acertou_decisao": true,
+    "motivo": null,
+    "latencia_ms": 4779,
+    "n_evidencias": 8,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números.",
+      "Evidencias recuperadas e nao citadas: [3]"
+    ]
+  },
+  {
+    "pergunta": "Qual é a capital da França?",
+    "deve_responder": false,
+    "tema": null,
+    "id": 16,
+    "respondeu": false,
+    "acertou_decisao": true,
+    "motivo": "a pergunta esta fora do escopo da base (avaliacoes de clientes da Olist).",
+    "latencia_ms": 0,
+    "n_evidencias": 0,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Quem é o CEO da Olist?",
+    "deve_responder": false,
+    "tema": null,
+    "id": 17,
+    "respondeu": false,
+    "acertou_decisao": true,
+    "motivo": "a pergunta esta fora do escopo da base (avaliacoes de clientes da Olist).",
+    "latencia_ms": 0,
+    "n_evidencias": 0,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Os clientes reclamam do pagamento em bitcoin?",
+    "deve_responder": false,
+    "tema": null,
+    "id": 18,
+    "respondeu": false,
+    "acertou_decisao": true,
+    "motivo": "o(s) termo(s) ['bitcoin'] nao aparece(m) em nenhuma avaliacao da base.",
+    "latencia_ms": 0,
+    "n_evidencias": 0,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "O que os clientes acham da entrega por drone?",
+    "deve_responder": false,
+    "tema": null,
+    "id": 19,
+    "respondeu": false,
+    "acertou_decisao": true,
+    "motivo": "apenas 1 avaliacao(oes) relevante(s); o minimo configurado e 3.",
+    "latencia_ms": 1143,
+    "n_evidencias": 0,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  },
+  {
+    "pergunta": "Me passe uma receita de bolo de cenoura",
+    "deve_responder": false,
+    "tema": null,
+    "id": 20,
+    "respondeu": false,
+    "acertou_decisao": true,
+    "motivo": "a pergunta esta fora do escopo da base (avaliacoes de clientes da Olist).",
+    "latencia_ms": 0,
+    "n_evidencias": 0,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f7f8">
+  <meta name="description" content="Explore a voz dos clientes da Olist com respostas rastreáveis até as avaliações de origem.">
+  <title>Voz — Inteligência de experiência do cliente</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="/refinements.css">
+  <script src="/contract.js" defer></script>
+  <script src="/categories.js" defer></script>
+  <script src="/labels.js" defer></script>
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Ir para o conteúdo</a>
+  <aside class="sidebar" aria-label="Menu principal">
+    <a class="brand" href="#explorar" aria-label="Voz, início"><span class="brand-symbol" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span>voz<span class="brand-dot">.</span></span><span class="brand-tag">Inteligência de clientes</span></a>
+    <div class="workspace-label">Projeto Olist <span>Fase 4</span></div>
+    <nav class="navigation">
+      <a href="#explorar" class="nav-link active" data-view="explorar"><span data-icon="spark"></span>Explorar avaliações</a>
+      <a href="#base" class="nav-link" data-view="base"><span data-icon="database"></span>Base de conhecimento</a>
+      <a href="#projeto" class="nav-link" data-view="projeto"><span data-icon="layers"></span>Sobre o projeto</a>
+    </nav>
+    <section class="history-section" aria-labelledby="history-title">
+      <div class="section-label"><h2 id="history-title">Consultas da sessão</h2><button id="clear-history" class="icon-button" title="Limpar histórico da sessão" aria-label="Limpar histórico da sessão"><span data-icon="trash"></span></button></div>
+      <div id="history"><p class="history-empty">Suas investigações aparecem aqui.<br>Uma pergunta de cada vez.</p></div>
+    </section>
+    <div class="sidebar-bottom"><span class="tiny-mark" aria-hidden="true">◎</span><div><strong>Evidências antes de conclusões.</strong><p>Olist · avaliações de clientes</p></div></div>
+  </aside>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="breadcrumb"><span class="mobile-brand">voz.</span><span>Workspace</span><span class="divider">/</span><strong id="breadcrumb-title">Explorar avaliações</strong></div>
+      <div class="topbar-actions"><span class="connection" id="connection-status"><i></i>Conectando</span><button id="help-button" class="icon-button" aria-label="Abrir ajuda de uso" title="Como usar"><span data-icon="help"></span></button></div>
+    </header>
+    <main id="main" tabindex="-1">
+      <section id="view-explorar" class="view">
+        <div class="page-kicker"><span class="kicker-line"></span>Voice of Customer Intelligence com RAG <span class="kicker-note">Tech Challenge · Fase 4</span></div>
+        <div class="hero">
+          <div class="hero-copy"><h1>Respostas sobre as avaliações da Olist,<br><em>com os comentários que as sustentam</em></h1><p>Escreva uma pergunta sobre entrega, produto ou atendimento. O sistema busca avaliações relevantes, gera a resposta e mostra de onde veio cada afirmação.</p></div>
+        </div>
+        <div class="dataset-strip"><div><span data-icon="database"></span><strong id="corpus-count">Base Olist</strong><span id="corpus-label">comentários de clientes</span></div><div><span class="small-dot"></span><span id="dataset-period">2016–2018</span><span class="strip-divider"></span><span>Português</span></div><a href="#base">Conheça a base</a></div>
+        <section class="investigation" aria-labelledby="composer-title">
+          <div class="section-heading"><h2 id="composer-title">O que você quer entender?</h2><span class="mode-chip" id="mode-chip">Verificando ambiente</span></div>
+          <form id="question-form">
+            <div class="composer"><label class="sr-only" for="question">Sua pergunta sobre as avaliações</label><textarea id="question" maxlength="2000" rows="3" placeholder="Ex.: O que os clientes relatam sobre atraso na entrega?" required></textarea><div class="composer-bottom"><span><span data-icon="spark"></span>Pergunte em linguagem natural <span class="keyboard-hint">· Ctrl + Enter para analisar</span></span><button class="primary-button" id="submit-question" type="submit">Analisar avaliações <span data-icon="arrow"></span></button></div></div>
+            <div class="composer-meta"><p id="mode-description">Carregando informações do ambiente…</p><span id="character-count">0 / 2.000</span></div>
+          </form>
+        </section>
+        <section id="suggestions" aria-labelledby="suggestions-title"><div class="section-heading subtle-heading"><h2 id="suggestions-title">Perguntas de exemplo</h2><span>Clique para preencher o campo</span></div><div class="suggestion-grid" id="example-grid"></div></section>
+        <section id="loading-state" class="loading-state" hidden aria-live="polite"><div class="spinner" aria-hidden="true"></div><div><h2>Buscando contexto nas avaliações…</h2><p id="loading-detail">Sua consulta está em processamento.</p></div><span id="elapsed-time">0s</span></section>
+        <section id="error-state" class="error-state" hidden role="alert"><span data-icon="alert"></span><div><h2>Não foi possível concluir a consulta</h2><p id="error-message"></p><button id="retry-query" class="text-button">Tentar novamente</button></div></section>
+        <section id="results" hidden aria-labelledby="result-heading">
+          <div class="result-top"><div><span class="eyebrow">Sua pergunta</span><h2 id="result-heading" tabindex="-1"></h2></div><div class="result-actions"><button id="export-md" class="secondary-button"><span data-icon="download"></span>Baixar relatório</button><button id="export-json" class="secondary-button"><span data-icon="download"></span>Baixar JSON</button><button id="new-query" class="icon-button" aria-label="Nova investigação" title="Nova investigação"><span data-icon="plus"></span></button></div></div>
+          <div id="result-provenance" class="provenance"></div>
+          <div class="result-layout"><div class="answer-column"><article class="answer-card"><div class="card-heading"><span class="answer-icon" data-icon="spark"></span><h3 id="answer-title">O que encontramos</h3><span id="intent-label" class="small-label"></span></div><div id="abstention" hidden class="notice"></div><div id="answer-text" class="answer-text"></div><div id="result-warnings"></div><div class="answer-footer"><span data-icon="link"></span>Clique nas referências para conferir as avaliações.</div></article><section id="statistics" class="statistics-card" hidden></section><details class="technical-details"><summary><span data-icon="sliders"></span>Sobre esta análise<span aria-hidden="true">+</span></summary><div id="technical-content"></div></details></div>
+          <aside class="evidence-panel" aria-labelledby="evidence-title"><div class="evidence-header"><h3 id="evidence-title">Comentários dos clientes <span id="evidence-count">0</span></h3><span data-icon="quotes"></span></div><p class="evidence-description">Confira os comentários que sustentam a resposta.</p><div class="evidence-controls"><label class="evidence-search"><span data-icon="search"></span><input type="search" id="evidence-search" placeholder="Buscar nestes comentários" aria-label="Buscar nas evidências retornadas"></label><label class="checkbox-label"><input type="checkbox" id="cited-only"> Mostrar apenas comentários citados</label></div><div id="evidence-list"></div></aside></div>
+        </section>
+        <div class="replay-strip"><div><span data-icon="file"></span><span>Já tem uma consulta exportada? <strong>Revise as evidências de uma execução registrada.</strong></span></div><label class="text-button import-label" for="import-json">Importar JSON<input id="import-json" type="file" accept=".json,application/json" class="sr-only"></label></div>
+        <footer class="page-footer"><span>Voz · Tech Challenge Fase 4</span><span>Dados: Brazilian E-Commerce Public Dataset by Olist (Kaggle).</span></footer>
+      </section>
+      <section id="view-base" class="view" hidden><div class="page-kicker"><span class="kicker-line"></span>Base de conhecimento</div><h1 class="page-title">Avaliações da Olist<br><em>com comentário escrito</em></h1><p class="page-intro">Avaliações do Brazilian E-Commerce Public Dataset by Olist. O foco está no que os clientes escreveram, com metadados para dar contexto à experiência.</p><div id="base-summary" class="base-summary"></div><div class="info-grid"><article class="info-card"><h2>Um documento por avaliação</h2><p>Cada documento mantém o identificador da avaliação. Textos semelhantes podem ser agrupados na recuperação, preservando os IDs para rastreabilidade.</p></article><article class="info-card"><h2>Texto analisado: título e mensagem</h2><p>Título e mensagem formam o texto de análise; avaliações sem comentário ficam fora da base textual. Comentários com quebra de linha exigem leitura em modo multilinha, e a limpeza preserva negações como “não chegou”. As limitações da versão consultada estão no fim desta página.</p></article><article class="info-card"><h2>Metadados: nota, categoria e datas</h2><p>Nota, categoria e datas ajudam a contextualizar as avaliações. Uma reclamação de demora nem sempre significa entrega após a data estimada.</p></article><article class="info-card"><h2>Limites do recorte</h2><p>Os resultados representam as avaliações com texto disponíveis na base histórica. Frequências por tema dependem do léxico e podem incluir sobreposição entre temas.</p></article></div><section class="full-card"><h2>Estado e limitações do ambiente</h2><ul id="base-limitations"></ul><div id="base-config"></div></section></section>
+      <section id="view-projeto" class="view" hidden><div class="page-kicker"><span class="kicker-line"></span>Sobre o projeto</div><h1 class="page-title">Arquitetura do RAG<br><em>sobre as avaliações da Olist</em></h1><p class="page-intro">Uma pergunta em linguagem natural passa por roteamento, busca vetorial, seleção de evidências e geração com citações. Os parâmetros abaixo são os da execução atual.</p>
+        <section class="full-card" aria-labelledby="flow-title"><div class="section-heading"><h2 id="flow-title">Fluxo de uma pergunta</h2><span class="small-label" data-config="label">Databricks · base atual</span></div><p id="architecture-mode" class="notice" hidden></p>
+          <ol class="pipeline-steps">
+            <li><b>Roteador</b><p>Confere se a pergunta trata das avaliações, identifica se ela pede exemplos ou frequência e extrai filtros de nota, categoria, ano da compra e atraso.</p></li>
+            <li><b>Embedding da pergunta</b><p><code translate="no">paraphrase-multilingual-MiniLM-L12-v2</code>, 384 dimensões: o mesmo modelo que indexou as avaliações.</p></li>
+            <li><b>Busca vetorial</b><p>Databricks Vector Search no modo <span data-config="search_mode">ANN</span>, com 50 candidatos e os filtros aplicados no próprio índice.</p></li>
+            <li><b>Seleção das evidências</b><p>Textos idênticos viram uma evidência com contagem de ocorrências. Ficam os comentários acima do corte de similaridade (<span data-config="min_score">0,60</span>, <span data-config="threshold_status">provisório</span>), e o MMR (λ 0,7) escolhe até <span data-config="k_contexto">8</span> comentários diferentes entre si.</p></li>
+            <li><b>Contexto e geração</b><p>Cada comentário entra com uma tag [R1], [R2]… e seus metadados. Modelo: <span data-config="llm" translate="no">databricks-meta-llama-3-3-70b-instruct</span>, temperatura 0. As regras pedem que o modelo separe o relato do cliente dos metadados, não invente causas e só fale em frequência com base na contagem.</p></li>
+            <li><b>Validação das citações</b><p>Toda tag citada precisa existir no contexto; números sem correspondência e termos de frequência sem contagem geram aviso. Se a citação falhar, o modelo tem uma nova tentativa e, depois dela, o sistema recusa.</p></li>
+          </ol>
+        </section>
+        <div class="info-grid"><article class="info-card"><h2>Perguntas sobre um tema: exemplos</h2><p>“O que os clientes relatam sobre atraso na entrega?” A resposta usa os comentários mais próximos da pergunta. Ela mostra o que os clientes dizem, não com que frequência. Se a pergunta pedir evidências de algo recorrente, a contagem dos temas citados acompanha os exemplos.</p></article><article class="info-card"><h2>Perguntas de frequência: contagem no recorte</h2><p>“Quais são os principais problemas?” O pipeline conta 15 temas de um dicionário de palavras-chave em todas as avaliações do recorte (mínimo de <span data-config="min_docs_agregada">30</span>), ordena os 5 maiores e busca 3 comentários de exemplo para cada um.</p></article></div>
+        <section class="full-card" aria-labelledby="refusal-title"><h2 id="refusal-title">Quando o sistema não responde</h2><ul class="refusal-list">
+            <li><b>Fora do escopo:</b> regra aplicada antes da busca, sem consultar o índice nem o modelo.</li>
+            <li><b>Termo ausente:</b> uma palavra central da pergunta não aparece em nenhuma avaliação.</li>
+            <li><b>Evidência insuficiente:</b> menos de <span data-config="min_evidencias">3</span> comentários acima do corte de similaridade.</li>
+            <li><b>Recorte pequeno:</b> menos de <span data-config="min_docs_agregada">30</span> avaliações para calcular frequências.</li>
+            <li><b>Sem suporte no contexto:</b> o modelo declara que as evidências não bastam ou cita tags que não existem.</li>
+          </ul><p class="muted">Uma falha técnica, como servidor fora do ar ou tempo esgotado, aparece como erro, separada da recusa.</p></section>
+        <section class="full-card" aria-labelledby="data-title"><h2 id="data-title">Dados e índice</h2><dl class="spec-list">
+            <dt>Base</dt><dd>Avaliações com comentário do Brazilian E-Commerce Public Dataset by Olist, com nota, categoria do produto e datas da compra e da entrega.</dd>
+            <dt>Tabela de documentos</dt><dd><code translate="no">workspace.raw.f4_reviews_rag</code></dd>
+            <dt>Embeddings</dt><dd><code translate="no">workspace.raw.f4_reviews_embeddings</code>, vetores normalizados de 384 dimensões. Modelo escolhido no notebook 2.1 entre multilingual-e5-small, bge-small-en-v1.5 e MiniLM.</dd>
+            <dt>Índice vetorial</dt><dd><code translate="no">workspace.raw.f4_reviews_vector_index</code>, sincronizado a partir da tabela de embeddings (Delta Sync).</dd>
+            <dt>Temas</dt><dd>Calculados a partir da base com o mesmo dicionário do pipeline, uma avaliação podendo ter mais de um tema.</dd>
+            <dt>Código</dt><dd><code translate="no">src/rag_pipeline.py</code> (pipeline do grupo) e <code translate="no">app_server.py</code> com a pasta <code translate="no">web/</code> (esta interface).</dd>
+          </dl><p class="muted">Limitações da versão consultada: veja <a href="#base">Base de conhecimento</a>.</p></section>
+      </section>
+    </main>
+  </div>
+  <dialog id="help-dialog"><div class="dialog-header"><h2>Sua primeira investigação</h2><button id="close-help" class="icon-button" aria-label="Fechar ajuda"><span data-icon="close"></span></button></div><ol class="help-steps"><li><strong>Confira o ambiente.</strong><p>O indicador mostra se a consulta usa exploração local ou Databricks. O modo local não usa LLM.</p></li><li><strong>Faça uma pergunta completa.</strong><p>Cada consulta é independente. Escolha um exemplo ou escreva sua pergunta sobre as avaliações.</p></li><li><strong>Leia junto com as fontes.</strong><p>Clique em [R1], [R2]… para conferir os comentários. Observe filtros, avisos e o denominador das contagens.</p></li><li><strong>Guarde o resultado.</strong><p>Exporte um relatório ou o JSON. Uma importação posterior será identificada como execução registrada.</p></li></ol><p class="muted">As consultas da sessão ficam apenas nesta aba do navegador. Credenciais do Databricks são configuradas no servidor, nunca nesta tela.</p></dialog>
+  <div id="toast" class="toast" role="status" hidden></div>
+</body>
+</html>

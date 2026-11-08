@@ -20,7 +20,7 @@
 # MAGIC ## Dados utilizados
 # MAGIC
 # MAGIC - **Origem:** `workspace.raw.f4_reviews_rag`
-# MAGIC - **Quantidade de avaliações:** 40.739
+# MAGIC - **Quantidade de avaliações:** 40.641
 # MAGIC - **Modelo de embeddings:** `sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2`
 # MAGIC - **Tabela de destino:** `workspace.raw.f4_reviews_embeddings`
 # MAGIC - **Índice vetorial:** `workspace.raw.f4_reviews_vector_index`
@@ -45,7 +45,7 @@
 # MAGIC 3. Geração de embeddings normalizados de 384 dimensões.
 # MAGIC 4. Preparação dos vetores e metadados para armazenamento no Delta Lake.
 # MAGIC
-# MAGIC A base contém **40.739 avaliações**, processadas em lotes de 32 registros.
+# MAGIC A base contém **40.641 avaliações**, processadas em lotes de 32 registros.
 # MAGIC
 # MAGIC Os embeddings gerados serão utilizados posteriormente para criar o índice de busca vetorial no Databricks.
 
@@ -109,7 +109,7 @@ print("Dados preparados para armazenamento.")
 # MAGIC Essa etapa tem como objetivos:
 # MAGIC
 # MAGIC 1. Definir o esquema de armazenamento, preservando as colunas originais e adicionando `embedding_id` e `embedding`.
-# MAGIC 2. Persistir os 40.739 registros na tabela `workspace.raw.f4_reviews_embeddings`.
+# MAGIC 2. Persistir os 40.641 registros na tabela `workspace.raw.f4_reviews_embeddings`.
 # MAGIC 3. Validar a quantidade de registros armazenados e verificar exemplos dos dados.
 # MAGIC
 # MAGIC A persistência permite reutilizar os embeddings sem executar novamente o modelo de linguagem, além de disponibilizar a tabela para indexação no Databricks Vector Search.
@@ -185,7 +185,7 @@ display(
 # MAGIC | Dimensão dos vetores | 384 |
 # MAGIC | Tipo de índice | Delta Sync — Hybrid |
 # MAGIC | Sincronização | Triggered |
-# MAGIC | Registros indexados | 40.739 |
+# MAGIC | Registros indexados | 40.641 |
 # MAGIC
 # MAGIC A sincronização no modo **Triggered** permite atualizar o índice sob demanda, após alterações na tabela Delta.
 # MAGIC
@@ -298,7 +298,7 @@ print(resultado_filtrado.as_dict())
 # MAGIC
 # MAGIC ### Resultado final
 # MAGIC
-# MAGIC Foram gerados e armazenados **40.739 embeddings**, indexados no Databricks Vector Search. O endpoint e o índice são criados por código neste notebook, o que torna a etapa reprodutível em qualquer workspace.
+# MAGIC Foram gerados e armazenados **40.641 embeddings**, indexados no Databricks Vector Search. O endpoint e o índice são criados por código neste notebook, o que torna a etapa reprodutível em qualquer workspace.
 # MAGIC
 # MAGIC Os testes confirmaram o funcionamento da recuperação semântica Top-5 e a aplicação de filtros por nota de avaliação. Também evidenciaram que avaliações com texto idêntico (ex.: "atraso na entrega") ocupam várias posições do Top-5; esse efeito é tratado no pipeline RAG (notebook 3) com deduplicação por texto normalizado e contagem de ocorrências.
 # MAGIC
@@ -332,7 +332,7 @@ print(CONFIG_RAG)
 # MAGIC
 # MAGIC **Justificativa:** apresentou Precision@5 de 0,40 (empate prático com o E5, a 1 acerto de diferença) e o maior MRR@5 (0,60) no experimento comparativo do notebook 2.1, sem exigir prefixos de instrução.
 # MAGIC
-# MAGIC **Base processada:** 40.739 avaliações de clientes da Olist.
+# MAGIC **Base esperada após reprocessamento:** 40.641 avaliações de clientes da Olist. A execução remota precisa confirmar esse total.
 # MAGIC
 # MAGIC **Arquitetura:** embeddings normalizados de 384 dimensões, persistidos na tabela Delta `workspace.raw.f4_reviews_embeddings` e indexados no Databricks Vector Search.
 # MAGIC
@@ -342,8 +342,8 @@ print(CONFIG_RAG)
 # MAGIC - Tipo: Delta Sync, Hybrid
 # MAGIC - Sincronização: Triggered
 # MAGIC - Criação: por código neste notebook (reprodutível em qualquer workspace)
-# MAGIC - Registros indexados: 40.739
-# MAGIC - Status: Online
+# MAGIC - Registros esperados após sincronização: 40.641 (confirmar na execução)
+# MAGIC - Status: verificar no endpoint após a execução e a sincronização
 # MAGIC
 # MAGIC **Validação:**
 # MAGIC - Busca semântica Top-5: executada com sucesso para reclamações de atraso na entrega.

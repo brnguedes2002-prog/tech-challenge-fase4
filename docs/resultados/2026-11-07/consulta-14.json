@@ -1,0 +1,223 @@
+{
+  "response": {
+    "pergunta": "Quais clientes relatam que o pedido veio faltando itens?",
+    "resposta": "Os clientes que relatam que o pedido veio faltando itens são aqueles que deixaram avaliações negativas sobre a experiência de compra. \nOs achados em tópicos são:\n- Clientes insatisfeitos: [R1], [R2], [R3], [R4], [R5], [R6], [R7] e [R8] relatam problemas com pedidos incompletos.\nLimitações: Não há estatísticas disponíveis para análise.",
+    "abstencao": false,
+    "motivo": null,
+    "intencao": "especifica",
+    "filtros": {},
+    "evidencias": [
+      {
+        "tag": "[R1]",
+        "review_id": "d100adcddcef25bfa83bb819d562211c",
+        "texto": "pedido incompleto meu pedido chegou faltando um item.",
+        "score": 0.8752571,
+        "nota": 2,
+        "categoria": "housewares",
+        "data_compra": "2018-07-01",
+        "atrasado": false,
+        "dias_atraso": -7.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "d100adcddcef25bfa83bb819d562211c"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R2]",
+        "review_id": "e6ad4763e83667ce38442f2e07308c7c",
+        "texto": "o pedido chegou porém veio faltando um item.",
+        "score": 0.8260185,
+        "nota": 1,
+        "categoria": "furniture_decor",
+        "data_compra": "2017-11-25",
+        "atrasado": true,
+        "dias_atraso": 1.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e6ad4763e83667ce38442f2e07308c7c"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R3]",
+        "review_id": "e2151cbbe41614f383562310b6438748",
+        "texto": "meu pedido veio incompleto. ficou faltando um item.",
+        "score": 0.86784965,
+        "nota": 1,
+        "categoria": "watches_gifts",
+        "data_compra": "2017-11-12",
+        "atrasado": false,
+        "dias_atraso": -14.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "e2151cbbe41614f383562310b6438748"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R4]",
+        "review_id": "f7f2ecab5ccd99cd5e2a7d8eab6d25e9",
+        "texto": "recebi apenas um item desse pedido. recebimento incompleto.",
+        "score": 0.7600523,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2017-09-03",
+        "atrasado": false,
+        "dias_atraso": -21.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "f7f2ecab5ccd99cd5e2a7d8eab6d25e9"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R5]",
+        "review_id": "ce770c1287ea78ef3cf11e4a461ea50e",
+        "texto": "chegou meu pedido incompleto",
+        "score": 0.7442282,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2017-11-24",
+        "atrasado": false,
+        "dias_atraso": -16.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "ce770c1287ea78ef3cf11e4a461ea50e"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R6]",
+        "review_id": "85cd8ee1e2af04d36f83d101969d335c",
+        "texto": "entrega incompleta fui buscar o pedido nos correios mas só constavam 2 itens , faltou um a ser entregue",
+        "score": 0.68562436,
+        "nota": 1,
+        "categoria": "watches_gifts",
+        "data_compra": "2018-05-08",
+        "atrasado": false,
+        "dias_atraso": -25.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "85cd8ee1e2af04d36f83d101969d335c"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R7]",
+        "review_id": "779adfa09e476714bcc18fbf0ecb7ef3",
+        "texto": "muito insatisfeita não recebi o pedido completo e consta como entregue",
+        "score": 0.706106,
+        "nota": 1,
+        "categoria": "bed_bath_table",
+        "data_compra": "2018-08-06",
+        "atrasado": true,
+        "dias_atraso": 2.0,
+        "temas": [
+          "nao_recebido"
+        ],
+        "ocorrencias": 1,
+        "review_ids": [
+          "779adfa09e476714bcc18fbf0ecb7ef3"
+        ],
+        "tema_ancora": null
+      },
+      {
+        "tag": "[R8]",
+        "review_id": "42090eea831a1873d7fb9d583a56978f",
+        "texto": "pedido entregue incompleto.",
+        "score": 0.7376916,
+        "nota": 1,
+        "categoria": "health_beauty",
+        "data_compra": "2017-11-01",
+        "atrasado": false,
+        "dias_atraso": -7.0,
+        "temas": [
+          "entrega_incompleta"
+        ],
+        "ocorrencias": 2,
+        "review_ids": [
+          "42090eea831a1873d7fb9d583a56978f",
+          "ee36eb06005e20daece65976bd9990e4"
+        ],
+        "tema_ancora": null
+      }
+    ],
+    "estatisticas": null,
+    "avisos": [
+      "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números."
+    ],
+    "trace": {
+      "plano": {
+        "no_escopo": true,
+        "intencao": "especifica",
+        "polaridade": null,
+        "filtros_indice": {},
+        "filtros_pos": {},
+        "foco": [],
+        "pergunta_busca": "que o pedido veio faltando itens. veio faltando item, recebi apenas parte do pedido, pedido incompleto",
+        "temas_alvo": [
+          "entrega_incompleta"
+        ]
+      },
+      "backend_busca": "DatabricksVSRetriever",
+      "termos_ausentes_no_corpus": [],
+      "pergunta_transformada": "que o pedido veio faltando itens. veio faltando item, recebi apenas parte do pedido, pedido incompleto",
+      "temas_da_pergunta": [
+        "entrega_incompleta"
+      ],
+      "candidatos_apos_dedup_e_filtro": 47,
+      "top_scores": [
+        0.8753,
+        0.8678,
+        0.826,
+        0.7601,
+        0.7442
+      ],
+      "acima_do_min_score": 47,
+      "contexto_chars": 1242,
+      "validacao_tentativa_1": "ok"
+    },
+    "latencia_ms": 3660
+  },
+  "meta": {
+    "mode": "databricks",
+    "label": "Databricks · base atual",
+    "generated_at": "2026-11-08T00:53:09.659284+00:00",
+    "dataset_version": "420fdd4c9499003903d0d04cfc5db6b974bd874c498dc74b6b0a0ee833cfbb67",
+    "config": {
+      "min_score": 0.6,
+      "k_contexto": 8,
+      "min_evidencias": 3,
+      "min_docs_agregada": 30,
+      "search_mode": "ANN",
+      "threshold_status": "provisório",
+      "llm": "databricks-meta-llama-3-3-70b-instruct"
+    },
+    "limitations": [
+      "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
+      "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
+      "105 avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
+      "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
+      "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."
+    ]
+  }
+}

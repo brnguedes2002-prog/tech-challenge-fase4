@@ -90,9 +90,9 @@ TEMAS: dict[str, dict[str, Any]] = {
         "label": "Atraso na entrega", "polaridade": "negativo", "grupo": "entrega", "guarda_negacao": True,
         "query": "entrega atrasada, chegou depois do prazo, fora do prazo de entrega",
         "padroes": [r"\batras\w+",   # atraso, atrasou, atrasada... ("atras" sozinho e o advérbio "atrás")
-                    r"\b(fora|alem|depois|apos|passou) do prazo",
+                    r"\b(fora|alem|depois|apos|passou|passa|passando) do prazo",
                     r"\bprazo( de entrega| da entrega| estipulado| previsto| estimado| prometido| informado)? (nao|n) (foi )?(cumprid|respeitad|obedecid)",
-                    r"\b(nao|n) (cumpr|respeit)\w* (o |com o )?prazo",
+                    r"\b(nao|n) (cumpr|compr|respeit)\w* (o |com o |seu |o seu |com seu )?prazo",
                     r"\b(passou|ultrapassou|estourou|furou|excedeu|expirou|venceu)( \w+){0,2} prazo",
                     r"\bprazo( de entrega)? (ja )?(venceu|expirou|passou|acabou|estourou|esgotou)",
                     r"\b(nao|n) (chegou|chegaram|foi entregue|foram entregues|entregaram|entregou|veio|vieram|recebi|recebemos) (no|dentro do|ate o) prazo",
@@ -107,7 +107,8 @@ TEMAS: dict[str, dict[str, Any]] = {
                     r"\b(entrega|envio|transporte|correio|correios|transportadora)( \w+){0,2} lent[oa]s?\b",
                     r"\blent[oa] (a|na) entrega",
                     r"\bmuito tempo (para|pra|ate) (chegar|entregar|receber|ser entregue|a entrega)",
-                    r"\b(longa|grande) espera\b"],
+                    r"\b(longa|grande) espera\b", r"\blerd[oa]s?\b",
+                    r"\blev(ou|a|aram) (quase |mais de |cerca de |uns |umas )?(\d+|um|uma|dois|duas|tres|quatro|cinco|seis|sete|oito|dez|quinze|vinte|trinta|varios|varias|muitos|muitas) (dias|semanas|meses|mes)( \w+){0,3} (para|pra|ate) (chegar|entregar|receber|ser entregue)"],
     },
     "nao_recebido": {
         # "ate a avaliacao": muitos clientes escrevem antes da data de entrega registrada no pedido
@@ -115,24 +116,51 @@ TEMAS: dict[str, dict[str, Any]] = {
         "query": "nao recebi o produto, nunca chegou, consta como entregue mas nao recebi",
         # "nao chegou no prazo" e atraso; "nao recebi a nota fiscal / resposta / reembolso" e outro tema
         "padroes": [r"\b(nao|n|nunca) (recebi|chegou|foi entregue|entregaram|me entregaram)"
+                    r"(?! (errad[oa]s?|quebrad[oa]s?|danificad[oa]s?)\b)"
                     r"(?! (ainda )?(no|dentro do|antes do|ate o) prazo\b| a tempo\b| na data\b)"
                     r"(?! (a |o |nenhuma |nenhum |qualquer )?(nota|nf|resposta|retorno|reembolso|estorno|dinheiro|email|e mail|contato|codigo|rastreio|boleto)\b)",
+                    r"\b(nao|n|nunca) (me )?entreg(ue|ou|aram)\b(?! (ainda )?(no|dentro do|antes do|ate o) prazo\b| a tempo\b| na data\b)",
+                    r"\b(aguardando|esperando|no aguardo d[oa]|aguardo)( (a|o|pela|pelo|meu|minha|o meu|a minha))? (entrega|produto|pedido|mercadoria|encomenda|recebimento|chegada)\b",
+                    r"\bate (agora|hoje|hj|o momento|entao) (nada(?! (a |tenho a |de |pra |para )?reclam)|nem sinal|(nao|n) (chegou|recebi|recebemos|veio|foi entregue))",
+                    r"\b(nem sinal|nada) d[oa] (produto|pedido|encomenda|mercadoria)",
+                    r"\bnem (recebi|chegou|foi entregue|entregaram|entregue)\b", r"\b(nao|n) (tenho|tive) (nenhuma )?noticia",
+                    r"\b(preciso|quero|gostaria de) receber (o |meu |o meu |a |minha |a minha )?(produto|pedido|encomenda|mercadoria)",
+                    r"\b(continuo|sigo|ainda estou|ainda estamos) (aguardando|esperando|no aguardo)\b(?!(?: \w+){0,3} (resposta|retorno|posic|troca|estorno|reembols|credito|contato|solucao|devolu|nota))",
+                    r"\b(nao|n) (enviaram|enviou|postaram|postou|despacharam|despachou)( \w+){0,2} (o |a |meu |minha )?(produto|pedido|encomenda|mercadoria)", r"\bcade (o |a |meu |minha |o meu |a minha )?(produto|pedido|encomenda|mercadoria)",
+                    r"\b(aguardando|esperando|aguardo) ((a chegada|a entrega|o recebimento) d[oa] |o |meu |meus |os )(produto|pedido|encomenda|compra)\b",
+                    r"\b(produto|pedido|encomenda) (ainda )?(nao|nunca) veio\b", r"\bnao foi entegue\b",
                     r"\bconsta como entregue", r"\bextravi"],
     },
     "entrega_incompleta": {
         "label": "Entrega incompleta (itens faltando)", "polaridade": "negativo", "grupo": "entrega",
         "query": "veio faltando item, recebi apenas parte do pedido, pedido incompleto",
-        "padroes": [r"\bfaltand", r"\bfalt(ou|aram) ", r"\bincomplet",
-                    r"\b(so|apenas|somente) (veio|chegou|recebi)\b", r"\b(veio|chegou|recebi) (so|apenas|somente)\b",
+        "padroes": [r"\bfaltand", r"\bfalt(ou|aram)\b", r"\bincomplet",
+                    r"\b(so|apenas|somente) (veio|vieram|chegou|chegaram|recebi|recebemos|recebeu)\b",
+                    r"\b(veio|chegou|recebi|recebemos|recebeu) (so(?! que)|apenas|somente)\b",   # "veio, so que..." nao e falta
+                    r"\b(so|apenas|somente)( (um|uma|1|metade|parte)( \w+){0,3})? (foi|foram) entregues?\b",
+                    r"\bfo(i|ram) entregues? (apenas|somente|so(?! que)|parcialmente)\b", r"\bentreg\w* parcia",
+                    r"\b(nao|n) (veio|chegou) complet",
+                    r"\b(nao|n) (veio|vieram) (com )?(o |a |os |as )?(manual|suporte|peca|pecas|parafusos?|cabo|carregador|acessorios?|tampa|controle|kit|trava|chave|bateria|fonte|instruc)",
+                    r"\bveio sem (o |a |os |as )?(manual|suporte|peca|pecas|parafusos?|cabo|carregador|acessorios?|tampa|controle|bateria|fonte|chave|kit|instruc)",
                     r"\bmetade d"],
     },
     "produto_errado": {
         "label": "Produto errado ou diferente do anunciado", "polaridade": "negativo", "grupo": "produto", "guarda_negacao": True,
         "query": "produto errado, veio diferente do anunciado, enviaram outro modelo",
         "padroes": [r"\b(produto|cor|tamanho|modelo|item) (errad|diferente)",
-                    r"\b(veio|enviaram|mandaram|recebi) (o |um )?(produto |modelo |item )?(errad|diferente|outro)\b",
-                    r"\bdiferente d[oa] (anunciad|pedid|solicitad|comprad|que|foto|imagem|anuncio)",
-                    r"\bnao (e|era) o (que|produto)", r"\btrocad"],
+                    # \w* depois do radical: sem ele, "veio errado" nunca casava (o \b exigia a palavra cortada)
+                    r"\b(veio|vieram|chegou|enviaram|mandaram|recebi|entregaram|foi entregue) (o |um |uma )?(produto |modelo |item )?(errad\w*|diferentes?|outr[oa]s?\b(?! (dia|dias|vez|vezes|semana|mes)\b))",
+                    r"\bdiferente d[oa] (anunciad|pedid|solicitad|comprad|que|foto|imagem|anuncio|descricao|site)",
+                    r"\bnao (e|era) o (que|produto)", r"\btrocad", r"\bdivergente (ao|do) (comprado|pedido|anunciado)",
+                    r"\bnao (e|era) (o |a )?(mesm[oa]|original|que (eu )?(pedi|comprei|escolhi|solicitei))\b",
+                    r"\b(falsificad|falsifica\b|replica\b|pirata\b|fals[oa]s?\b)",
+                    r"\b(nao|n) (condiz|corresponde|correspondeu|confere)\b", r"\bfora da especificac",
+                    r"\b(tamanho|numeracao|medidas?)( \w+)? (nao (e|foi|era|serviu|corresponde|confere)|errad|diferente|incorret)",
+                    r"\bvoltagem (errada|diferente|trocada|incorreta)", r"\b(110|127|220) ?v?\b.{0,40}\b(veio|recebi|chegou|enviaram|mandaram)( \w+){0,2} (110|127|220)",
+                    r"\bnao (condiz|corresponde|confere|bate)( \w+){0,3} (descricao|anuncio|anunciado|foto|imagem|pedido|site|especificac)",
+                    r"\b(menor|inferior) (do|ao) que (o |a )?(esperad|anunciad|parec|mostr|imagin|descrit|foto)",   # "maior do que imaginava" costuma ser elogio
+                    r"\b(nao|n) (veio|vieram|e|era|chegou|esta|corresponde) (\w+ )?(como|conforme|de acordo com|igual) (o |a |ao |a )?(anunciad|descrit|descricao|anuncio|foto|imagem|esperad|pedid|site)",
+                    r"\b(pedi|comprei|escolhi|solicitei)( \w+){0,4} (na cor |cor )?(pret|branc|azul|vermelh|rosa|verde|amarel|cinza|marrom|bege|lilas|rox|dourad|prata|chocolate)\w*\b.{0,40}\b(veio|vieram|recebi|chegou|entregue|enviaram|mandaram)( \w+){0,3} (pret|branc|azul|vermelh|rosa|verde|amarel|cinza|marrom|bege|lilas|rox|dourad|prata|chocolate)\w*"],
     },
     "produto_defeito": {
         "label": "Produto com defeito ou danificado", "polaridade": "negativo", "grupo": "produto", "guarda_negacao": True,
@@ -143,9 +171,9 @@ TEMAS: dict[str, dict[str, Any]] = {
     "qualidade_ruim": {
         "label": "Qualidade abaixo do esperado", "polaridade": "negativo", "grupo": "produto", "guarda_negacao": True,
         "query": "qualidade ruim, material fraco, produto de baixa qualidade",
-        "padroes": [r"\b(qualidade|material|acabamento) (ruim|baixa|pessim|inferior|horrivel|fraca|fraco)",
+        "padroes": [r"\b(qualidade|material|acabamento|produto) (e |era |foi )?(bem |muito )?(ruim|baixa|pessim|inferior|horrivel|fraca|fraco)",
                     r"\b(pessima|baixa|ma) qualidade", r"\bfragil\b", r"\bvagabund", r"\bporcaria\b",
-                    r"\bnao (vale|valeu) (a pena|o preco)"],
+                    r"\bnao (vale|valeu) (a pena|o preco)", r"\bmal (feit|produzid|acabad|costurad)", r"\bnao gostei da qualidade"],
     },
     "atendimento": {
         "label": "Atendimento e falta de retorno", "polaridade": "negativo", "grupo": "atendimento",
@@ -160,25 +188,50 @@ TEMAS: dict[str, dict[str, Any]] = {
         "padroes": [r"\btroca\b", r"\btrocar\b", r"\bdevolu", r"\bdevolv", r"\breembols", r"\bestorn",
                     r"\bdinheiro de volta", r"\bcancel"],
     },
+    "retirada_correios": {
+        "label": "Teve de retirar o produto nos Correios", "polaridade": "negativo", "grupo": "entrega",
+        "query": "tive que retirar o produto na agencia dos correios, nao entregaram em casa",
+        "padroes": [r"\b(tive|tivemos|tenho|precisei|precisamos) (que|de) (ir |me deslocar |sair )?(ate |a |na |no )?(buscar|retirar|pegar)( \w+){0,4} (correio|correios|agencia|transportadora)",
+                    r"\bretirar (o produto |a encomenda |o pedido )?(na|no|nos) (agencia|correio|correios)"],
+    },
+    "nota_fiscal": {
+        "label": "Nota fiscal ou documentacao", "polaridade": "negativo", "grupo": "atendimento",
+        "query": "nao recebi a nota fiscal, nota fiscal errada, sem nota fiscal",
+        "padroes": [r"\b(sem|nem|falt\w*|cade|aguardando|esperando|preciso d[ae]|solicitei|pedi)( \w+){0,2} (nota fiscal|nf|danfe)\b",
+                    r"\b(nao|n) (recebi|veio|vieram|enviaram|mandaram|emitiram|emitiu|chegou|tem|tinha|foi emitida|forneceram)( \w+){0,2} (nota fiscal|nf|danfe)\b",
+                    r"\b(nota fiscal|nf)( \w+){0,2} (errada|incorreta|com erro|divergente|em nome de outr)",
+                    r"\bemissao da (nota|nf)"],
+    },
     "embalagem": {
         "label": "Embalagem", "polaridade": "negativo", "grupo": "entrega", "guarda_negacao": True,
         "query": "embalagem ruim, caixa amassada, produto mal embalado",
         # so embalagem com problema ("bem embalado" e elogio e vai para elogio_entrega)
         "padroes": [r"\bmal embalad", r"\bembalage(m|ns) (ruim|pessima|danificad|violad|aberta|rasgad|amassad|fraca|precaria|molhad)",
                     r"\bcaixa (amassada|danificada|aberta|rasgada|violada|molhada)", r"\bsem embalag",
-                    r"\bembalagem (veio |chegou )?(toda )?(destruida|aberta|rasgada|amassada|violada|danificada)"],
+                    r"\bembalagem (veio |chegou )?(toda )?(destruida|aberta|rasgada|amassada|violada|danificada)",
+                    r"\bnao (estava|veio|esta) lacrad", r"\blacre (rompido|violado|aberto)"],
     },
     "insatisfacao_geral": {
-        "label": "Insatisfacao geral / nao recomenda", "polaridade": "negativo", "grupo": "geral",
-        "query": "nao recomendo, pessimo, decepcionado, propaganda enganosa",
-        "padroes": [r"\bnao recomendo", r"\bpessim", r"\bhorrivel", r"\blixo\b", r"\bdecepc", r"\benganad",
-                    r"\bgolpe\b", r"\bfraude\b", r"\bpropaganda enganosa"],
+        "label": "Insatisfacao geral / nao recomenda", "polaridade": "negativo", "grupo": "geral", "guarda_negacao": True,
+        "query": "nao recomendo, pessimo, decepcionado, nao gostei, nao era o que eu esperava",
+        "padroes": [r"\bnao recomend(o|aria)\b", r"\bpessim", r"\bhorrivel", r"\blixo\b", r"\bdecepc", r"\benganad",
+                    r"\bgolpe\b", r"\bfraude\b", r"\bpropaganda enganosa",
+                    r"\bnao gostei\b", r"\b(nao|nada) (foi|era|e)( (o|bem|exatamente))? (que|oque) (eu )?(esperava|imaginava|queria|pedi)",
+                    r"\bdeix(ou|a|ando) (muito )?a desejar", r"\binsatisfeit", r"\bnao (estou|fiquei|fico) satisfeit",
+                    r"\barrependid", r"\bnunca mais (compro|comprarei|vou comprar|volto)", r"\bnao (compro|comprarei|compraria|volto a comprar) (mais|novamente|de novo)",
+                    r"\b(muito|bem|super|mt|mto) ruim\b", r"\b(produto|compra|experiencia|loja|servico|empresa|site) (\w+ )?ruim\b",
+                    r"\bpior (compra|loja|experiencia|produto|site|empresa)", r"\bdesrespeit"],
     },
     # ---------- elogios (com guarda de negacao) ----------
     "elogio_entrega": {
         "label": "Entrega rapida ou no prazo", "polaridade": "positivo", "grupo": "entrega",
         "query": "entrega rapida, chegou antes do prazo, chegou no prazo",
         "padroes": [r"\bantes do prazo", r"\bno prazo\b", r"\bdentro do prazo", r"\bchegou (bem |muito |super )?rapid",
+                    r"\bantes (do|da) (previst|data|esperad|tempo|combinad|estimad|prometid|dia|previsao)",
+                    r"\b(bem|muito|super|mt|dias) antes\b", r"\bentreg\w* (super |muito |bem )?(rapid|antecipad|adiantad)",
+                    r"\b(agilidade|pontualidade|rapidez)\b", r"\b(entrega|envio) (expressa|agil|eficiente|pontual)",
+                    r"\bcumpr\w* (o |com o |seu |os )?prazos?\b", r"\b(conforme|como|na data) (o )?(combinad|programad|prometid|marcad)",
+                    r"^(super |muito |bem )?rapid[oa]s?$",
                     r"\bentrega (foi )?(muito |super |bem )?(rapida|eficiente|perfeita|otima|excelente|pontual)",
                     r"\b(super|muito) rapid", r"\bchegou (antes|cedo|adiantad)",
                     r"\b(bem|muito bem|super bem) embalad", r"\bembalagem (perfeita|otima|excelente|caprichada)"],
@@ -186,17 +239,39 @@ TEMAS: dict[str, dict[str, Any]] = {
     "elogio_produto": {
         "label": "Produto bom / conforme anunciado", "polaridade": "positivo", "grupo": "produto",
         "query": "produto de otima qualidade, conforme anunciado, superou as expectativas",
-        "padroes": [r"\b(otim|excelent|perfeit|lind|maravilhos|boa|bom) (produto|qualidade|material|acabamento)",
-                    r"\b(produto|qualidade|material) (otim|excelent|perfeit|de qualidade|muito bom|lind|maravilhos|top)",
+        # Flexoes completas depois do radical: sem elas, "otimo produto" e "excelente produto" nunca casavam
+        "padroes": [r"\b(otim[oa]s?|excelentes?|perfeit[oa]s?|lind[oa]s?|maravilhos[oa]s?|boa|bom) (produto|qualidade|material|acabamento)",
+                    r"\b(produto|qualidade|material) (otim|excelent|perfeit|de qualidade|muito bo|lind|maravilhos|top|bo[ma]\b|bonit)",
                     r"\bconforme (anunciad|descrit|o anuncio|a descricao|esperado|o esperado)",
+                    r"\b(dentro|de acordo com|exatamente como|como) (o )?(esperad|anunciad|descrit|a descricao|o anuncio|a foto|o pedido)",
+                    r"\bem (perfeito|otimo|excelente|bom) estado\b", r"\bem perfeitas condicoes", r"\bmuito bonit",
+                    r"\b(custo|preco) beneficio", r"\bvale (a pena|cada centavo)",
+                    r"\blind[oa]+s?\b", r"\b(igualzinh|identic[oa])", r"\bde (otima |excelente |boa )?qualidade\b",
+                    r"\bfunciona (perfeitamente|muito bem|bem)\b", r"\bcumpr\w* (o |com o )?(esperad|prometid|que promete)",
+                    r"\batend(eu|e) (as |minhas |a )?necessidad", r"\b(como|o que) eu (desejava|queria|esperava|precisava)\b",
                     r"\b(igual|identico) (a|da|ao|as) (foto|anuncio|imagem|descricao)",
                     r"\b(amei|adorei|gostei)\b", r"\bsuperou", r"\batendeu (as |minhas |a )?expectativ"],
     },
     "elogio_vendedor": {
         "label": "Loja / vendedor confiavel e bom atendimento", "polaridade": "positivo", "grupo": "atendimento",
         "query": "loja confiavel, otimo atendimento do vendedor, parabens a loja",
-        "padroes": [r"\b(otim|excelent|bom|boa|perfeit) atendimento", r"\b(loja|vendedor|empresa) (confiavel|excelente|otim|nota 10|parabens|seria)",
+        "padroes": [r"\b(otim[oa]s?|excelentes?|bom|boa|perfeit[oa]s?) (atendimento|vendedor|vendedora|loja|empresa)\b",
+                    r"\batendimento (\w+ )?(otim|excelent|bom|boa|perfeit|nota 10|de primeira|impecavel|rapido|atencios)",
+                    r"\bconfiave(l|is)\b", r"\b(site|loja|empresa|vendedor|vendedora) (\w+ )?(correta|seria|honesta|eficiente|responsavel|competente)", r"\b(loja|vendedor|empresa) (confiavel|excelente|otim|nota 10|parabens|seria)",
                     r"\bparabens\b", r"\brecomendo (a |essa |esta )?(loja|vendedor|empresa)"],
+    },
+    "satisfacao_geral": {
+        # Elogio sem dizer do que: "muito bom", "tudo certo", "satisfeita". So entra quando nenhum
+        # outro elogio foi identificado, para nao inflar a contagem de quem ja tem tema.
+        "label": "Satisfacao geral (elogio sem detalhe)", "polaridade": "positivo", "grupo": "geral", "so_sem_outro_tema": True,
+        "query": "muito bom, tudo certo, estou satisfeito com a compra",
+        "padroes": [r"\b(muito|mt|mto|super|bem) (bom|boa|bons|boas)\b",
+                    r"\b(otim[oa]s?|excelente|perfeit[oa]|maravilhos[oa]|sensacional|espetacular|show|top|nota (10|dez|mil))\b",
+                    r"\btudo (certo|certinho|ok|okay|perfeito|otimo|em ordem|correto|conforme|tranquilo|bem|nos conformes|beleza)\b",
+                    r"\bsatisfeit[oa]s?\b",
+                    r"\b(nada a reclamar|(nao tive|nunca tive|sem) (nenhum |qualquer )?problemas?)\b",
+                    # avaliacao inteira de uma ou duas palavras: "bom", "ok", "otimooo"
+                    r"^((bom|boa|ok|okay|otim[oa]+|excelente|perfeit[oa]|legal|show|top|gostei|aprovad[oa])( |$)){1,3}$"],
     },
     "recomendacao": {
         "label": "Recomenda / compraria de novo", "polaridade": "positivo", "grupo": "geral",
@@ -212,7 +287,7 @@ _NEGACAO = re.compile(r"\b(nao|n|nunca|sem|nem)\b")
 # continua sendo atraso.
 _NEGACAO_PROXIMA = re.compile(
     r"\b(nao|n|nunca|sem|nem|nenhum|nenhuma)"
-    r"( (nenhum|nenhuma|qualquer|um|uma|o|a|muito|muita|tanto|tanta|grande|veio|vieram|chegou|esta|estava|foi|houve|teve|tinha|apresentou|apresentava|ha)){0,2} $")
+    r"( (nenhum|nenhuma|qualquer|um|uma|o|a|muito|muita|tanto|tanta|grande|veio|vieram|chegou|esta|estava|foi|houve|teve|tinha|apresentou|apresentava|ha|fiquei|fico|estou|sou|me|senti)){0,2} $")
 _TEMAS_RE = {nome: [re.compile(p) for p in t["padroes"]] for nome, t in TEMAS.items()}
 
 
@@ -240,6 +315,11 @@ def rotular_temas(texto: str) -> list[str]:
                 continue
             achados.append(nome)
             break
+    # Temas de reserva (so_sem_outro_tema) saem quando outro tema da mesma polaridade foi encontrado
+    for nome in [n for n in achados if TEMAS[n].get("so_sem_outro_tema")]:
+        pol = TEMAS[nome]["polaridade"]
+        if any(o != nome and TEMAS[o]["polaridade"] == pol for o in achados):
+            achados.remove(nome)
     return achados
 
 
@@ -743,6 +823,16 @@ class RAGPipeline:
                       for t in temas],
             "metodo": "contagem por lexico deterministico sobre todas as avaliacoes do recorte; uma avaliacao pode ter mais de um tema",
         }
+        baixas = corpus[corpus["review_score"].isin([1, 2])]
+        sem_tema = int(baixas["temas"].map(len).eq(0).sum())
+        sem_negativo = int(baixas["temas"].map(
+            lambda lista: not any(TEMAS[t]["polaridade"] == "negativo" for t in lista)).sum())
+        estat["cobertura_notas_baixas"] = {
+            "total": len(baixas), "sem_tema": sem_tema,
+            "percentual_sem_tema": round(100 * sem_tema / len(baixas), 1) if len(baixas) else None,
+            "sem_tema_negativo": sem_negativo,
+            "percentual_sem_tema_negativo": round(100 * sem_negativo / len(baixas), 1) if len(baixas) else None,
+        }
         # Atraso (o cliente diz que o prazo nao foi cumprido) e demora (achou lento) sao cruzados
         # separadamente com a data estimada do pedido: so o primeiro deveria coincidir com atraso real.
         if "atraso_entrega" in temas:
@@ -886,6 +976,10 @@ def formatar(resp: RAGResponse) -> str:
             a = resp.estatisticas["atraso_confirmado_pelos_dados"]
             out.append(f"  Atraso confirmado pelos dados: {a['pedidos_entregues_apos_a_data_estimada']} de "
                        f"{a['reclamacoes_de_atraso_com_data_de_entrega']} ({a['percentual']}%)")
+        c = resp.estatisticas.get("cobertura_notas_baixas") or {}
+        if c.get("total"):
+            out.append(f"  Notas 1 e 2 sem tema de reclamacao: {c['sem_tema_negativo']} de {c['total']} "
+                       f"({c['percentual_sem_tema_negativo']}%)")
         if "demora_x_data_de_entrega" in resp.estatisticas:
             d = resp.estatisticas["demora_x_data_de_entrega"]
             out.append(f"  Demora com atraso pela data: {d['pedidos_entregues_apos_a_data_estimada']} de "

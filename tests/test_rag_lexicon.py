@@ -93,6 +93,58 @@ class NegacaoProdutoTests(unittest.TestCase):
         self.assertNotIn("elogio_entrega", t)
 
 
+class CoberturaTests(unittest.TestCase):
+    """Padrões acrescentados para reduzir as avaliações sem tema."""
+
+    def test_radical_seguido_de_palavra(self):
+        # Antes, "otim produto" era exigido literalmente e "ótimo produto" nunca casava
+        self.assertIn("elogio_produto", temas("Ótimo produto"))
+        self.assertIn("elogio_produto", temas("Excelente produto, chegou bem"))
+        self.assertIn("elogio_vendedor", temas("Excelente atendimento"))
+        self.assertIn("produto_errado", temas("O produto veio errado"))
+
+    def test_satisfacao_geral_so_sem_outro_elogio(self):
+        self.assertEqual(temas("Muito bom"), {"satisfacao_geral"})
+        self.assertEqual(temas("ok"), {"satisfacao_geral"})
+        t = temas("Muito bom, chegou antes do prazo")
+        self.assertIn("elogio_entrega", t)
+        self.assertNotIn("satisfacao_geral", t)
+        self.assertNotIn("satisfacao_geral", temas("Não fiquei satisfeito"))
+
+    def test_espera_pela_entrega(self):
+        for texto in ["Estou aguardando a entrega", "Até agora nada", "Cadê meu produto?", "Produto não entregue",
+                      "Continuo esperando", "Preciso receber o meu pedido"]:
+            with self.subTest(texto=texto):
+                self.assertIn("nao_recebido", temas(texto))
+        self.assertNotIn("nao_recebido", temas("Compro há anos e até agora nada a reclamar"))
+        self.assertNotIn("nao_recebido", temas("Continuo aguardando resposta da loja"))
+
+    def test_entrega_parcial_e_acessorio_faltando(self):
+        for texto in ["Comprei dois e foi entregue apenas um", "Veio sem o manual", "Não veio com o carregador"]:
+            with self.subTest(texto=texto):
+                self.assertIn("entrega_incompleta", temas(texto))
+        self.assertNotIn("entrega_incompleta", temas("Foi entregue, só que tive que buscar no correio"))
+
+    def test_produto_diferente_ou_falso(self):
+        for texto in ["Não é original", "Produto falsificado", "Comprei preto e veio branco",
+                      "Voltagem errada", "Comprei 220 e veio 110v", "Não condiz com a descrição"]:
+            with self.subTest(texto=texto):
+                self.assertIn("produto_errado", temas(texto))
+        self.assertNotIn("produto_errado", temas("Maior do que imaginava, lindo"))
+
+    def test_insatisfacao_generica(self):
+        for texto in ["Não gostei", "Não era o que eu esperava", "Deixou a desejar", "Muito ruim"]:
+            with self.subTest(texto=texto):
+                self.assertIn("insatisfacao_geral", temas(texto))
+        self.assertNotIn("insatisfacao_geral", temas("Não é ruim"))
+
+    def test_nota_fiscal_e_retirada(self):
+        t = temas("Não recebi a nota fiscal")
+        self.assertIn("nota_fiscal", t)
+        self.assertNotIn("nao_recebido", t)
+        self.assertIn("retirada_correios", temas("Paguei o frete e tive que retirar na agência dos correios"))
+
+
 class RouterTests(unittest.TestCase):
     def test_pergunta_de_atraso_considera_atraso_e_demora(self):
         plano = rp.rotear("O que os clientes relatam sobre atraso na entrega?")
@@ -109,7 +161,7 @@ class RouterTests(unittest.TestCase):
 
 
 def _gold_sintetica():
-    """40 avaliações: atraso real, demora dentro do prazo e elogios."""
+    """44 avaliações: atraso real, demora dentro do prazo, reclamações sem tema e elogios."""
     linhas = []
     base = {"order_status": "delivered", "order_purchase_timestamp": "2018-01-02 10:00:00",
             "product_category_name_english": "housewares", "review_score": 1}
@@ -118,6 +170,9 @@ def _gold_sintetica():
                        "order_delivered_customer_date": "2018-01-20", "order_estimated_delivery_date": "2018-01-10"})
     for i in range(12):   # demora, mas entregue antes da data estimada
         linhas.append({**base, "review_id": f"d{i:031d}", "review_full_text": f"Demorou muito para chegar, pedido {i}",
+                       "order_delivered_customer_date": "2018-01-08", "order_estimated_delivery_date": "2018-01-10"})
+    for i in range(4):    # reclamação que o dicionário não reconhece
+        linhas.append({**base, "review_id": f"s{i:031d}", "review_full_text": f"Experiência estranha com o pedido {i}",
                        "order_delivered_customer_date": "2018-01-08", "order_estimated_delivery_date": "2018-01-10"})
     for i in range(16):   # o vocabulário da pergunta precisa existir no corpus (camada 1b)
         linhas.append({**base, "review_score": 5, "review_id": f"e{i:031d}",
@@ -144,6 +199,8 @@ class EstatisticasTests(unittest.TestCase):
         demora = r.estatisticas["demora_x_data_de_entrega"]
         self.assertEqual((atraso["pedidos_entregues_apos_a_data_estimada"], atraso["percentual"]), (12, 100.0))
         self.assertEqual((demora["pedidos_entregues_apos_a_data_estimada"], demora["percentual"]), (0, 0.0))
+        cobertura = r.estatisticas["cobertura_notas_baixas"]
+        self.assertEqual((cobertura["total"], cobertura["sem_tema"], cobertura["sem_tema_negativo"]), (28, 4, 4))
 
     def test_pedido_de_evidencia_sobre_recorrencia_leva_estatistica(self):
         r = self.pipe.answer("Quais avaliações sustentam a conclusão de que existem problemas recorrentes "
@@ -158,6 +215,47 @@ class EstatisticasTests(unittest.TestCase):
         r = self.pipe.answer("O que os clientes relatam sobre atraso na entrega?")
         self.assertEqual(r.intencao, "especifica")
         self.assertIsNone(r.estatisticas)
+
+
+class LacunasDeCoberturaTests(unittest.TestCase):
+    def test_reclamacoes_explicitas(self):
+        casos = [("Estou aguardando a chegada do produto", "nao_recebido"),
+                 ("O produto chegou errado", "produto_errado"),
+                 ("Qualidade bem inferior", "qualidade_ruim"),
+                 ("Não foi o que eu esperava", "insatisfacao_geral")]
+        for texto, tema in casos:
+            with self.subTest(texto=texto):
+                self.assertIn(tema, temas(texto))
+
+    def test_espera_por_resposta_nao_vira_produto_nao_recebido(self):
+        for texto in ["Aguardando o retorno", "Aguardando a resposta", "Aguardo o reembolso"]:
+            self.assertNotIn("nao_recebido", temas(texto))
+
+    def test_nao_inventar_reclamacao_para_saudacao_ou_elogio(self):
+        for texto in ["Boa tarde", "Produto perfeito", "Não chegou errado", "Qualidade não é inferior"]:
+            self.assertFalse(any(rp.TEMAS[t]["polaridade"] == "negativo" for t in temas(texto)))
+
+
+class FlexaoECoberturaTests(unittest.TestCase):
+    def test_flexoes_completas(self):
+        for texto, tema in [("Ótimo produto", "elogio_produto"), ("Excelente produto", "elogio_produto"),
+                            ("Perfeita qualidade", "elogio_produto"), ("Ótimo atendimento", "elogio_vendedor"),
+                            ("Veio errado", "produto_errado"), ("Recebi errada", "produto_errado")]:
+            with self.subTest(texto=texto):
+                self.assertIn(tema, temas(texto))
+        self.assertNotIn("elogio_produto", temas("Não é ótimo produto"))
+        self.assertNotIn("produto_errado", temas("Não veio errado"))
+
+    def test_cobertura_usa_so_notas_baixas_e_distingue_elogio(self):
+        corpus = pd.DataFrame({"review_score": [1, 2, 1, 5, None],
+                               "temas": [[], ["elogio_produto"], ["produto_errado"], [], []]})
+        plano = type("PlanoTeste", (), {"filtros_indice": {}, "filtros_pos": {}})()
+        stat = rp.RAGPipeline._estatisticas(None, corpus, plano, [])
+        self.assertEqual(stat["cobertura_notas_baixas"], {
+            "total": 3, "sem_tema": 1, "percentual_sem_tema": 33.3,
+            "sem_tema_negativo": 2, "percentual_sem_tema_negativo": 66.7})
+        vazio = rp.RAGPipeline._estatisticas(None, corpus.iloc[3:], plano, [])
+        self.assertIsNone(vazio["cobertura_notas_baixas"]["percentual_sem_tema"])
 
 
 class ValidacaoTests(unittest.TestCase):

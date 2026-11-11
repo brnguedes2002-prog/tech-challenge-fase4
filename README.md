@@ -1,5 +1,7 @@
 # Tech Challenge Fase 4: Voice of Customer Intelligence com RAG (Olist)
 
+> **Demonstração local.** Execute `iniciar-voz.cmd` para consultar os CSVs da Olist com leitura multilinha, mensagem obrigatória e IDs únicos. São 40.641 avaliações e zero notas inválidas. A interface usa TF-IDF e síntese extrativa. Os notebooks documentam a arquitetura RAG do grupo.
+
 > **Aplicação web local:** consulte o [guia de instalação e execução](docs/INSTALACAO.md). O notebook 1 desta cópia já corrige a leitura do CSV (comentários com quebra de linha, validações e deduplicação determinística), mas a gold e o índice no Databricks continuam na versão anterior até o grupo reexecutar os notebooks 1 e 2.2. Os resultados das seções 8 e 9 são diagnóstico da versão anterior.
 
 Solução de **Voice of Customer (VoC) Intelligence** baseada em **Retrieval-Augmented Generation (RAG)** sobre as avaliações de clientes do [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce/data) (~100 mil pedidos, 2016 a 2018).
@@ -352,7 +354,7 @@ py -3.12 -m venv .venv
 Copy-Item .env.example .env
 ```
 
-Configure o perfil/warehouse no `.env` conforme o [guia](docs/INSTALACAO.md). Execute `iniciar-voz.cmd` e abra http://127.0.0.1:8766. Para explorar os CSVs sem LLM, execute `iniciar-exploracao-local.cmd`.
+Execute `iniciar-voz.cmd` e abra http://127.0.0.1:8766. O [guia de instalação](docs/INSTALACAO.md) detalha os modos de execução.
 
 O modo local inclui título ou mensagem e prepara 42.370 documentos únicos. Pela regra de mensagem obrigatória, são 40.641. O CSV original tem 99.224 linhas; avaliações sem texto e IDs repetidos explicam parte da redução. A gold de 40.739 hoje no Databricks resulta da ingestão defeituosa; o notebook 1 corrigido produz 40.641, o mesmo total da regra de mensagem obrigatória.
 

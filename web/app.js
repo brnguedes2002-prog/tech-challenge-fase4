@@ -124,13 +124,13 @@ async function fetchJson(url, options = {}, timeout = 20000) {
 
 function setStatus(status) {
   state.status = status;
-  const mode = status.mode === "databricks" ? "Databricks" : status.mode === "local" ? "Exploração local" : "Ambiente indisponível";
+  const mode = status.mode === "databricks" ? "Base remota" : status.mode === "local" ? "Base local Olist" : "Ambiente indisponível";
   const statusText = status.state === "error" ? "Falha na preparação" : status.ready ? mode : `${mode} · preparando`;
   $("connection-status").replaceChildren(node("i"), document.createTextNode(statusText));
   $("connection-status").classList.toggle("offline", status.state === "error");
   $("submit-question").disabled = state.busy || !status.ready;
   $("mode-chip").textContent = text(status.label, mode);
-  $("mode-description").textContent = text(status.description, status.mode === "databricks" ? "Consulta aos recursos existentes do Databricks. A interface é executada localmente." : "Dados reais locais · busca TF-IDF e resposta extrativa · sem LLM.");
+  $("mode-description").textContent = text(status.description, "Consulte as avaliações da Olist.");
   const corpus = status.corpus || {};
   if (corpus.reviews !== undefined && corpus.reviews !== null) $("corpus-count").textContent = `${number(corpus.reviews)} avaliações`;
   $("dataset-period").textContent = text(corpus.period, "2016–2018");
@@ -158,7 +158,7 @@ function renderBase() {
   const facts = [
     ["Avaliações disponíveis", number(corpus.reviews), "Total informado pelo ambiente atual"],
     ["Período da base", text(corpus.period, "2016–2018"), "Base histórica de experiências de compra"],
-    ["Ambiente de consulta", status.mode === "databricks" ? "Databricks" : "Local", status.mode === "databricks" ? "Recursos existentes; aplicação local" : "Exploração extrativa, sem LLM"]
+    ["Ambiente de consulta", status.mode === "databricks" ? "Remoto" : "Local", status.mode === "databricks" ? "Recursos existentes; aplicação local" : "Exploração extrativa, sem LLM"]
   ];
   facts.forEach(([label, value, caption]) => {
     const card = node("div", "base-stat");
@@ -189,9 +189,7 @@ function renderArchitecture(status) {
     const value = format[key] ? format[key](raw) : (raw === null || raw === undefined || raw === "" ? null : String(raw));
     if (value !== null) element.textContent = value;
   });
-  const note = $("architecture-mode");
-  note.hidden = !local;
-  note.textContent = local ? "Execução atual em modo local: a busca usa TF-IDF sobre os CSVs e a resposta é um resumo extrativo, sem modelo de linguagem. As etapas 2, 3 e 5 descrevem o modo Databricks." : "";
+
 }
 
 const {normalizeEnvelope, tokenizeAnswer} = globalThis.VozContract;
@@ -349,18 +347,16 @@ function renderResult(envelope, fromHistory = false) {
   const warnings = [...(r.avisos || [])];
   if (missing.length) warnings.push(`As referências ${missing.join(", ")} não identificam uma evidência única no retorno. Revise a resposta.`);
   if (Array.isArray(meta.limitations)) warnings.push(...meta.limitations.map(String));
-  if (meta.mode === "databricks" && !warnings.some((w) => /ingest|105|truncad/i.test(w))) warnings.push("Base atual com pendência de ingestão já identificada. Os resultados precisam ser revalidados após a correção dos dados.");
-  if (imported) warnings.unshift("Execução registrada importada. O arquivo não foi autenticado nem consultado novamente no Databricks.");
+  if (imported) warnings.unshift("Execução registrada importada. Os resultados foram carregados do arquivo.");
   $("result-warnings").replaceChildren();
   const notices = [];
-  if (meta.mode === "databricks") notices.push("Base em revisão. Os resultados podem mudar após a correção dos dados.");
   if (meta.mode === "local") notices.push("Exploração local: resumo de comentários, sem geração por inteligência artificial.");
   if (imported) notices.push("Registro importado: este resultado não foi consultado novamente nem autenticado.");
   if (missing.length) notices.push("Há referências que não puderam ser verificadas. Confira os detalhes antes de usar esta resposta.");
   (r.avisos || []).filter(w => !/ingest|corte provis|nao citadas|não citadas|explora[çc][aã]o local/i.test(w)).forEach(w => notices.push(w));
   notices.forEach(message => $("result-warnings").append(node("p", "result-note", message)));
   $("result-provenance").replaceChildren();
-  const modeLabel = imported ? "Execução registrada · importada" : fromHistory ? "Consulta anterior desta sessão" : meta.mode === "databricks" ? "Databricks · consulta realizada" : "Exploração local · sem LLM";
+  const modeLabel = imported ? "Execução registrada · importada" : fromHistory ? "Consulta anterior desta sessão" : meta.mode === "databricks" ? "Consulta remota" : "Consulta à base local";
   $("result-provenance").append(node("span", "source-mode", modeLabel));
   $("result-provenance").append(node("span", "", `${r.evidencias.length} evidências retornadas`));
   if (Number.isFinite(Number(r.latencia_ms)) && r.latencia_ms != null) $("result-provenance").append(node("span", "", `${number(Number(r.latencia_ms) / 1000)}s no pipeline`));
@@ -462,11 +458,22 @@ function renderStatistics(stats, filters) {
   if (!stats) return;
   area.append(node("h3", "", "Panorama do recorte"), node("p", "", `Recorte: ${describeSlice(filters)}. Contagens sobre todas as avaliações do recorte, não só sobre os comentários exibidos.`));
   const totals = node("div", "stat-totals");
-  [[stats.total_avaliacoes_no_recorte, "avaliações no recorte"], [stats.avaliacoes_sem_tema_identificado, "sem tema identificado"]].forEach(([value, label]) => {
-    const item = node("div"); item.append(node("strong", "", number(value)), node("span", "", label)); totals.append(item);
+  const total = Number(stats.total_avaliacoes_no_recorte);
+  const noTheme = Number(stats.avaliacoes_sem_tema_identificado);
+  const share = (part, whole) => whole > 0 ? ` (${number(Math.round(1000 * part / whole) / 10)}%)` : "";
+  const items = [[number(total), "avaliações no recorte"], [`${number(noTheme)}${share(noTheme, total)}`, "sem nenhum tema identificado"]];
+  items.forEach(([value, label]) => {
+    const item = node("div"); item.append(node("strong", "", value), node("span", "", label)); totals.append(item);
   });
   area.append(totals);
-  const chart = node("ul", "bar-chart"); chart.setAttribute("aria-label", "Frequência dos temas no recorte");
+  const coverage = stats.cobertura_notas_baixas;
+  if (coverage && Number.isInteger(coverage.total) && coverage.total > 0) {
+    area.append(node("p", "method-note", `Cobertura entre avaliações de notas 1 e 2: ${number(coverage.sem_tema)} de ${number(coverage.total)} (${number(coverage.percentual_sem_tema)}%) não têm tema identificado. ${number(coverage.sem_tema_negativo)} (${number(coverage.percentual_sem_tema_negativo)}%) não têm tema de reclamação identificado. Nota baixa é um indicador de insatisfação, não uma classificação manual do comentário. O ranking cobre apenas os problemas reconhecidos pelo dicionário.`));
+  } else if (coverage && coverage.total === 0) {
+    area.append(node("p", "method-note", "Não há avaliações de notas 1 e 2 neste recorte para calcular essa cobertura."));
+  }
+
+  const chart = node("ul", "bar-chart"); chart.setAttribute("aria-label", "Frequência dos temas identificados no recorte");
   (Array.isArray(stats.temas) ? stats.temas : []).forEach((theme) => {
     const item = node("li", "bar-item"); const label = node("div", "bar-label");
     label.append(node("span", "", themeLabel(theme.tema)), node("strong", "", `${number(theme.avaliacoes)} · ${number(theme.percentual_do_recorte)}%`));
@@ -486,7 +493,7 @@ function renderStatistics(stats, filters) {
     if (slow) box.append(node("p", "", `Entre as ${number(slow.relatos_de_demora_com_data_de_entrega)} que falam em demora ou prazo longo, ${number(slow.pedidos_entregues_apos_a_data_estimada)} (${number(slow.percentual)}%) chegaram depois da data estimada. Nas demais, a entrega ocorreu até a data estimada.`));
     area.append(box);
   }
-  area.append(node("p", "method-note", "Método: dicionário de palavras-chave aplicado a cada avaliação do recorte. Uma avaliação pode ter mais de um tema, por isso os percentuais não somam 100%."));
+  area.append(node("p", "method-note", "Método: frequência dos temas identificados por dicionário de palavras-chave. Reclamações não reconhecidas ficam fora do ranking. Uma avaliação pode ter mais de um tema, por isso os percentuais não somam 100%."));
   const details = node("details"); details.append(node("summary", "muted", "Recorte e estatísticas completas"), node("pre", "", safeJson(stats))); area.append(details);
 }
 

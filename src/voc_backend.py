@@ -40,7 +40,7 @@ class Backend:
         self.mode = self.env.get("VOC_MODE", "local").lower()
         if self.mode not in ("local", "databricks"):
             raise ValueError("VOC_MODE deve ser local ou databricks.")
-        self.label = "Databricks · base atual" if self.mode == "databricks" else "Exploração local · sem LLM"
+        self.label = "Databricks · base atual" if self.mode == "databricks" else "Base local Olist"
         self.pipeline = None
         self.provenance = {}
         self._lock = threading.Lock()
@@ -103,22 +103,22 @@ class Backend:
                     "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."]
             else:
                 self._progress("Lendo os CSVs locais e preparando busca TF-IDF.")
-                gold, provenance = load_local_gold(self.root / "data")
+                gold, provenance = load_local_gold(self.root / "data", require_message=True)
                 gold, quality = prepare_gold(gold)
                 themes = rp.construir_tabela_temas(gold)
                 pipe = rp.pipeline_local(themes)
                 config = pipe.cfg
                 limitations = ["Modo local: busca TF-IDF e resposta extrativa determinística, sem modelo generativo.",
-                               "Os CSVs locais incluem título ou mensagem, inclusive avaliações só com título; a gold do grupo exige mensagem e ainda tem falha de leitura multiline.",
+                               "A base reúne avaliações com mensagem escrita e IDs únicos, com leitura de comentários multilinha.",
                                "Categorias representam um item por pedido; temas por léxico não capturam toda ironia ou negação."]
             dates = pd.to_datetime(gold.order_purchase_timestamp, errors="coerce").dropna()
             period = f"{dates.min():%Y-%m} a {dates.max():%Y-%m}" if len(dates) else "Não informado"
             public_config = {k: config[k] for k in ("min_score", "k_contexto", "min_evidencias", "min_docs_agregada")}
             public_config.update(search_mode=config.get("vs_query_type") if self.mode == "databricks" else "TF-IDF",
-                                 threshold_status="provisório", llm=config.get("llm_endpoint") if self.mode == "databricks" else "extrativo sem LLM")
+                                 threshold_status="provisório" if self.mode == "databricks" else "local", llm=config.get("llm_endpoint") if self.mode == "databricks" else "extrativo sem LLM")
             self.pipeline, self.provenance = pipe, provenance
             with self._lock:
-                self._status.update(ready=True, state="ready", description="Pronto para consultar a base atual." if self.mode == "databricks" else "Pronto para explorar dados reais localmente, sem LLM.",
+                self._status.update(ready=True, state="ready", description="Pronto para consultar a base atual." if self.mode == "databricks" else "Pronto para consultar as avaliações da Olist.",
                                     corpus={"reviews": len(gold), "period": period, "source": provenance["source"],
                                             "score_distribution": {str(int(k)): int(v) for k, v in gold.review_score.value_counts().items()},
                                             "invalid_scores": quality["invalid_or_missing_scores"]},
@@ -126,8 +126,8 @@ class Backend:
                                     dataset_version=provenance["dataset_version"])
         except Exception as exc:
             message = exc.message if isinstance(exc, BackendError) else (
-                "Não foi possível preparar a base. Confira dependências, autenticação FIAP, warehouse e permissões de leitura. "
-                "O sistema não trocou para outro modo.")
+                "Não foi possível preparar a base. Confira os CSVs e as dependências do ambiente." if self.mode == "local"
+                else "Não foi possível preparar a base remota. Confira o acesso e as dependências.")
             with self._lock:
                 self._status.update(ready=False, state="error", description=message, error_type=type(exc).__name__)
             print("Inicialização falhou:", type(exc).__name__, flush=True)

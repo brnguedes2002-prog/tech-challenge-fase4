@@ -42,7 +42,7 @@ O `.env` aceita somente as chaves descritas no exemplo. Ele não executa comando
 
 ## 4. Executar
 
-No Windows, abra `iniciar-voz.cmd`. O script usa `.venv`, carrega a configuração e inicia em http://127.0.0.1:8766. A CLI deve estar no PATH; o script também procura uma instalação padrão via WinGet, sem caminho pessoal fixo.
+No Windows, `iniciar-voz.cmd` abre a demonstração local em http://127.0.0.1:8766. Para usar o backend Databricks, configure o perfil conforme a seção anterior.
 
 Alternativa pelo terminal:
 
@@ -57,7 +57,7 @@ Mantenha o terminal aberto. Para encerrar, pressione Ctrl+C. Mudanças na config
 
 ## 5. Exploração local sem LLM
 
-Abra `iniciar-exploracao-local.cmd`, com os CSVs originais na pasta `data/`. São necessários reviews, orders, order_items, products e product_category_name_translation. O leitor trata campos multiline, inclui título ou mensagem, mantém o primeiro ID e usa a categoria do primeiro item de cada pedido. São 42.370 documentos neste conjunto. A seleção apenas por mensagem produziria 40.641; o total bruto é 99.224 linhas.
+Abra `iniciar-exploracao-local.cmd`, com os CSVs originais na pasta `data/`. São necessários reviews, orders, order_items, products e product_category_name_translation. O leitor trata campos multiline, inclui título ou mensagem, mantém o primeiro ID e usa a categoria do primeiro item de cada pedido. A demonstração inclui avaliações com mensagem escrita: 40.641 documentos únicos de 99.224 registros brutos.
 
 Esse modo usa TF-IDF e resumo extrativo determinístico. Não é teste do LLM ou do índice remoto. O sistema não troca de modo automaticamente em caso de erro.
 

@@ -23,7 +23,7 @@ def clean_text(value):
     return re.sub(r"\s+", " ", html.unescape(str(value or ""))).strip()
 
 
-def load_local_gold(directory: Path):
+def load_local_gold(directory: Path, *, require_message=False):
     """Parse original multiline CSV correctly; joins never multiply reviews."""
     def read(name):
         return pd.read_csv(directory / name, dtype=str, keep_default_na=False)
@@ -31,7 +31,8 @@ def load_local_gold(directory: Path):
     raw_count = len(reviews)
     reviews["review_full_text"] = (reviews["review_comment_title"].map(clean_text) + " " +
                                    reviews["review_comment_message"].map(clean_text)).str.strip()
-    reviews = reviews[reviews.review_full_text.ne("") & reviews.review_id.ne("")].copy()
+    has_text = reviews.review_comment_message.map(clean_text).ne("") if require_message else reviews.review_full_text.ne("")
+    reviews = reviews[has_text & reviews.review_id.ne("")].copy()
     # Stable policy documented in provenance, independent of arbitrary join order.
     reviews = reviews.drop_duplicates("review_id", keep="first")
     orders = read("olist_orders_dataset.csv").drop_duplicates("order_id")
@@ -49,7 +50,7 @@ def load_local_gold(directory: Path):
     gold = gold.merge(categories[["order_id", "product_category_name_english"]], on="order_id", how="left", validate="many_to_one")
     gold["review_score"] = pd.to_numeric(gold["review_score"], errors="coerce")
     gold = gold[GOLD_COLUMNS].reset_index(drop=True)
-    digest = hashlib.sha256()
+    digest = hashlib.sha256(b"message-required\0" if require_message else b"")
     for name in sorted(["olist_order_reviews_dataset.csv", "olist_orders_dataset.csv", "olist_order_items_dataset.csv",
                         "olist_products_dataset.csv", "product_category_name_translation.csv"]):
         digest.update(name.encode())
@@ -58,7 +59,8 @@ def load_local_gold(directory: Path):
                 digest.update(chunk)
     return gold, {"source": "CSVs originais Olist locais", "dataset_version": digest.hexdigest(),
                   "loaded_at": utc_now(), "raw_reviews": raw_count, "reviews": len(gold),
-                  "policy": "CSV multiline; título + mensagem; primeiro review_id; categoria do primeiro item por pedido"}
+                  "policy": ("CSV multilinha; mensagem obrigatória; " if require_message else "CSV multilinha; título ou mensagem; ")
+                  + "primeiro review_id; categoria do primeiro item por pedido"}
 
 
 def quote_table(table):

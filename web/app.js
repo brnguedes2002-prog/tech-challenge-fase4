@@ -124,7 +124,7 @@ async function fetchJson(url, options = {}, timeout = 20000) {
 
 function setStatus(status) {
   state.status = status;
-  const mode = status.mode === "databricks" ? "Base remota" : status.mode === "local" ? "Base local Olist" : "Ambiente indisponível";
+  const mode = status.mode === "databricks" ? "Olist · Llama 3.3" : status.mode === "rag" ? "Olist · Llama 3.3" : status.mode === "local" ? "Base local Olist" : "Ambiente indisponível";
   const statusText = status.state === "error" ? "Falha na preparação" : status.ready ? mode : `${mode} · preparando`;
   $("connection-status").replaceChildren(node("i"), document.createTextNode(statusText));
   $("connection-status").classList.toggle("offline", status.state === "error");
@@ -158,7 +158,8 @@ function renderBase() {
   const facts = [
     ["Avaliações disponíveis", number(corpus.reviews), "Total informado pelo ambiente atual"],
     ["Período da base", text(corpus.period, "2016–2018"), "Base histórica de experiências de compra"],
-    ["Ambiente de consulta", status.mode === "databricks" ? "Remoto" : "Local", status.mode === "databricks" ? "Recursos existentes; aplicação local" : "Exploração extrativa, sem LLM"]
+    status.mode === "rag" ? ["Mecanismo de consulta", "RAG", "Embeddings MiniLM e Llama 3.3 70B"]
+      : ["Ambiente de consulta", status.mode === "databricks" ? "Remoto" : "Local", status.mode === "databricks" ? "Recursos existentes; aplicação local" : "Exploração extrativa, sem LLM"]
   ];
   facts.forEach(([label, value, caption]) => {
     const card = node("div", "base-stat");
@@ -356,7 +357,7 @@ function renderResult(envelope, fromHistory = false) {
   (r.avisos || []).filter(w => !/ingest|corte provis|nao citadas|não citadas|explora[çc][aã]o local/i.test(w)).forEach(w => notices.push(w));
   notices.forEach(message => $("result-warnings").append(node("p", "result-note", message)));
   $("result-provenance").replaceChildren();
-  const modeLabel = imported ? "Execução registrada · importada" : fromHistory ? "Consulta anterior desta sessão" : meta.mode === "databricks" ? "Consulta remota" : "Consulta à base local";
+  const modeLabel = imported ? "Execução registrada · importada" : fromHistory ? "Consulta anterior desta sessão" : ["databricks", "rag"].includes(meta.mode) ? "Resposta do Llama 3.3" : "Consulta à base local";
   $("result-provenance").append(node("span", "source-mode", modeLabel));
   $("result-provenance").append(node("span", "", `${r.evidencias.length} evidências retornadas`));
   if (Number.isFinite(Number(r.latencia_ms)) && r.latencia_ms != null) $("result-provenance").append(node("span", "", `${number(Number(r.latencia_ms) / 1000)}s no pipeline`));

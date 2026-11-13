@@ -1,8 +1,8 @@
 # Tech Challenge Fase 4: Voice of Customer Intelligence com RAG (Olist)
 
-> **Demonstração local.** Execute `iniciar-voz.cmd` para consultar os CSVs da Olist com leitura multilinha, mensagem obrigatória e IDs únicos. São 40.641 avaliações e zero notas inválidas. A interface usa TF-IDF e síntese extrativa. Os notebooks documentam a arquitetura RAG do grupo.
+> **Vídeo da apresentação (5min54s).** [Baixar o MP4](docs/video/voz-video-final.mp4).
 
-> **Aplicação web local:** consulte o [guia de instalação e execução](docs/INSTALACAO.md). O notebook 1 desta cópia já corrige a leitura do CSV (comentários com quebra de linha, validações e deduplicação determinística), mas a gold e o índice no Databricks continuam na versão anterior até o grupo reexecutar os notebooks 1 e 2.2. Os resultados das seções 8 e 9 são diagnóstico da versão anterior.
+> **Versão demonstrada.** A aplicação usa a gold corrigida da Olist, busca no Databricks Vector Search e gera respostas com Llama 3.3 70B. A gold, a tabela de embeddings e o índice sincronizado têm 40.641 registros. Consulte o [guia de instalação](docs/INSTALACAO.md).
 
 Solução de **Voice of Customer (VoC) Intelligence** baseada em **Retrieval-Augmented Generation (RAG)** sobre as avaliações de clientes do [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce/data) (~100 mil pedidos, 2016 a 2018).
 
@@ -148,7 +148,7 @@ Na leitura corrigida, **41,3%** das avaliações (40.977 de 99.224) têm mensage
 | Bronze | `workspace.raw.f4_*` (9 tabelas) | Cópia dos CSVs com tipos corretos |
 | Silver | `workspace.raw.f4_order_reviews_clean` | Texto normalizado, nulos tratados, `has_comment` |
 | Silver | `workspace.raw.f4_reviews_enriched` | Reviews + status, datas, categoria e preços |
-| Gold | `workspace.raw.f4_reviews_rag` | **40.641** avaliações com texto após a correção, prontas para embedding (a versão hoje no Databricks tem 40.739, com 105 registros espúrios) |
+| Gold | `workspace.raw.f4_reviews_rag` | **40.641** avaliações com texto após a correção, prontas para embedding |
 
 Metadados preservados na gold para o RAG: `review_score`, `order_status`, `order_purchase_timestamp`, `order_delivered_customer_date`, `order_estimated_delivery_date`, `product_category_name_english` e preços.
 
@@ -176,7 +176,7 @@ Na análise por pergunta, o MiniLM foi forte nos temas dominantes (atraso: 5/5; 
 
 ### 6.2 Geração e indexação (notebook 2.2)
 
-- **40.641 embeddings** normalizados de 384 dimensões após reexecutar sobre a gold corrigida (a versão atual do índice tem 40.739), gerados em lotes de 32 (cerca de 12 minutos em CPU).
+- **40.641 embeddings** normalizados de 384 dimensões após reexecutar sobre a gold corrigida, gerados em lotes de 32 (cerca de 12 minutos em CPU).
 - Persistidos em `workspace.raw.f4_reviews_embeddings`, com todas as colunas da gold mais `embedding_id` e `embedding`.
 - Indexados no Vector Search: endpoint `f4_reviews_endpoint`, índice `workspace.raw.f4_reviews_vector_index`, Delta Sync Hybrid, sincronização Triggered, chave `embedding_id`.
 - **Endpoint e índice são criados por código** no próprio notebook (com Change Data Feed habilitado na tabela de origem), então a etapa é reprodutível em qualquer workspace.
@@ -268,9 +268,9 @@ Foram executadas 20 perguntas do conjunto do grupo: 15 respostas e 5 recusas coi
 
 Esses números medem decisão de responder/recusar e integridade de referências, **não fidelidade semântica nem generalização**. O conjunto já é conhecido pelo desenvolvimento. Foram observadas inferências causais sem suporte e confusão entre relato de demora e atraso registrado no pedido. A validação de tags não elimina esses erros. As regras 5 a 8 do prompt e a separação entre os temas de atraso e demora foram criadas depois dessa execução para tratar esses dois problemas; o efeito ainda precisa ser medido.
 
-A gold usada nessa execução tem 105 registros com IDs inválidos e comentários multilinha truncados. O notebook 1 corrigido elimina os dois problemas, mas precisa ser reexecutado no Databricks. Os temas são contagens por léxico: sobreposição entre temas, negação distante e ironia limitam sua interpretação. Uma entrega posterior não invalida necessariamente o relato escrito antes dela.
+A gold histórica usada em 07/11 tinha 105 registros com IDs inválidos e comentários multilinha truncados. A versão demonstrada usa a gold reprocessada, com zero notas inválidas e o índice sincronizado. Os temas são contagens por léxico: sobreposição entre temas, negação distante e ironia limitam sua interpretação. Uma entrega posterior não invalida necessariamente o relato escrito antes dela.
 
-O corte 0.60 permanece provisório. A comparação de modelos usa um gabarito inicialmente sugerido pelo léxico, ainda dependente de revisão humana. Após corrigir a ingestão e atualizar o índice, é necessário recalibrar e repetir a avaliação com perguntas independentes. Métricas antigas de corte 0.747 não representam esta execução.
+O corte 0.60 permanece provisório. A comparação de modelos usa um gabarito inicialmente sugerido pelo léxico, ainda dependente de revisão humana. A avaliação histórica deve ser distinguida dos testes da versão demonstrada. Uma avaliação independente pode medir a fidelidade das respostas na nova base. Métricas antigas de corte 0.747 não representam esta execução.
 
 ---
 
@@ -318,7 +318,7 @@ resposta.to_dict()                 # integração com interface
 
 | Limitação | Impacto | Próximo passo |
 |---|---|---|
-| A gold e o índice no Databricks ainda vêm da leitura sem `multiLine` (104.162 linhas para 99.224 avaliações) | Textos truncados e 105 registros espúrios na versão consultada hoje | Leitura corrigida e validada no notebook 1 desta cópia. Falta reexecutar os notebooks 1 e 2.2, regenerar a tabela de temas, recalibrar o corte e repetir a avaliação |
+| Ingestão multilinha | A versão histórica truncava comentários e incluía registros inválidos | Notebooks 1 e 2.2 reexecutados; gold, embeddings e índice com 40.641 registros |
 | Gabarito do notebook 2.1 preenchido pelo léxico | Métricas de comparação de modelos são provisórias | Revisão humana dos 127 pares em `data/` |
 | Léxico de temas não captura ironia, parte das gírias e negações distantes do termo | Contagens por tema aproximadas; 36,2% sem tema na gold corrigida | Validação por amostragem com julgamento humano |
 | "Produto não recebido até a avaliação" mistura pedido ainda em trânsito e pedido extraviado | O tema não indica se o produto chegou depois | Levar `review_creation_date` para a gold e separar "em trânsito" de "não entregue" com essa data e `order_status` |
@@ -356,7 +356,7 @@ Copy-Item .env.example .env
 
 Execute `iniciar-voz.cmd` e abra http://127.0.0.1:8766. O [guia de instalação](docs/INSTALACAO.md) detalha os modos de execução.
 
-O modo local inclui título ou mensagem e prepara 42.370 documentos únicos. Pela regra de mensagem obrigatória, são 40.641. O CSV original tem 99.224 linhas; avaliações sem texto e IDs repetidos explicam parte da redução. A gold de 40.739 hoje no Databricks resulta da ingestão defeituosa; o notebook 1 corrigido produz 40.641, o mesmo total da regra de mensagem obrigatória.
+A exploração local e a versão demonstrada incluem avaliações com mensagem escrita, totalizando 40.641 IDs únicos de 99.224 registros no CSV de origem.
 
 A instalação não provisiona Databricks. É necessário acesso aos recursos existentes. A reprodução em outro computador exige validar suas permissões; o sucesso local não comprova acesso de outra conta.
 

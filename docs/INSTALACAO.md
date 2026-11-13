@@ -42,7 +42,7 @@ O `.env` aceita somente as chaves descritas no exemplo. Ele não executa comando
 
 ## 4. Executar
 
-No Windows, `iniciar-voz.cmd` abre a demonstração local em http://127.0.0.1:8766. Para usar o backend Databricks, configure o perfil conforme a seção anterior.
+No Windows, configure o perfil Databricks conforme a seção anterior e execute `iniciar-voz.cmd`. Abra http://127.0.0.1:8766 para reproduzir a demonstração do vídeo. Para exploração dos CSVs, use `iniciar-exploracao-local.cmd`.
 
 Alternativa pelo terminal:
 

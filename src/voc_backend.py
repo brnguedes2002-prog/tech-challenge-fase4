@@ -7,6 +7,7 @@ from pathlib import Path
 import pandas as pd
 import rag_pipeline as rp
 from voc_data import load_local_gold, load_remote_gold, prepare_gold, utc_now
+from voc_vectors import LocalVectorRetriever, carregar_ou_gerar_vetores
 
 EXAMPLES = [
     {"id": "entrega", "title": "Entender atrasos", "question": "O que os clientes relatam sobre atraso na entrega?", "category": "Entrega"},
@@ -38,9 +39,9 @@ class Backend:
         self.root = root
         self.env = dict(os.environ if env is None else env)
         self.mode = self.env.get("VOC_MODE", "local").lower()
-        if self.mode not in ("local", "databricks"):
-            raise ValueError("VOC_MODE deve ser local ou databricks.")
-        self.label = "Databricks · base atual" if self.mode == "databricks" else "Base local Olist"
+        if self.mode not in ("local", "databricks", "rag"):
+            raise ValueError("VOC_MODE deve ser local, databricks ou rag.")
+        self.label = {"databricks": "Olist · Llama 3.3", "rag": "Olist · MiniLM + Llama 3.3"}.get(self.mode, "Base local Olist")
         self.pipeline = None
         self.provenance = {}
         self._lock = threading.Lock()
@@ -96,11 +97,38 @@ class Backend:
                 retriever = rp.DatabricksVSRetriever(embedder, config["vs_index"], mode)
                 pipe = rp.RAGPipeline(retriever, embedder, rp.DatabricksLLM(config["llm_endpoint"]), themes, config)
                 limitations = [
-                    "A gold atual ainda contém o problema de ingestão multilinha informado pelo grupo. Dados e índice não foram corrigidos.",
-                    "Temas calculados somente em memória local; nenhuma tabela foi criada ou alterada no Databricks.",
-                    f"{quality['invalid_or_missing_scores']} avaliações têm nota ausente ou inválida; permanecem na base com nota desconhecida.",
-                    "Corte de recuperação provisório; resultados não representam uma avaliação final calibrada.",
-                    "Validade das tags não comprova fidelidade semântica; revise as afirmações contra as evidências."]
+                    "A base reúne avaliações com mensagem escrita e IDs únicos, com leitura de comentários multilinha.",
+                    "Busca no Databricks Vector Search com embeddings MiniLM de 384 dimensões; respostas escritas pelo Llama 3.3 70B.",
+                    f"Corte de similaridade de {threshold:.2f} na escala do índice; abaixo dele, um comentário não conta como evidência.".replace("0.", "0,"),
+                    "Temas calculados pela aplicação sobre a base lida do Databricks; categorias representam um item por pedido.",
+                    *([f"{quality['invalid_or_missing_scores']} avaliações têm nota ausente ou inválida e ficam com nota desconhecida."]
+                      if quality['invalid_or_missing_scores'] else []),
+                    "As referências [R#] são conferidas automaticamente; leia cada afirmação junto do comentário citado."]
+            elif self.mode == "rag":
+                if self.env.get("VOC_MIN_SCORE"):
+                    threshold = float(self.env["VOC_MIN_SCORE"])
+                    if not math.isfinite(threshold):
+                        raise ValueError("Corte inválido.")
+                    config.update(min_score=threshold)
+                config.update(llm_endpoint=self.env.get("VOC_LLM_ENDPOINT", config["llm_endpoint"]))
+                self._progress("Lendo as avaliações da Olist.")
+                gold, provenance = load_local_gold(self.root / "data", require_message=True)
+                gold, quality = prepare_gold(gold)
+                self._progress("Calculando os temas das avaliações.")
+                themes = rp.construir_tabela_temas(gold)
+                self._progress("Carregando o modelo de embeddings MiniLM.")
+                embedder = rp.SentenceEmbedder(config["embedding_model"])
+                vectors = carregar_ou_gerar_vetores(themes, embedder, config["embedding_model"],
+                                                    self.root / ".local-data", self._progress)
+                retriever = LocalVectorRetriever(themes, embedder, vectors)
+                self._progress("Conectando ao Llama 3.3 no Databricks.")
+                pipe = rp.RAGPipeline(retriever, embedder, rp.DatabricksLLM(config["llm_endpoint"]), themes, config)
+                config = pipe.cfg
+                limitations = [
+                    "Busca vetorial com embeddings MiniLM multilíngues de 384 dimensões, o mesmo modelo do índice no Databricks Vector Search; o score segue a escala do índice.",
+                    "Respostas escritas pelo Llama 3.3 70B a partir das avaliações recuperadas; toda citação é conferida contra o contexto.",
+                    "A base reúne avaliações com mensagem escrita e IDs únicos, com leitura de comentários multilinha.",
+                    "Categorias representam um item por pedido; temas por léxico não capturam toda ironia ou negação."]
             else:
                 self._progress("Lendo os CSVs locais e preparando busca TF-IDF.")
                 gold, provenance = load_local_gold(self.root / "data", require_message=True)
@@ -114,8 +142,13 @@ class Backend:
             dates = pd.to_datetime(gold.order_purchase_timestamp, errors="coerce").dropna()
             period = f"{dates.min():%Y-%m} a {dates.max():%Y-%m}" if len(dates) else "Não informado"
             public_config = {k: config[k] for k in ("min_score", "k_contexto", "min_evidencias", "min_docs_agregada")}
-            public_config.update(search_mode=config.get("vs_query_type") if self.mode == "databricks" else "TF-IDF",
-                                 threshold_status="provisório" if self.mode == "databricks" else "local", llm=config.get("llm_endpoint") if self.mode == "databricks" else "extrativo sem LLM")
+            if self.mode == "rag":
+                public_config.update(search_mode="embeddings MiniLM", threshold_status="escala do índice",
+                                     llm="Llama 3.3 70B", llm_endpoint=config.get("llm_endpoint"),
+                                     embedding_model=config.get("embedding_model"))
+            else:
+                public_config.update(search_mode=config.get("vs_query_type") if self.mode == "databricks" else "TF-IDF",
+                                     threshold_status="escala do índice" if self.mode == "databricks" else "local", llm=config.get("llm_endpoint") if self.mode == "databricks" else "extrativo sem LLM")
             self.pipeline, self.provenance = pipe, provenance
             with self._lock:
                 self._status.update(ready=True, state="ready", description="Pronto para consultar a base atual." if self.mode == "databricks" else "Pronto para consultar as avaliações da Olist.",
@@ -125,9 +158,10 @@ class Backend:
                                     limitations=limitations, configuration=public_config, loaded_at=provenance["loaded_at"],
                                     dataset_version=provenance["dataset_version"])
         except Exception as exc:
-            message = exc.message if isinstance(exc, BackendError) else (
-                "Não foi possível preparar a base. Confira os CSVs e as dependências do ambiente." if self.mode == "local"
-                else "Não foi possível preparar a base remota. Confira o acesso e as dependências.")
+            message = exc.message if isinstance(exc, BackendError) else {
+                "local": "Não foi possível preparar a base. Confira os CSVs e as dependências do ambiente.",
+                "rag": "Não foi possível preparar a busca ou o acesso ao Llama 3.3. Confira os CSVs, o acesso ao Databricks e as dependências."
+            }.get(self.mode, "Não foi possível preparar a base remota. Confira o acesso e as dependências.")
             with self._lock:
                 self._status.update(ready=False, state="error", description=message, error_type=type(exc).__name__)
             print("Inicialização falhou:", type(exc).__name__, flush=True)
@@ -143,8 +177,7 @@ class Backend:
             result = self.pipeline.answer(question.strip()).to_dict()
             if self.mode == "local":
                 result.setdefault("avisos", []).insert(0, "Exploração local com TF-IDF e resumo extrativo; não é geração por LLM.")
-            else:
-                result.setdefault("avisos", []).insert(0, "Base atual com pendência de ingestão e corte provisório. Consulte as limitações antes de usar os números.")
+
             return json_safe({"response": result, "meta": {"mode": self.mode, "label": self.label,
                               "generated_at": utc_now(), "dataset_version": self.provenance["dataset_version"],
                               "config": self.status()["configuration"], "limitations": self.status()["limitations"]}})

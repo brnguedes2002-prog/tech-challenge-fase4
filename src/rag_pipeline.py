@@ -642,7 +642,7 @@ Regras obrigatorias:
 5. Separe o que o cliente escreveu do que vem dos metadados. entrega_atrasada=sim/nao compara a data de entrega do pedido com a data estimada; nao diga que o cliente afirmou isso.
 6. Nao atribua causas que as avaliacoes nao mencionam (por exemplo, culpar a transportadora ou o vendedor sem que o cliente diga isso).
 7. Palavras de frequencia ("a maioria", "muitos", "frequente", "recorrente", "predomina") so podem ser usadas com base no bloco <estatisticas>. Sem esse bloco, descreva o que os exemplos mostram, sem generalizar para a base.
-8. Demora nao e o mesmo que atraso: trate como atraso apenas quando o cliente disser que o prazo nao foi cumprido ou quando entrega_atrasada=sim.
+8. Demora nao e o mesmo que atraso. Separe "relato de atraso" de "atraso confirmado pelas datas". Use "o cliente relatou atraso" apenas se o comentario mencionar atraso ou descumprimento do prazo explicitamente. Se o comentario disser apenas que a entrega demorou, descreva-o como relato de demora, mesmo quando entrega_atrasada=sim. Nesse caso, atribua o atraso aos metadados em uma frase separada: "As datas do pedido confirmam entrega apos o prazo [Rn]." Confira essa distincao para cada referencia antes de responder.
 9. Escreva em portugues do Brasil, de forma objetiva: um resumo de 1 a 2 frases e depois os achados em topicos, cada um com suas citacoes. Termine com uma linha "Limitacoes:" quando houver.
 """
 

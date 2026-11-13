@@ -1,8 +1,8 @@
 # Tech Challenge Fase 4: Voice of Customer Intelligence com RAG (Olist)
 
-> **Vídeo da apresentação (5min54s).** [Baixar o MP4](docs/video/voz-video-final.mp4).
+> **Vídeo da apresentação (6min08s).** [Baixar o MP4](docs/video/V%C3%ADdeo%20de%20apresenta%C3%A7%C3%A3o.mp4).
 
-> **Versão demonstrada.** A aplicação usa a gold corrigida da Olist, busca no Databricks Vector Search e gera respostas com Llama 3.3 70B. A gold, a tabela de embeddings e o índice sincronizado têm 40.641 registros. Consulte o [guia de instalação](docs/INSTALACAO.md).
+> **Versão demonstrada.** A aplicação usa a gold corrigida da Olist, busca no Databricks Vector Search e gera respostas com Llama 3.3 70B. A gold, a tabela de embeddings e o índice sincronizado têm 40.641 registros. Na consulta de prazo, o app organiza os relatos recuperados e as datas do pedido em blocos separados, usando os temas e metadados. Consulte o [guia de instalação](docs/INSTALACAO.md).
 
 Solução de **Voice of Customer (VoC) Intelligence** baseada em **Retrieval-Augmented Generation (RAG)** sobre as avaliações de clientes do [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce/data) (~100 mil pedidos, 2016 a 2018).
 

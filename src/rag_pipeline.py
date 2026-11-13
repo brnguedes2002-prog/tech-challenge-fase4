@@ -745,6 +745,89 @@ def validar_resposta(texto: str, evs: list[Evidencia], contexto: str) -> tuple[b
 
 
 # ============================================================
+# Perguntas sobre prazo: relato do cliente x datas do pedido
+# ============================================================
+
+_TEMAS_PRAZO = {"atraso_entrega", "demora_entrega"}
+
+
+def _juntar_tags(itens: list[str]) -> str:
+    return itens[0] if len(itens) == 1 else ", ".join(itens[:-1]) + " e " + itens[-1]
+
+
+def _atrasado(e: "Evidencia") -> bool | None:
+    """entrega_atrasada do pedido como bool do Python (o pandas devolve numpy.bool_ ou NaN)."""
+    if e.atrasado is None or (isinstance(e.atrasado, float) and pd.isna(e.atrasado)):
+        return None
+    return bool(e.atrasado)
+
+
+def _quando_entregue(e: "Evidencia") -> str:
+    if e.dias_atraso is None or pd.isna(e.dias_atraso):
+        return "depois da data estimada" if _atrasado(e) else "até a data estimada"
+    d = int(round(abs(float(e.dias_atraso))))
+    if d == 0:
+        return "na data estimada"
+    unidade = "dia" if d == 1 else "dias"
+    return f"{d} {unidade} {'depois' if _atrasado(e) else 'antes'} da data estimada"
+
+
+def relato_de_prazo(e: "Evidencia") -> str:
+    """O que o cliente escreveu, pelos temas do lexico: 'atraso' so quando o comentario fala em
+    atraso ou prazo descumprido; 'demora' quando fala so em demora ou prazo longo."""
+    if "atraso_entrega" in e.temas:
+        return "atraso"
+    if "demora_entrega" in e.temas:
+        return "demora"
+    return "outro"
+
+
+def responder_prazo(evs: list["Evidencia"]) -> str:
+    """Resposta montada pelo codigo para perguntas sobre atraso ou demora na entrega.
+
+    Separa em dois blocos o que o cliente relatou (temas do lexico sobre o texto) e o que as datas
+    do pedido confirmam (entrega_atrasada, calculada com a data estimada). Nao usa o LLM para
+    classificar: um relato de demora nunca vira relato de atraso, mesmo com entrega atrasada."""
+    relatos = {e.tag: relato_de_prazo(e) for e in evs}
+    tags = lambda f: [e.tag for e in evs if f(e)]
+    linhas = ["O app separa o que cada cliente escreveu do que as datas do pedido mostram. "
+              "Relato de demora não é o mesmo que atraso: o atraso só se confirma quando a entrega "
+              "ocorreu depois da data estimada.", "", "**O que os clientes relataram**"]
+    for chave, rotulo in (("atraso", "Atraso ou prazo descumprido"),
+                          ("demora", "Demora ou prazo longo, sem falar em atraso"),
+                          ("outro", "Outros comentários sobre a entrega")):
+        grupo = tags(lambda e, c=chave: relatos[e.tag] == c)
+        if grupo:
+            linhas.append(f"- {rotulo}: {_juntar_tags(grupo)}.")
+    linhas += ["", "**O que as datas do pedido confirmam**"]
+    def detalhar(grupo, extra=""):
+        return _juntar_tags([f"{e.tag} (entregue {_quando_entregue(e)}{extra})" for e in grupo])
+    datas = {e.tag: _atrasado(e) for e in evs}
+    confirmado = [e for e in evs if relatos[e.tag] == "atraso" and datas[e.tag] is True]
+    so_datas = [e for e in evs if relatos[e.tag] != "atraso" and datas[e.tag] is True]
+    nao_confirmado = [e for e in evs if relatos[e.tag] == "atraso" and datas[e.tag] is False]
+    sem_atraso = [e for e in evs if relatos[e.tag] != "atraso" and datas[e.tag] is False]
+    sem_data = [e for e in evs if datas[e.tag] is None]
+    if confirmado:
+        linhas.append(f"- Atraso relatado e confirmado pelas datas: {detalhar(confirmado)}.")
+    if so_datas:
+        partes = [f"{e.tag} (entregue {_quando_entregue(e)}; o cliente "
+                  f"{'relatou demora' if relatos[e.tag] == 'demora' else 'não falou em atraso'})" for e in so_datas]
+        linhas.append(f"- Atraso só nas datas, sem relato de atraso: {_juntar_tags(partes)}.")
+    if nao_confirmado:
+        linhas.append(f"- Atraso relatado, mas não confirmado pelas datas: {detalhar(nao_confirmado)}.")
+    if sem_atraso:
+        plural = "entregues" if len(sem_atraso) > 1 else "entregue"
+        linhas.append(f"- Sem atraso pelas datas: {_juntar_tags([e.tag for e in sem_atraso])} ({plural} até a data estimada).")
+    if sem_data:
+        linhas.append(f"- Sem data de entrega registrada: {_juntar_tags([e.tag for e in sem_data])}.")
+    linhas += ["", "Limitações: são comentários selecionados por similaridade com a pergunta; mostram o que "
+               "os clientes dizem, não a frequência na base. O relato vem do dicionário de palavras-chave "
+               "aplicado ao texto; as datas vêm do pedido."]
+    return "\n".join(linhas)
+
+
+# ============================================================
 # Orquestrador
 # ============================================================
 
@@ -924,6 +1007,16 @@ class RAGPipeline:
 
         for i, e in enumerate(evs, start=1):
             e.tag = f"[R{i}]"
+        if plano.intencao != "agregada" and estat is None and _TEMAS_PRAZO & set(plano.temas_alvo):
+            resposta = responder_prazo(evs)
+            lastro = montar_contexto(pergunta, evs, None) + "\n" + "\n".join(
+                f"{e.tag} dias_atraso={e.dias_atraso}" for e in evs)
+            ok, motivo, avisos = validar_resposta(resposta, evs, lastro)
+            trace["resposta_montada_pelo_app"] = "relato do cliente (temas do lexico) x datas do pedido (entrega_atrasada)"
+            if ok:
+                return RAGResponse(pergunta, resposta, False, None, plano.intencao,
+                                   {**plano.filtros_indice, **plano.filtros_pos}, evs, None, avisos, trace,
+                                   int((time.time() - t0) * 1000))
         contexto = montar_contexto(pergunta, evs, estat)
         trace["contexto_chars"] = len(contexto)
 

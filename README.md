@@ -213,7 +213,7 @@ Exemplo: *"Quais avaliações sustentam a conclusão de que existem problemas re
 
 ### 7.3 Temas e atraso real (tabela `workspace.raw.f4_reviews_temas`)
 
-- **15 temas por léxico determinístico** (11 de reclamação, 4 de elogio). Barato, auditável e reprodutível.
+- **18 temas por léxico determinístico** (13 de reclamação, 5 de elogio). Barato, auditável e reprodutível.
 - **Guarda de negação:** nos elogios, em janela curta ("não chegou no prazo" não vira elogio). Em 6 temas de reclamação (atraso, demora, defeito, produto errado, qualidade e embalagem), a negação colada ao termo anula a ocorrência ("sem nenhum defeito", "não atrasou", "não veio quebrado"). Negação distante e ironia continuam fora do alcance.
 - **Atraso e demora são temas separados.** Atraso exige que o cliente diga que o prazo não foi cumprido ("atrasou", "fora do prazo", "não chegou no prazo"); demora é a percepção de lentidão ("demorou", "prazo muito longo"), que pode acontecer dentro do prazo. Na gold corrigida, das 672 avaliações de atraso com data de entrega, 71,6% foram entregues depois da data estimada; entre as 883 de demora, 26,7%.
 - **"Produto não recebido até a avaliação":** o rótulo registra o momento do relato. Na gold corrigida, 54,3% dessas avaliações com data de entrega foram escritas antes da entrega registrada no pedido. "Ainda não recebi" saiu do tema de atraso; "não recebi a nota fiscal" ou "a resposta" não entram no tema.
@@ -260,7 +260,7 @@ O score mínimo é **calibrado** no notebook 3 com a mesma regra do pipeline: o 
 
 ## 8. Exemplos e resultados da aplicação
 
-As [consultas registradas](docs/EXEMPLOS_RESULTADOS.md) incluem respostas reais, filtros, referências e configuração. A execução de 07/11/2026 usou 40.739 avaliações, ANN, corte provisório 0.60 e Llama 3.3 70B.
+As [consultas registradas](docs/EXEMPLOS_RESULTADOS.md) incluem respostas reais, filtros, referências e configuração. A execução de 07/11/2026 usou 40.739 avaliações, ANN, corte provisório 0.60 e Llama 3.3 70B. Uma [avaliação exploratória de fidelidade](docs/AVALIACAO_FIDELIDADE.md) revisa cinco perguntas novas na base corrigida.
 
 ## 9. Avaliação e limites
 

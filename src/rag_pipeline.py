@@ -498,6 +498,10 @@ def rotear(pergunta: str) -> Plano:
     foco = [g for g, rg in _FOCO.items() if rg.search(q)]
     pol_tema = "positivo" if positivo else "negativo"
     temas_alvo = [t for t, rg in _TEMA_PERGUNTA[pol_tema].items() if re.search(rg, q)]
+    if not positivo and "atendimento" not in temas_alvo and re.search(
+        r"\b(?:resposta|retorno)\s+(?:d[ao]\s+)?(?:loja|vendedor\w*|empresa|suporte)\b", q
+    ):
+        temas_alvo.append("atendimento")
     if "atendimento" in temas_alvo and not re.search(r"\b(?:entrega\w*|frete|encomenda\w*)\b", q):
         temas_alvo = [tema for tema in temas_alvo if tema not in _TEMAS_PRAZO]
 
@@ -644,6 +648,7 @@ Regras obrigatorias:
 5. Separe o que o cliente escreveu do que vem dos metadados. entrega_atrasada=sim/nao compara a data de entrega do pedido com a data estimada; nao diga que o cliente afirmou isso.
 6. Nao atribua causas que as avaliacoes nao mencionam (por exemplo, culpar a transportadora ou o vendedor sem que o cliente diga isso).
    Diferencie defeito de defeito de fabricacao, e entrega demorada de espera por retorno do vendedor. Cite apenas os comentarios que sustentam cada atribuicao. Se os comentarios responderem apenas parte da pergunta, indique a lacuna. Use aspas apenas para trechos literais da avaliacao citada.
+   Separe solicitacao de devolucao, espera por resposta, promessa de troca e resolucao confirmada. Uma expectativa de reembolso nao comprova estorno. Separe elogios a confianca, seguranca, compromisso e transparencia, citando apenas a fonte que sustenta cada qualidade. Preserve o recorte da pergunta: se ela pede produtos rasgados, nao trate produtos quebrados ou tortos como exemplos de rasgos.
 7. Palavras de frequencia ("a maioria", "muitos", "frequente", "recorrente", "predomina") so podem ser usadas com base no bloco <estatisticas>. Sem esse bloco, descreva o que os exemplos mostram, sem generalizar para a base.
 8. Demora nao e o mesmo que atraso. Separe "relato de atraso" de "atraso confirmado pelas datas". Use "o cliente relatou atraso" apenas se o comentario mencionar atraso ou descumprimento do prazo explicitamente. Se o comentario disser apenas que a entrega demorou, descreva-o como relato de demora, mesmo quando entrega_atrasada=sim. Nesse caso, atribua o atraso aos metadados em uma frase separada: "As datas do pedido confirmam entrega apos o prazo [Rn]." Confira essa distincao para cada referencia antes de responder.
 9. Escreva em portugues do Brasil, de forma objetiva: um resumo de 1 a 2 frases e depois os achados em topicos, cada um com suas citacoes. Termine com uma linha "Limitacoes:" quando houver.
@@ -716,6 +721,29 @@ _TAG = re.compile(r"\[R(\d+)\]")
 _FREQUENCIA = re.compile(r"\b(a maioria|maior parte|muitos clientes|muitas avaliacoes|frequentes?|frequentemente|recorrentes?|predomin\w*)\b")
 
 
+_EVENTOS_CONCLUIDOS = {
+    "resolucao": (r"\b(?:resolveram|resolvid[oa]s?)\b", r"\b(?:foi resolvid[oa]|resolveram)\b"),
+    "devolucao": (r"\b(?:devolvid[oa]s?|ter devolvido|devolveram)\b", r"\b(?:devolvi|foi devolvid[oa])\b"),
+    "estorno": (r"\b(?:estorno (?:feito|realizado)|reembolso (?:feito|realizado|recebido))\b",
+                r"\b(?:fizeram o estorno|estorno (?:feito|realizado)|recebi o reembolso)\b"),
+}
+_RASGOS = r"\b(?:rasgad[oa]s?|rasgos?|rasgou|rasgaram)\b"
+
+
+def _mencao_afirmativa(texto: str, padrao: str) -> bool:
+    texto = re.sub(r"(?:^|(?<=[.!?;\n]))\s*(?:se|caso)\s+[^,.!?;\n]+,[^.!?;\n]*", "", texto, flags=re.IGNORECASE)
+    for clausula in re.split(r"[,;.!?\n]+|\bmas\b|\bporem\b", texto.lower()):
+        trecho = normalizar(clausula)
+        for ocorrencia in re.finditer(padrao, trecho):
+            antes = trecho[:ocorrencia.start()]
+            if not _NEGACAO_PROXIMA.search(antes) and not re.search(
+                r"\b(?:nao|nunca|nem) (?:\w+ ){0,3}$|\b(?:espero|aguardo|creio|prometeram) (?:\w+ ){0,4}$"
+                r"|\bse (?:\w+ )+$|\bcaso (?:venha|chegue|esteja|seja|o|a|os|as) (?:\w+ )*$", antes
+            ):
+                return True
+    return False
+
+
 def validar_resposta(texto: str, evs: list[Evidencia], contexto: str) -> tuple[bool, str | None, list[str]]:
     avisos = []
     if texto.strip().upper().startswith("SEM_EVIDENCIA"):
@@ -740,6 +768,18 @@ def validar_resposta(texto: str, evs: list[Evidencia], contexto: str) -> tuple[b
             if not all(citacao in " ".join(fonte.split()) for fonte in fontes_literais):
                 return False, "Citacao literal ausente nos comentarios referenciados. Use o texto exato ou parafraseie sem aspas.", avisos
         afirmacao = normalizar(trecho)
+        for evento, (alegacao, confirmacao) in _EVENTOS_CONCLUIDOS.items():
+            if _mencao_afirmativa(trecho, alegacao) and not all(_mencao_afirmativa(fonte, confirmacao) for fonte in refs):
+                return False, f"Conclusao de {evento} sem confirmacao nas fontes citadas. Separe pedidos, espera e resultados confirmados.", avisos
+        if re.search(r"\btransparen(?:cia|tes?)\b", afirmacao):
+            critica = r"\b(?:falta de transparencia|sem transparencia|nao (?:foi |era )?transparente)\b"
+            if re.search(critica, afirmacao):
+                sustentada = all(_mencao_afirmativa(fonte, critica) for fonte in refs)
+            else:
+                sustentada = all(_mencao_afirmativa(fonte, r"\b(?:transparen\w*|sincer\w*)\b")
+                                 and not re.search(critica, normalizar(fonte)) for fonte in refs)
+            if not sustentada:
+                return False, "Transparencia sem suporte em todas as fontes. Cite separadamente cada qualidade mencionada.", avisos
         if re.search(r"\b(?:perfeito|otimo|excelente) estado\b", afirmacao):
             if not all(re.search(r"\b(?:perfeito|otimo|excelente) estado\b|\bsem (?:danos?|avarias?)\b|\bintacto\w*\b",
                                  normalizar(fonte)) for fonte in refs):
@@ -973,6 +1013,12 @@ class RAGPipeline:
         trace["acima_do_min_score"] = len(fortes)
         if not fortes:
             return None, None, f"nenhuma avaliacao com similaridade >= {self.cfg['min_score']}."
+        if re.search(_RASGOS, normalizar(pergunta)):
+            fortes = [e for e in fortes if _mencao_afirmativa(e.texto, _RASGOS)]
+            trace["comentarios_sobre_rasgos"] = len(fortes)
+            if len(fortes) < self.cfg["min_evidencias"]:
+                return None, None, (f"evidencias insuficientes sobre rasgos no recorte: {len(fortes)} "
+                                    f"comentario(s) com relato afirmativo; minimo de {self.cfg['min_evidencias']}.")
         if len(fortes) < self.cfg["min_evidencias"]:
             return None, None, (f"apenas {len(fortes)} avaliacao(oes) relevante(s); "
                                 f"o minimo configurado e {self.cfg['min_evidencias']}.")

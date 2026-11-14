@@ -260,7 +260,7 @@ O score mínimo é **calibrado** no notebook 3 com a mesma regra do pipeline: o 
 
 ## 8. Exemplos e resultados da aplicação
 
-As [consultas registradas](docs/EXEMPLOS_RESULTADOS.md) incluem respostas reais, filtros, referências e configuração. A execução de 07/11/2026 usou 40.739 avaliações, ANN, corte provisório 0.60 e Llama 3.3 70B. Uma [avaliação exploratória de fidelidade](docs/AVALIACAO_FIDELIDADE.md) revisa cinco perguntas novas na base corrigida.
+As [consultas registradas](docs/EXEMPLOS_RESULTADOS.md) incluem respostas reais, filtros, referências e configuração. A execução de 07/11/2026 usou 40.739 avaliações, ANN, corte provisório 0.60 e Llama 3.3 70B. Uma [avaliação exploratória de fidelidade](docs/AVALIACAO_FIDELIDADE.md) revisa cinco perguntas novas na base corrigida. A [rodada reservada](docs/AVALIACAO_RESERVADA.md) registra a comparação de configurações e os resultados preliminares para revisão independente.
 
 ## 9. Avaliação e limites
 

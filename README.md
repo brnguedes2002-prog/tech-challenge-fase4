@@ -139,6 +139,7 @@ Na leitura corrigida, **41,3%** das avaliações (40.977 de 99.224) têm mensage
 - **Texto do documento:** `review_full_text` = título + mensagem.
 - **Deduplicação determinística** por `review_id`: 789 avaliações aparecem ligadas a mais de um pedido, com o mesmo texto e a mesma nota. Fica o pedido mais antigo (desempate por `order_id`), para que categoria e datas não mudem entre execuções.
 - **Validações que interrompem a execução:** antes de gravar a bronze de reviews (99.224 registros, `review_id` válido, notas de 1 a 5, mensagens multilinha presentes) e depois de gravar a gold (40.641 documentos, IDs únicos, textos não vazios, um comentário multilinha de referência completo). A lógica foi testada localmente com PySpark sobre os CSVs do Kaggle.
+- **Validação no Databricks:** após corrigir a ingestão multilinha e reexecutar os notebooks 1 e 2.2, foram conferidos 40.641 registros na gold, na tabela de embeddings e no índice sincronizado.
 - **Enriquecimento com left joins** (nenhuma avaliação é perdida por falta de correspondência): `reviews → orders → order_items` (agregado por pedido) `→ products → tradução da categoria`.
 
 ### Camadas
@@ -218,7 +219,7 @@ Exemplo: *"Quais avaliações sustentam a conclusão de que existem problemas re
 - **Atraso e demora são temas separados.** Atraso exige que o cliente diga que o prazo não foi cumprido ("atrasou", "fora do prazo", "não chegou no prazo"); demora é a percepção de lentidão ("demorou", "prazo muito longo"), que pode acontecer dentro do prazo. Na gold corrigida, das 672 avaliações de atraso com data de entrega, 71,6% foram entregues depois da data estimada; entre as 883 de demora, 26,7%.
 - **"Produto não recebido até a avaliação":** o rótulo registra o momento do relato. Na gold corrigida, 54,3% dessas avaliações com data de entrega foram escritas antes da entrega registrada no pedido. "Ainda não recebi" saiu do tema de atraso; "não recebi a nota fiscal" ou "a resposta" não entram no tema.
 - **Atraso real:** `dias_atraso` = entrega real menos entrega estimada. Permite cruzar **o que o cliente disse** com **o que aconteceu no pedido**.
-- 36,2% das avaliações da gold corrigida não caem em nenhum tema (37,7% na versão atual do Databricks), e esse percentual é reportado.
+- Parte das avaliações fica sem tema identificado. A interface informa a cobertura no recorte da consulta.
 - Testes automatizados do léxico em `tests/test_rag_lexicon.py`.
 
 ### 7.4 Construção do contexto
@@ -318,13 +319,12 @@ resposta.to_dict()                 # integração com interface
 
 | Limitação | Impacto | Próximo passo |
 |---|---|---|
-| Ingestão multilinha | A versão histórica truncava comentários e incluía registros inválidos | Notebooks 1 e 2.2 reexecutados; gold, embeddings e índice com 40.641 registros |
 | Gabarito do notebook 2.1 preenchido pelo léxico | Métricas de comparação de modelos são provisórias | Revisão humana dos 127 pares em `data/` |
-| Léxico de temas não captura ironia, parte das gírias e negações distantes do termo | Contagens por tema aproximadas; 36,2% sem tema na gold corrigida | Validação por amostragem com julgamento humano |
+| Léxico de temas tem cobertura parcial de ironia, gírias e negações distantes do termo | As contagens por tema são aproximadas e parte das avaliações fica sem tema identificado | Validação por amostragem com julgamento humano |
 | "Produto não recebido até a avaliação" mistura pedido ainda em trânsito e pedido extraviado | O tema não indica se o produto chegou depois | Levar `review_creation_date` para a gold e separar "em trânsito" de "não entregue" com essa data e `order_status` |
 | Categoria vem de um item representativo por pedido | Pedidos com vários itens podem ter categoria imprecisa | Documento por item ou lista de categorias por pedido |
-| MiniLM trunca textos acima de 128 tokens | Avaliações longas são representadas pelo início | Chunking para textos longos |
-| Gold set com 20 perguntas e precisão por tema baseada no próprio léxico | Serve para comparar configurações, não como medida absoluta | Gold set maior com julgamento humano |
+| MiniLM limita a entrada a 128 tokens na configuração usada | Trechos de comentários longos podem ficar fora da representação usada na busca vetorial | Testar a divisão de comentários longos em trechos |
+| Bateria histórica de 20 perguntas com precisão por tema baseada no léxico e [rodada reservada](docs/AVALIACAO_RESERVADA.md) com resultados preliminares | As duas avaliações dão evidências sobre as perguntas testadas | Revisão independente da fidelidade das respostas e da adequação das recusas |
 
 ## 12. Aplicação web local
 
